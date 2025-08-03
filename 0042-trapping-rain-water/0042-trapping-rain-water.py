@@ -23,7 +23,6 @@ class Solution:
                     water_bucket = 0
                 left += 1
             else:
-
                 if right_peak < height[right]:
                     right_peak = height[right]
 
