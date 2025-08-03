@@ -14,8 +14,5 @@ class Solution:
                 start = i + 1
                 gas_tank = 0
         
-        if balance < 0:
-            start = -1
-        
-        return start
+        return start if balance >= 0 else -1
 
