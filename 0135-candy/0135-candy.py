@@ -1,15 +1,24 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         n = len(ratings)
-        candies = [1] * n
-
-        # loop forward
-        for i in range(n - 1):
-            if ratings[i + 1] > ratings[i]:
-                candies[i+1] = candies[i] + 1
+        if n == 0:
+            return 0
         
-        # loop backwards
-        for i in range(n-1,0,-1):
-            if ratings[i-1] > ratings[i]:
-                candies[i-1] = max(candies[i-1], candies[i] + 1)
-        return sum(candies)
+        total = 1
+        up = down = peak = 0
+
+        for i in range(1, n):
+            if ratings[i] > ratings[i - 1]:
+                up += 1
+                peak = up
+                down = 0
+                total += 1 + up
+            elif ratings[i] < ratings[i - 1]:
+                up = 0
+                down += 1
+                total += 1 + down - (1 if down <= peak else 0)
+            else:
+                up = down = peak = 0
+                total += 1
+        
+        return total
