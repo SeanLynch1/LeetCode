@@ -9,8 +9,7 @@ class Solution:
         for i in range(n):
             diff = gas[i] - cost[i]
             balance += diff
-            gas_tank += gas[i]
-            gas_tank -= cost[i]
+            gas_tank += diff
 
             if gas_tank >= 0:
                 if start == -1:
