@@ -1,5 +1,8 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        
         water = 0
         water_bucket = 0
         left = 0
@@ -11,28 +14,23 @@ class Solution:
         while right > left:
             # find lowest side
             if height[left] < height[right]:
+
+                left += 1
+
                 if left_peak < height[left]:
                     left_peak = height[left]
 
-                diff = left_peak - height[left + 1]
+                diff = left_peak - height[left]
+                water += diff
 
-                if diff > 0:
-                    water_bucket += diff
-                else:
-                    water += water_bucket
-                    water_bucket = 0
-                left += 1
             else:
+                right -= 1
+
                 if right_peak < height[right]:
                     right_peak = height[right]
 
-                diff = right_peak - height[right - 1]
-                if diff > 0:
-                    water_bucket += diff
-                else:
-                    water += water_bucket
-                    water_bucket = 0
-                right -= 1
+                diff = right_peak - height[right]
+                water += diff
 
 
         return water
