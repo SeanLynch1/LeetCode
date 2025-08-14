@@ -9,9 +9,6 @@ class Solution:
 
         final_str = [[] for i in range(numRows)]
 
-        for i in range(numRows):
-            print(final_str[i])
-
         for char in s:
             final_str[index].append(char)
             if index == 0:
