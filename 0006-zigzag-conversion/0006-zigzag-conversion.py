@@ -4,7 +4,6 @@ class Solution:
             return s
             
         index, d = 0, 1
-
         n = len(s)
 
         final_str = [[] for i in range(numRows)]
