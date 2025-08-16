@@ -1,12 +1,10 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        zig_zag = []
         
         if numRows == 1:
             return s
         
-        for i in range(numRows):
-            zig_zag.append([])
+        zig_zag = [[] for _ in range(numRows)]
 
         index = 0
         direction = 1
