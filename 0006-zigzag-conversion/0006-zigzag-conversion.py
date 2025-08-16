@@ -1,22 +1,26 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
+        zig_zag = []
+        
         if numRows == 1:
             return s
-            
-        index, d = 0, 1
-        n = len(s)
+        
+        for i in range(numRows):
+            zig_zag.append([])
 
-        final_str = [[] for i in range(numRows)]
+        index = 0
+        direction = 1
 
-        for char in s:
-            final_str[index].append(char)
+        for i in range(len(s)):
+            # turning point
             if index == 0:
-                d = 1
-            elif index == numRows -1:
-                d = -1
-            index += d
+                direction = 1
+            #turning point
+            elif index == numRows - 1:
+                direction = -1
+            
+            zig_zag[index].append(s[i])
 
-        return ''.join([''.join(final_str[i]) for i in range(numRows)])
+            index += direction
 
-
-       
+        return ''.join([''.join(_) for _ in zig_zag])
