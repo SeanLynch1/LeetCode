@@ -2,7 +2,6 @@ class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
         res, line, width = [], [], 0
 
-
         for w in words:
             if width + len(w) + len(line) > maxWidth:
                 for i in range(maxWidth - width):
@@ -10,7 +9,7 @@ class Solution:
 
                 res.append(''.join(line))
                 line, width = [], 0
-            line += [w]
+            line.append(w)
             width += len(w)
 
         line_len = len(line)
