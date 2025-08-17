@@ -2,7 +2,6 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         left = 0
         right = len(s) -1
-        output = True
 
         while right > left:
             left_letter = s[left]
@@ -18,4 +17,4 @@ class Solution:
             else:
                 return False
 
-        return output
+        return True
