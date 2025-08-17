@@ -9,28 +9,22 @@ class Solution:
 
         left = 0
         right = len(s) -1
-        output = False
+        output = True
 
-        if len(s) == 1:
-            return True
-            
         while right > left:
-            print("left = ", left)
-            print("right = ", right)
             left_letter = s[left]
             right_letter = s[right]
 
-            if left_letter.lower() not in alphabet:
+            if not left_letter.isalnum():
                 print("left_letter = ", left_letter)
                 left += 1
-            elif right_letter.lower() not in alphabet:
+            elif not right_letter.isalnum():
                 print("right_letter = ", right_letter)
                 right -= 1
             elif left_letter.lower() == right_letter.lower():
                 print(left_letter.lower(), " == ", right_letter.lower())
                 left += 1
                 right -= 1
-                output = True
             else:
                 print("false")
                 print("FALSE")
