@@ -10,13 +10,13 @@ class Solution:
             line += [w]
             width += len(w)
 
-        for i in range(len(line)):
-            if i < len(line) -1 :
+        line_len = len(line)
+
+        for i in range(line_len):
+            if i < line_len -1 :
                 line[i] += ' '
-                print(line)
             else:
                 line[i] += ' ' * (maxWidth - width - (i))
-                print("last line = ", line)
 
         res.append(''.join(line))
         
