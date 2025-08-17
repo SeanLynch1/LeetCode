@@ -12,6 +12,7 @@ class Solution:
             width += len(w)
             line.append(w)
 
+        '''
         line_len = len(line)
 
         for i in range(line_len):
@@ -20,6 +21,7 @@ class Solution:
             else:
                 line += ' ' * ((maxWidth - width) - (len(line) - 1)) 
 
-        res.append(''.join(line))
+        res.append(''.join(line))'''
 
+        res.append(' '.join(line).ljust(maxWidth))
         return res
