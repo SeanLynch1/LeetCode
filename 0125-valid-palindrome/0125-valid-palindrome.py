@@ -9,12 +9,14 @@ class Solution:
 
             if not left_letter.isalnum():
                 left += 1
+                continue
             elif not right_letter.isalnum():
                 right -= 1
-            elif left_letter.lower() == right_letter.lower():
-                left += 1
-                right -= 1
-            else:
+                continue
+            elif left_letter.lower() != right_letter.lower():
                 return False
+            
+            left += 1
+            right -= 1
 
         return True
