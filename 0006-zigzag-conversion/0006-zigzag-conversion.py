@@ -1,24 +1,20 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        
-        if numRows == 1:
-            return s
-        
-        zig_zag = [[] for _ in range(numRows)]
+        res, direction, ind = [], 0 , 0
 
-        index = 0
-        direction = 1
+        grid = [[] for _ in range(numRows)]
 
-        for i in range(len(s)):
-            # turning point
-            if index == 0:
+        for char in s:
+            if ind == 0:
                 direction = 1
-            #turning point
-            elif index == numRows - 1:
+            elif ind == numRows - 1:
                 direction = -1
-            
-            zig_zag[index].append(s[i])
 
-            index += direction
+            print(ind)
+            grid[ind].append(char)
+            ind += direction
+        
+        for i in range(len(grid)):
+            res.append(''.join(grid[i]))
 
-        return ''.join([''.join(_) for _ in zig_zag])
+        return ''.join(res)
