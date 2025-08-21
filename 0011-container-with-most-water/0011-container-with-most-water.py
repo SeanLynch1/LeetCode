@@ -3,15 +3,19 @@ class Solution:
         left = 0
         right = len(height) - 1
         max_area = 0
+        heighest_pillar = 0
+
 
         while left < right: 
             lower_value = min(height[left], height[right])
 
-            current_area = lower_value * (right - left)
+            if lower_value > heighest_pillar:
+                current_area = lower_value * (right - left)
 
-            if current_area > max_area:
-                max_area = current_area
+                if current_area > max_area:
+                    max_area = current_area
 
+                heighest_pillar = lower_value
 
             if height[left] < height[right]:
                 left += 1
