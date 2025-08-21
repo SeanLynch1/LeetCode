@@ -1,22 +1,23 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         left = 0
-        right = len(s) -1
+        right = len(s) - 1
+        palindrome = [''] * len(s)
 
-        while right > left:
-            left_letter = s[left]
-            right_letter = s[right]
-
-            if not left_letter.isalnum():
+        print(palindrome)
+        while left < right:
+            if not s[left].isalnum():
                 left += 1
-            elif not right_letter.isalnum():
+            elif not s[right].isalnum():
                 right -= 1
-            elif left_letter.lower() == right_letter.lower():
-                left += 1
-                right -= 1
-            else:
+            elif s[left].lower() != s[right].lower():
+                print(f"{s[left]} != {s[right]}")
                 return False
-            
-            
+            else:
+                left += 1
+                right -=1
+                palindrome[left] = s[left]
+                palindrome[right] = s[right]
 
+        print(palindrome)
         return True
