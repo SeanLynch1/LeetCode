@@ -10,7 +10,6 @@ class Solution:
             lower_value = min(height[left], height[right])
 
             if lower_value > heighest_pillar:
-
                 current_area = lower_value * (right - left)
 
                 if current_area > max_area:
