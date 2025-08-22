@@ -13,16 +13,14 @@ class Solution:
 
             while j < k:
                 
-                remaining = target - nums[i]
-
                 curr_sum = (nums[i] + nums[j] + nums[k])
 
                 if abs(target - curr_sum) < abs(target - closest_sum):
                     closest_sum = curr_sum
 
-                if nums[j] + nums[k] < remaining: 
+                if curr_sum < target: 
                     j += 1
-                elif nums[j] + nums[k] > remaining:
+                elif curr_sum > target:
                     k -= 1
                 else:
                     return target
