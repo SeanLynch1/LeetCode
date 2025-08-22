@@ -22,10 +22,11 @@ class Solution:
                 if total == target:
                     
                     if res: 
-                        if not (nums[j] == res[-1][1] and nums[k] == res[-1][2]):
-                            res.append([nums[i],nums[j], nums[k]])
-                    else:
-                        res.append([nums[i],nums[j], nums[k]])
+                        if (nums[j] == res[-1][1] and nums[k] == res[-1][2]):
+                            k -= 1
+                            continue
+                        
+                    res.append([nums[i],nums[j], nums[k]])
                     
                     k -= 1
                 elif total > target:
