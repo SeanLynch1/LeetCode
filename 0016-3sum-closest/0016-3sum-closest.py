@@ -16,9 +16,7 @@ class Solution:
                 
                 remaining = target - nums[i]
 
-
                 curr_sum = (nums[i] + nums[j] + nums[k])
-
 
                 if abs(target - curr_sum) < closest_distance:
                     closest_distance = abs(target - curr_sum)
@@ -30,9 +28,5 @@ class Solution:
                     k -= 1
                 else:
                     return target
-
-                
-
-
 
         return closest_sum    
