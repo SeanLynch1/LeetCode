@@ -14,7 +14,6 @@ class Solution:
         word_length = len(words[0])
         indexes = []
 
-        print(word_count)
         # this is to offset start position, depending on where word ordering falls in string
         for i in range(word_length):
             start = i
@@ -35,20 +34,14 @@ class Solution:
                 word_window[curr_word] += 1
                 words_used += 1
 
-                print("word_window before while loop", word_window)
                 while word_window[curr_word] > word_count[curr_word]:
 
                     word_window[s[start:start+word_length]] -= 1
                     start += word_length
                     words_used -= 1
 
-                    print(word_window)
-
-
-
                 if words_used == len(words):
                     indexes.append(start)
-                    print("\n")
 
         return indexes
 
