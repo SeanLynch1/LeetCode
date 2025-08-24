@@ -1,40 +1,54 @@
-from collections import Counter, defaultdict
-from typing import List
+from collections import defaultdict
 
 class Solution:
-    """
-    Time:   O(n * k), n = length of s, k = length of each word
-    Memory: O(m * k), m = length of words, k = length of each word
-    """
-
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        length = len(words[0])
-        word_count = Counter(words)
+        
+        word_count = {}
+
+        for word in words:
+            if word in word_count:
+                word_count[word] += 1
+            else:
+                word_count[word] = 1
+
+        word_length = len(words[0])
         indexes = []
 
-        for i in range(length):
+        print(word_count)
+        # this is to offset start position, depending on where word ordering falls in string
+        for i in range(word_length):
             start = i
-            window = defaultdict(int)
+            word_window = defaultdict(int)
             words_used = 0
 
-            for j in range(i, len(s) - length + 1, length):
-                word = s[j:j + length]
+            for j in range(i,len(s), word_length):
+                curr_word = s[j:j+word_length]
 
-                if word not in word_count:
-                    start = j + length
-                    window = defaultdict(int)
+
+                # if we run into a substring that is not a word in words
+                if curr_word not in word_count:
+                    start = j + word_length
+                    word_window = defaultdict(int)
                     words_used = 0
                     continue
 
+                word_window[curr_word] += 1
                 words_used += 1
-                window[word] += 1
 
-                while window[word] > word_count[word]:
-                    window[s[start:start + length]] -= 1
-                    start += length
+                print("word_window before while loop", word_window)
+                while word_window[curr_word] > word_count[curr_word]:
+
+                    word_window[s[start:start+word_length]] -= 1
+                    start += word_length
                     words_used -= 1
+
+                    print(word_window)
+
+
 
                 if words_used == len(words):
                     indexes.append(start)
+                    print("\n")
 
         return indexes
+
