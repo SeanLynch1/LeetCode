@@ -32,9 +32,7 @@ class Solution:
                     
                     if (end - start) > (i - sub_string[0][1]) or (end - start) == 0:
                         start = sub_string[0][1]
-                        print(i)
                         end = i + 1
-                        print("start = ", start)
 
                     first_sub_letter = sub_string[0][0]
 
