@@ -1,19 +1,35 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         
-        n = len(nums)
-        left = 0
+        output = 0
+        start, end, left, right = 0, 0, 0, 0
+        summation = 0
 
-        sum_window = 0
-        min_length = float("inf")
+        while right < len(nums):
+            
 
-        for right in range(n):
-            sum_window += nums[right]
-
-            while sum_window >= target:
-                min_length = min(min_length, right - left + 1)
-                sum_window -= nums[left]
+            summation += nums[right]
+            print("before: ")
+            print("left = ", left, ", right =", right)
+            print("summation = ", summation, "target = ", target)
+            while summation > target:
+                print("hello?")
+                summation -= nums[left]
                 left += 1
+                print("left = ", left)
+                print("summation = ", summation)
 
-        return 0 if min_length == float("inf") else min_length
-                
+                if summation >= target:
+                    if right - left < end - start or end == 0:
+                        print("hello")
+                        start, end = left, right
+                        output = end - start + 1
+                        print(start, end, output)
+
+            right += 1
+
+            print("\n")
+        
+        return output
+
+
