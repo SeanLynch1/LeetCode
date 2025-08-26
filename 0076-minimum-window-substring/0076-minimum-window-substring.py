@@ -1,47 +1,34 @@
-from collections import defaultdict, deque
+from collections import Counter
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        
-        if not s or not t:
-            return ""
 
+        t_tracker = Counter(t)
 
-        found_letters = defaultdict(lambda: [0, 0])
+        left, start, end = 0, 0, 0
 
-        count = 0
-        sub_string = deque()
+        missing = len(t)
 
-        start = 0
-        end = 0
+        # offset by 1 because end is exlusive when slicing, index represents end
+        for right, char in enumerate(s, 1):
 
-        for letter in t:
-            a, b = found_letters[letter]
-            found_letters[letter] = [0, b + 1]
+            if t_tracker[char] > 0:
+                missing -= 1
 
-        for right, char in enumerate(s, 0):
-            
-            if char in found_letters:
-                if found_letters[char][0] < found_letters[char][1]:
-                    count += 1
+            t_tracker[char] -= 1
 
-                found_letters[char][0] += 1
-                sub_string.append([char, right])
-
-                while count == len(t):
-                    
-                    if (end - start) > (right - sub_string[0][1]) or (end - start) == 0:
-                        start = sub_string[0][1]
-                        end = right + 1
-
-                    first_sub_letter = sub_string[0][0]
-
-                    found_letters[first_sub_letter][0] -= 1
-
-                    if found_letters[first_sub_letter][0] < found_letters[first_sub_letter][1]:
-                        count -= 1
-                    
-                    # sets left to next value
-                    sub_string.popleft()
+            # if every letter in t is in use
+            if missing == 0:
+                while left < right and (t_tracker[s[left]] < 0):
+                    t_tracker[s[left]] += 1
+                    left += 1
                 
+                if right - left < end - start or end == 0:
+                    start, end = left, right
+
+                # exclude the left most letter for the next iteration
+                t_tracker[s[left]] += 1
+                left += 1
+                missing += 1
+
         return s[start:end]
