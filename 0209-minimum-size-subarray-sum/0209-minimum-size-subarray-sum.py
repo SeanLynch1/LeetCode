@@ -2,7 +2,7 @@ class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         
         output = 0
-        start, end, left, right = 0, 0, 0, 0
+        start, end, left = 0, 0, 0
         summation = 0
 
         for right in range(len(nums)):
