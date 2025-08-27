@@ -10,7 +10,6 @@ class Solution:
         word_len = len(words[0])
 
         for i in range(0, word_len):
-            
             count = 0
             left = i
             word_window = defaultdict(int)
