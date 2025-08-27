@@ -19,11 +19,14 @@ class Solution:
             
         print("\n")
         offset = 0
-        squares[0] = defaultdict(int)
         for i in range(len(board)):
             rows[i] = defaultdict(int)
 
             square_no = 0 + offset
+
+            if square_no not in squares:
+                squares[i] = defaultdict(int)
+
             print("squares = ", squares)
             for j in range(len(board[i])):
                 if j not in cols:
