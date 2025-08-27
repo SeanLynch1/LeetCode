@@ -10,7 +10,7 @@ class Solution:
                 square_no = (i // 3) * 3 + (j // 3)
 
                 # squares
-                if board[i][j] != ".":
+                if board[i][j] == ".":
                     continue
 
                 if board[i][j] not in squares[square_no]:
