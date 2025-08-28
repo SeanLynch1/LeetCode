@@ -32,7 +32,13 @@ class Solution:
         bottom = m - 1
         right = n - 1
 
-        if bottom >= 1 and right >= 1:
+        # more efficient than while loop below
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][0] == 0 or matrix[0][j] == 0:
+                    matrix[i][j] = 0
+
+        '''if bottom >= 1 and right >= 1:
             while bottom > 0 or right > 0:
 
                 if bottom < 1:
@@ -51,7 +57,7 @@ class Solution:
                         matrix[bottom][j] = 0
                 
                 bottom -= 1
-                right -= 1
+                right -= 1'''
         
 
         if fill_top:
