@@ -5,8 +5,6 @@ class Solution:
         """
         # transpose
         n = len(matrix)
-        i = 0
-        j = 0
 
         for i in range(n):
             for j in range(i, n):
@@ -16,13 +14,8 @@ class Solution:
                 matrix[i][j] = var_2
                 matrix[j][i] = var_1
 
-        for i in range(n):
-            print(matrix[i])
-
-        print("\n")
         # reverse rows
         # [1, 4, 7] -> [7, 4, 1]
-        
         
         for i in range(n):
             left = 0
@@ -36,12 +29,6 @@ class Solution:
 
                 left += 1
                 right -= 1
-
-        for i in range(n):
-            print(matrix[i])
-
-
-
 
         return matrix
             
