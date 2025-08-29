@@ -6,15 +6,7 @@ class Solution:
 
         n = len(board[0])
         m = len(board)
-
-        print("start =")
-        for i in range(m):
-            for j in range(n):
-                print(board[i][j], end = " ")
-            print()
-        print("\n")
     
-        iteration = 1
         # modify cells in place
         for i in range(m):
             for j in range(n):
@@ -30,8 +22,6 @@ class Solution:
                 
                 row_offset = -2
                 col_offset = -1
-                print(f"iteration = {iteration}")
-                print(f"i = {i}, j = {j}")
 
                 for check in range(0, 9):
                     if check % 3 != 0:
@@ -40,9 +30,6 @@ class Solution:
                         col_offset = -1
                         row_offset += 1
                     
-
-                    print(row_offset,col_offset)
-
                     # check bounds
                     if i + row_offset < 0:
                         continue
@@ -57,9 +44,6 @@ class Solution:
                     if row_offset == 0 and col_offset == 0:
                         continue
 
-                    print(f"cell = {board[i + row_offset][j + col_offset]}")
-                    print("\n")
-
                     # if cell is alive
                     if board[i + row_offset][j + col_offset] % 2 == 1:
                         live_neighbours += 1
@@ -71,19 +55,6 @@ class Solution:
                 else:
                     if live_neighbours == 3:
                         board[i][j] += 2
-
-
-                print("live_neighbours = ", live_neighbours,  " \n")
-
-                for z in range(m):
-                    for y in range(n):
-                        print(board[z][y], end = " ")
-                    print()
-                print("\n")
-                print("\n")
-
-
-                iteration += 1
 
         for i in range(m):
             for j in range(n):
