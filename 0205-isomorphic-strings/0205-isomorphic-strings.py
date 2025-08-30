@@ -23,7 +23,6 @@ class Solution:
 
             mapped_word.append(s_mapping[t[i]])
 
-        print("mapped word = ", ''.join(mapped_word))
         if ''.join(mapped_word) == s:
             return True
         else:
