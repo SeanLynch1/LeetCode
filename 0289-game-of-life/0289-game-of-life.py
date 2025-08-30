@@ -6,6 +6,8 @@ class Solution:
 
         n = len(board[0])
         m = len(board)
+
+        directions = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
     
         # modify cells in place
         for i in range(m):
@@ -20,32 +22,21 @@ class Solution:
 
                 live_neighbours = 0
                 
-                row_offset = -2
-                col_offset = -1
-
-                for check in range(0, 9):
-                    if check % 3 != 0:
-                        col_offset += 1
-                    else:
-                        col_offset = -1
-                        row_offset += 1
-                    
+                for x, y in directions:
+                    print(x,y)
                     # check bounds
-                    if i + row_offset < 0:
+                    if i + x < 0:
                         continue
-                    elif i + row_offset > m - 1:
-                        continue
-                    
-                    if j + col_offset < 0:
-                        continue
-                    elif j + col_offset > n - 1:
+                    elif i + x > m - 1:
                         continue
                     
-                    if row_offset == 0 and col_offset == 0:
+                    if j + y < 0:
                         continue
-
+                    elif j + y > n - 1:
+                        continue
+                    
                     # if cell is alive
-                    if board[i + row_offset][j + col_offset] % 2 == 1:
+                    if board[i + x][j + y] % 2 == 1:
                         live_neighbours += 1
 
                 # check four conditions after each neighbour has been assessed
