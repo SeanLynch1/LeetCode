@@ -1,22 +1,13 @@
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        
-        parent_anagram = defaultdict(int)
-        res = []
+        groups = defaultdict(list)
 
         for word in strs:
-            letters = list(word)
+            count = [0] * 26
+            for c in word:
+                count[ord(c) - ord('a')] += 1
+            groups[tuple(count)].append(word)
 
-            anagram = Counter(letters)
-
-            key = tuple(sorted(anagram.items()))
-
-            if key not in parent_anagram:
-                parent_anagram[key] = len(res)
-                res.append([])
-
-            res[parent_anagram[key]].append(word)
-            
-        return res
+        return list(groups.values())
