@@ -23,7 +23,6 @@ class Solution:
                 live_neighbours = 0
                 
                 for x, y in directions:
-                    print(x,y)
                     # check bounds
                     if i + x < 0:
                         continue
