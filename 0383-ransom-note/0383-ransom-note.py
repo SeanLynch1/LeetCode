@@ -8,7 +8,6 @@ class Solution:
         
         mag_letters = Counter(magazine)
 
-        print(mag_letters)
         for char in ransomNote:
             if mag_letters[char] > 0:
                 mag_letters[char] -= 1
