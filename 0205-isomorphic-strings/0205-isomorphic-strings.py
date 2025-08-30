@@ -1,30 +1,15 @@
-from collections import Counter
-
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        
-        unique_s = {}
-
-        for char in s:
-            if char not in unique_s:
-                unique_s[char] = 1
-
-        s_mapping = {}
-
-        mapped_word = []
-
-        for i in range(len(t)):
-            if t[i] not in s_mapping:
-                if unique_s[s[i]] > 0:
-                    s_mapping[t[i]] = s[i]
-                    unique_s[s[i]] -= 1
-                else:
-                    return False
-
-            mapped_word.append(s_mapping[t[i]])
-
-        if ''.join(mapped_word) == s:
-            return True
-        else:
+        if len(s) != len(t):
             return False
 
+        s_to_t = {}
+        t_to_s = {}
+
+        for sc, tc in zip(s, t):
+            if (sc in s_to_t and s_to_t[sc] != tc) or (tc in t_to_s and t_to_s[tc] != sc):
+                return False
+            s_to_t[sc] = tc
+            t_to_s[tc] = sc
+
+        return True
