@@ -1,4 +1,5 @@
 from collections import Counter, defaultdict
+import json 
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -11,7 +12,7 @@ class Solution:
 
             anagram = Counter(letters)
 
-            key = frozenset(anagram.items())
+            key = tuple(sorted(anagram.items()))
 
             parent_anagram[key].append(word)
 
