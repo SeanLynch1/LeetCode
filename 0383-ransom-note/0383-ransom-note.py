@@ -3,6 +3,8 @@ from collections import Counter
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         
+        if len(magazine) < len(ransomNote):
+            return False
         
         mag_letters = Counter(magazine)
 
