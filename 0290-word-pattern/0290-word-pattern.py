@@ -3,7 +3,7 @@ class Solution:
         
         words = s.split(" ")
         print(words)
-        if len(words) > len(pattern):
+        if len(words) != len(pattern):
             return False
 
         pattern_to_words = {}
