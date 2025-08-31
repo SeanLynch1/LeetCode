@@ -18,8 +18,6 @@ class Solution:
                 
                 j += 1
 
-            
-
             window.remove(nums[i])
 
         return False
