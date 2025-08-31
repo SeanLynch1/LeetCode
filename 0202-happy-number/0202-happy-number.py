@@ -3,6 +3,7 @@ class Solution:
     def isHappy(self, n: int) -> bool:
         
         happy_number = n
+
         found_numbers = set()
 
         while happy_number != 1:
@@ -17,7 +18,5 @@ class Solution:
                 found_numbers.add(happy_number)
             else:
                 return False
-
-            print(happy_number)
 
         return True
