@@ -8,14 +8,10 @@ class Solution:
         for i in range(len(nums)):
             nums_pos[nums[i]].append(i)
 
-        print(nums_pos)
         for num in nums:
             needed = target - num
             
-            print("needed = ", needed)
-            print("nums = ", num)
             if needed in nums_pos:
-                print("len = ",len(nums_pos[needed]) < 2 )
                 if num == needed and len(nums_pos[needed]) < 2:
                     continue
 
