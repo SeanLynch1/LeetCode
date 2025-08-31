@@ -5,11 +5,10 @@ class Solution:
         
         seen = {}
 
-        for i in range(len(nums)):
-
-            needed = target - nums[i]
+        for i, num in enumerate(nums):
+            needed = target - num
 
             if needed in seen:
                 return [seen[needed], i]
 
-            seen[nums[i]] = i
+            seen[num] = i
