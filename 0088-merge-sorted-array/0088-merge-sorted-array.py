@@ -4,6 +4,9 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
 
+        nums1[m:] = nums2
+        sorted(nums1)
+
         # define three variables
         i = m - 1 # last digit in nums1
         j = n - 1 # last digit in nums2
