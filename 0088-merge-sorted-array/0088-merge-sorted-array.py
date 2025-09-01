@@ -5,7 +5,10 @@ class Solution:
         """
 
         nums1[m:] = nums2
-        sorted(nums1)
+        print(nums1)
+
+        nums1.sort()
+        print(nums1)
 
         # define three variables
         i = m - 1 # last digit in nums1
@@ -16,7 +19,7 @@ class Solution:
         # compare last digits in both lists and move backwards accordingly, a total of m + n comparisons should be made
 
         # loop backwards
-        while i >= 0 and j >= 0:
+        '''while i >= 0 and j >= 0:
             if nums1[i] > nums2[j]:
                 nums1[k] = nums1[i]
                 i -= 1
@@ -30,4 +33,4 @@ class Solution:
         while j >= 0:
             nums1[k] = nums2[j]
             j -= 1
-            k -= 1
+            k -= 1'''
