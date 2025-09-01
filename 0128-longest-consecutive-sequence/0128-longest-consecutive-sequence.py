@@ -11,10 +11,11 @@ class Solution:
             if num - 1 not in nums_set:
                 current_num = num
                 length = 1
+                nxt = current_num + 1
 
-                while current_num + 1 in nums_set:
-                    current_num += 1
+                while nxt in nums_set:
                     length += 1
+                    nxt += 1
 
                 max_len = max(length,max_len)
 
