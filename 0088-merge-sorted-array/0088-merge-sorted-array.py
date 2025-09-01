@@ -14,7 +14,6 @@ class Solution:
 
         # loop backwards
         while i >= 0 and j >= 0:
-            print(f"i = {i}, j = {j}")
             if nums1[i] > nums2[j]:
                 nums1[k] = nums1[i]
                 i -= 1
@@ -23,19 +22,9 @@ class Solution:
                 j -= 1
 
             k -= 1
-            print(nums1, "\n")
-
         
-        print(nums1)
-        print("i = ", i)
-        print("j = ", j)
-        print("k = ", k)
-
-        print(nums2)
         # if i was fully iterated through but j was not that means all remaining elements in j have to be less than all elements in i
         while j >= 0:
             nums1[k] = nums2[j]
             j -= 1
             k -= 1
-
-        print(nums1)
