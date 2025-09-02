@@ -22,8 +22,6 @@ class Solution:
 
         k = nums[:end]
 
-        print(k)
-
         return len(k)
                 
     
