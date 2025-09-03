@@ -6,9 +6,7 @@ class Solution:
         maj_element = nums[0]
         count = 0
 
-        print(counter)
         for key, value in counter.items():
-            print(key,value)
             if value > count:
                 count = value
                 maj_element = key
