@@ -7,7 +7,6 @@ class Solution:
         i = 1
         jumps = 1
         current_jump = 0 + nums[0]
-        print("current_jump = ", current_jump)
 
         while current_jump < len(nums) - 1:
             for j in range(i, current_jump + 1):
@@ -16,7 +15,6 @@ class Solution:
                     i = j
                     
             jumps += 1
-            print("current_jump = ", current_jump)
 
         return jumps
 
