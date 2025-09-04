@@ -12,7 +12,7 @@ class Solution:
             print("cap = ", cap)
             for j in range(i + 1, cap):
                 print("j = ", j)
-                if j == len(nums):
+                if j == len(nums) - 1:
                     return True
                 elif nums[j] + j >= target:
                     target = nums[j] + j
