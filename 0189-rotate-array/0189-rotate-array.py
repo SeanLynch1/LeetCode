@@ -20,15 +20,10 @@ class Solution:
         
         reverse(0, n - 1)
 
-        print(nums)
-
         # reverse left section
         reverse(0, k - 1)
 
-        print(nums)
         # reverse right section
         reverse(k, n - 1)
-
-        print(nums)
 
         return nums
