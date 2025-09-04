@@ -5,33 +5,26 @@ class Solution:
             return 0
 
         i = 0
-        jumps = 0
+        jumps = 1
 
         while i < len(nums) - 1:
             
-            if i >= len(nums):
-                break
+            current_jump = i + nums[i] + 1
 
-            cap = min(i + nums[i] + 1, len(nums))
-
-            best = 0
-            print("cap = ", cap - 1)
-
-            if cap >= len(nums):
-                jumps += 1
+            if current_jump >= len(nums):
                 break
             
-            print("best = ", best)
-            for j in range(i, cap):
-                if nums[j] + j > best:
-                    best = nums[j] + j
+            for j in range(i, current_jump):
+                print("j = ", j)
+                if nums[j] + j > current_jump - 1:
+                    current_jump = nums[j] + j + 1
                     i = j
                     
             jumps += 1
-
-            print("best = ", best, "jumping to index : ", i)
-
+            print("Jumps = ", jumps)
+            print("jumping to index : ", i)
             print("\n")
-    
+
+        print("jumps = ", jumps)
         return jumps
 
