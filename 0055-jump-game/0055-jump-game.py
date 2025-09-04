@@ -1,18 +1,18 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         
-        i = 0
-        while i < len(nums) - 1:
-            if nums[i] == 0:
+        max_reach = 0
+
+        for i in range(len(nums)):
+            
+            # if we have surpassed the max reach i.e gone where we coldn't reach
+            if i > max_reach:
                 return False
-            
-            target = nums[i] + i
-            
-            for j in range(i + 1, i + nums[i] + 1):
-                if j == len(nums) - 1:
-                    return True
-                elif nums[j] + j >= target:
-                    target = nums[j] + j
-                    i = j
+
+            # represents the farthest cell we can go to
+            max_reach = max(max_reach, nums[i] + i)
+
+            if max_reach >= len(nums) - 1:
+                return True
 
         return True
