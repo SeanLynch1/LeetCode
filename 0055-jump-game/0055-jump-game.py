@@ -7,9 +7,8 @@ class Solution:
                 return False
             
             target = nums[i] + i
-
-            cap = min(i + nums[i] + 1, len(nums))
-            for j in range(i + 1, cap):
+            
+            for j in range(i + 1, i + nums[i] + 1):
                 if j == len(nums) - 1:
                     return True
                 elif nums[j] + j >= target:
