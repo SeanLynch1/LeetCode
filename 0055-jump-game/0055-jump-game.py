@@ -8,9 +8,11 @@ class Solution:
             
             target = nums[i] + i
 
-            for j in range(i + 1, i + nums[i] + 1):
-
-                if j >= len(nums) - 1:
+            cap = min(i + nums[i] + 1, len(nums))
+            print("cap = ", cap)
+            for j in range(i + 1, cap):
+                print("j = ", j)
+                if j == len(nums):
                     return True
                 elif nums[j] + j >= target:
                     target = nums[j] + j
