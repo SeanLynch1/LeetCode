@@ -1,25 +1,26 @@
-
 class Solution:
     def isHappy(self, n: int) -> bool:
-        
-        happy_number = n
-        found_numbers = set()
-
-        while happy_number != 1:
-            
+        def sum_of_squares(num: int) -> int:
             total = 0
-            num = happy_number
-
             while num > 0:
-                num, digit = num // 10, num % 10 # gets the first digit, can contain more than one digit, that's why we loop
-                # gets the second digit
-                total += digit ** 2
+                num, digit = divmod(num, 10)
+                total += digit * digit
+            return total
 
-            happy_number = total
-            
-            if happy_number not in found_numbers:
-                found_numbers.add(happy_number)
-            else:
-                return False
+        slow = n
+        fast = sum_of_squares(n)
+        print("slow = ", slow)
+        print("fast = ", fast)
+        print("\n")
 
-        return True
+        
+        while fast != 1 and slow != fast:
+            slow = sum_of_squares(slow)
+            fast = sum_of_squares(sum_of_squares(fast))
+
+            print("slow = ", slow)
+            print("fast = ", fast)
+
+            print("\n")
+
+        return fast == 1
