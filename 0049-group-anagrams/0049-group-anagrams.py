@@ -3,7 +3,7 @@ class Solution:
         ans = defaultdict(list)
 
         for s in strs:
-            key = str(sorted(s))
+            key = "".join(sorted(s))
             ans[key].append(s)
         
         return list(ans.values())
