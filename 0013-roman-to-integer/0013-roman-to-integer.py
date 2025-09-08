@@ -3,14 +3,13 @@ class Solution:
         
         code = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D" : 500, "M" : 1000}
 
-        letters = list(s)
         num = 0
 
-        for i in range(len(letters)):
-            val = code[letters[i]]
+        for i in range(len(s)):
+            val = code[s[i]]
 
-            if i < len(letters) - 1:
-                if (code[letters[i + 1]] / val) % 5 == 0:
+            if i < len(s) - 1:
+                if (code[s[i + 1]] / val) % 5 == 0:
                     val = -val
             
             num += val
