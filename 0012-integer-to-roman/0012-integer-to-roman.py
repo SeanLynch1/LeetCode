@@ -1,13 +1,16 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
-        values = [
-            (1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
-            (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
-            (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")
-        ]
         
-        res = []
-        for val, sym in values:
-            count, num = divmod(num, val)
-            res.append(sym * count)
-        return "".join(res)
+        code = {1000 : "M", 900: "CM", 500 : "D", 400 : "CD", 100 : "C", 90 :"XC", 50 : "L", 40 : "XL", 10 : "X", 9 : "IX", 5 : "V", 4 : "IV", 1 : "I" }
+
+        numeral = []
+
+        for key, value in code.items():
+            
+            count = num // key
+            num = num % key
+
+            numeral.append(value * count)
+
+        return ''.join(numeral)
+
