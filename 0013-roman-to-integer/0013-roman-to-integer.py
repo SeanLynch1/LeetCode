@@ -10,7 +10,7 @@ class Solution:
             val = code[letters[i]]
 
             if i < len(letters) - 1:
-                if (code[letters[i + 1]] / val) in (5, 10):
+                if (code[letters[i + 1]] / val) % 5 == 0:
                     val = -val
             
             num += val
