@@ -7,14 +7,12 @@ class Solution:
         # last index will be the solution
 
         tank = 0
-        total_gas = 0
-        total_cost = 0
+        diff = 0 # combines gas and cost
         start_index = 0
 
         for i in range(len(gas)):
             tank += gas[i]
-            total_cost += cost[i]
-            total_gas += gas[i]
+            diff += gas[i] - cost[i]
 
             if tank >= cost[i]:
                 tank -= cost[i]
@@ -22,7 +20,7 @@ class Solution:
                 start_index = i + 1
                 tank = 0
 
-        if total_cost <= total_gas:
+        if diff >= 0:
             return start_index
         else:
             return -1
