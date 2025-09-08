@@ -10,9 +10,8 @@ class Solution:
         for i in range(len(s)-1,-1,-1):
             
             if s[i] == ' ':
-                word = s[i + 1:right]
-                if len(word) > 0:
-                    res.append(word)
+                if i + 1 < right:
+                    res.append(s[i + 1:right])
 
                 right = i 
         
