@@ -11,12 +11,10 @@ class Solution:
         start_index = 0
 
         for i in range(len(gas)):
-            tank += gas[i]
+            tank += gas[i] - cost[i]
             diff += gas[i] - cost[i]
 
-            if tank >= cost[i]:
-                tank -= cost[i]
-            else:
+            if tank < 0:
                 start_index = i + 1
                 tank = 0
 
