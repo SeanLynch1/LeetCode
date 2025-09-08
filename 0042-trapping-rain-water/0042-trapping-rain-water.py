@@ -13,7 +13,7 @@ class Solution:
         while left < right:
             if height[left] < height[right]:
                 
-                if height[left] > l_height:
+                if height[left] >= l_height:
                     water += bucket
                     l_height = height[left]
                     bucket = 0
@@ -22,7 +22,7 @@ class Solution:
 
                 left += 1
             else:
-                if height[right] > r_height:
+                if height[right] >= r_height:
                     water += bucket
                     r_height = height[right]
                     bucket = 0
