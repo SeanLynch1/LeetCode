@@ -18,7 +18,4 @@ class Solution:
                 start_index = i + 1
                 tank = 0
 
-        if diff >= 0:
-            return start_index
-        else:
-            return -1
+        return start_index if diff >= 0 else -1
