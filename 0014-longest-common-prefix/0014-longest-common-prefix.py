@@ -1,6 +1,7 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         
+        strs = sorted(strs)
         prefix = strs[0]
 
         for s in strs:
