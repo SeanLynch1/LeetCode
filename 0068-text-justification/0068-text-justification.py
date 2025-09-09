@@ -1,37 +1,46 @@
 class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
         
-        curr_length = 0
+
         line = []
+        characters = 0
+
         res = []
 
-        for w in words:
-            if (len(w) + curr_length + len(line) - 1) < maxWidth:
-                curr_length += len(w)
-                line.append(w)
-            else:
-                spaces = maxWidth - curr_length
 
+        for word in words:
+
+            if characters + len(word) + len(line) <= maxWidth:
+                line.append(word)
+                characters += len(word)
+            else:
+                spaces = maxWidth - characters
+                print("spaces = ", spaces)
+                idx = 0
                 for i in range(spaces):
-                    line[i % ((len(line)-1) or 1)] += ' '
+                    line[idx % max(1, len(line) - 1)] += " "
+                    idx += 1
 
                 res.append(''.join(line))
-
-                curr_length = len(w)
-                line = [w]
-
-        for i in range(len(line)):
-            if i != (len(line) -1):
-                print(i)
-                print(f"line length = {len(line)}")
-                line[i] += ' '
-                maxWidth -= 1
-            else:
-                print("hello")
-                line[i] += (maxWidth - curr_length) * ' '
-        
-        res.append(''.join(line))
+                line = [word]
+                characters = len(word)
 
         print(res)
 
+        
+        spaces = maxWidth - characters
+
+        for i in range(len(line)):
+            if i == len(line) - 1:
+                line[i] += " " * spaces
+            else:
+                line[i] += " "
+                spaces -= 1
+            
+        res.append(''.join(line))
+        
+
         return res
+
+        
+                
