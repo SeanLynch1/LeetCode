@@ -5,7 +5,6 @@ class Solution:
 
         path = path.split('/')
 
-        print(path)
         for i in range(len(path)):
             text = path[i]
 
@@ -14,9 +13,7 @@ class Solution:
                     simplified_path.pop()
             elif text != '' and text != '.':
                 simplified_path.append(text)
-            print(simplified_path)
 
-        print(simplified_path)
         if len(simplified_path) <= 1:
             return '/'
         else:
