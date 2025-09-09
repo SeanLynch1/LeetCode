@@ -3,11 +3,7 @@ class Solution:
         
         simplified_path = ['']
 
-        path = path.split('/')
-
-        for i in range(len(path)):
-            text = path[i]
-
+        for text in path.split('/'):
             if text == '..':
                 if len(simplified_path) > 1:
                     simplified_path.pop()
