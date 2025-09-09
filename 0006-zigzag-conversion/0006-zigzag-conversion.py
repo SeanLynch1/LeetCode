@@ -1,20 +1,23 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        res, direction, ind = [], 0 , 0
+        
+        if numRows <= 1:
+            return s
 
         grid = [[] for _ in range(numRows)]
 
-        for char in s:
-            if ind == 0:
-                direction = 1
-            elif ind == numRows - 1:
-                direction = -1
+        d = 1
+        index = 0
 
-            print(ind)
-            grid[ind].append(char)
-            ind += direction
-        
-        for i in range(len(grid)):
-            res.append(''.join(grid[i]))
+        for letter in s:
+            
+            if index == 0:
+                d = 1
+            elif index == numRows - 1:
+                d = -1
+            
+            grid[index].append(letter)
 
-        return ''.join(res)
+            index += d
+
+        return ''.join([''.join(g) for g in grid])
