@@ -21,4 +21,4 @@ class Solution:
                     val2 = stack.pop()
                     stack.append(int(val2 / val1))
 
-        return stack[-1]
+        return stack[0]
