@@ -6,8 +6,7 @@ class Solution:
         for token in tokens:
 
             if token not in ops:
-                token = int(token)
-                stack.append(token)
+                stack.append(int(token))
             elif len(stack) > 1:
                 if token == "+":
                     stack.append(stack.pop() + stack.pop())
