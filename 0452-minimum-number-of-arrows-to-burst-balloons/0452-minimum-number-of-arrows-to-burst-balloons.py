@@ -7,6 +7,8 @@ class Solution:
         points.sort(key= lambda x : x[1])
         aligned = [points[0]]
 
+        print(points)
+
         for i in range(1, len(points)):
             max_int = aligned[-1][1]
 
