@@ -4,21 +4,13 @@ class Solution:
 
         intervals.sort(key = lambda x : x[0])
 
-        min_int = intervals[0][0]
-        max_int = intervals[0][1]
+        res = [intervals[0]]
 
-        res = []
         for i in range(1, len(intervals)):
-
+            max_int = res[-1][1]
             if max_int >= intervals[i][0]:
-                max_int = max(max_int, intervals[i][1])
+                res[-1][1] = max(max_int, intervals[i][1])
             else:
-                res.append([min_int, max_int])
-
-                min_int = intervals[i][0]
-                max_int = intervals[i][1]
-
-        res.append([min_int, max_int])
+                res.append([intervals[i][0], intervals[i][1]])
 
         return res
-        
