@@ -16,4 +16,5 @@ class Solution:
                 max_int = intervals[j+1][1]
 
         res.append([min_int, max_int])
+        
         return res
