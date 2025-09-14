@@ -1,8 +1,5 @@
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        if not points:
-            return 0
-
         arrows = 1
         points.sort(key= lambda x : x[0])
         aligned = [points[0]]
@@ -17,4 +14,3 @@ class Solution:
                 arrows += 1
 
         return arrows
-
