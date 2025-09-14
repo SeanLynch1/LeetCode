@@ -1,16 +1,26 @@
+from typing import List
+
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        intervals.append(newInterval)
+        res = []
+        i = 0
+        n = len(intervals)
 
-        intervals.sort(key = lambda x : x[0])
+        # 1. Add all intervals that come before newInterval
+        while i < n and intervals[i][1] < newInterval[0]:
+            res.append(intervals[i])
+            i += 1
 
-        res = [intervals[0]]
+        # 2. Merge all overlapping intervals with newInterval
+        while i < n and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
+            i += 1
+        res.append(newInterval)
 
-        for i in range(1, len(intervals)):
-            max_int = res[-1][1]
-            if max_int >= intervals[i][0]:
-                res[-1][1] = max(max_int, intervals[i][1])
-            else:
-                res.append([intervals[i][0], intervals[i][1]])
+        # 3. Add the rest
+        while i < n:
+            res.append(intervals[i])
+            i += 1
 
         return res
