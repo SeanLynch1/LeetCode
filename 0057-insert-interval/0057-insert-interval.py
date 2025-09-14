@@ -4,7 +4,6 @@ class Solution:
 
         intervals.sort(key = lambda x : x[0])
 
-        print(intervals)
         min_int = intervals[0][0]
         max_int = intervals[0][1]
 
