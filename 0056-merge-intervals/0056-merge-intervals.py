@@ -3,7 +3,6 @@ class Solution:
         
         intervals = sorted(intervals)
         res = []
-        j = 0
         min_int = intervals[0][0]
         max_int = intervals[0][1]
 
@@ -16,5 +15,5 @@ class Solution:
                 max_int = intervals[j+1][1]
 
         res.append([min_int, max_int])
-        
+
         return res
