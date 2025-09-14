@@ -1,7 +1,7 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         
-        intervals = sorted(intervals)
+        intervals.sort(key=lambda x: x[0])
         res = []
         min_int = intervals[0][0]
         max_int = intervals[0][1]
