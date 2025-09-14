@@ -7,15 +7,12 @@ class Solution:
         points.sort(key= lambda x : x[0])
         aligned = [points[0]]
 
-        print(points, "\n")
         for i in range(1, len(points)):
             max_int = aligned[-1][1]
 
             if max_int >= points[i][0]:
                 aligned[-1][1] = min(max_int, points[i][1])
-                print(aligned)
             else:
-                print(aligned, "\n")
                 aligned = [points[i]]
                 arrows += 1
 
