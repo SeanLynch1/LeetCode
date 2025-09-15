@@ -11,10 +11,10 @@ class Solution:
         seen = set()
 
         while curr:
-            seen.add(curr)
-            curr = curr.next
-
             if curr in seen:
                 return True
+
+            seen.add(curr)
+            curr = curr.next
 
         return False
