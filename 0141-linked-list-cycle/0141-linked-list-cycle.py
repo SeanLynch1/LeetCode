@@ -11,14 +11,15 @@ class Solution:
             return False
 
         curr = head
-        count = 0
+        
+        seen = set()
 
         while curr:
+            seen.add(curr)
+
             curr = curr.next
 
-            count += 1
-
-            if count > 10000:
+            if curr in seen:
                 return True
 
         return False
