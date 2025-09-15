@@ -14,7 +14,6 @@ class Solution:
         count = 0
 
         while curr:
-            curr.seen = True
             curr = curr.next
 
             count += 1
