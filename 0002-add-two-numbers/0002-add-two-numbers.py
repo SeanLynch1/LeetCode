@@ -26,12 +26,12 @@ class Solution:
         string_right = string_right[-1::-1]
         string_right = int(''.join(string_right))
 
-        total = str(string_left + string_right)[-1::-1]
+        total = str(string_left + string_right)
 
-        head = ListNode(int(total[0]))
+        head = ListNode(int(total[-1]))
         curr = head
 
-        for i in range(1, len(total)):
+        for i in range(len(total) - 2, -1, -1):
             curr.next = ListNode(int(total[i]))
             curr = curr.next
 
