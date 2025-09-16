@@ -31,8 +31,8 @@ class Solution:
         head = ListNode(int(total[0]))
         curr = head
 
-        for val in total[1:]:
-            curr.next = ListNode(int(val))
+        for i in range(1, len(total)):
+            curr.next = ListNode(int(total[i]))
             curr = curr.next
 
         return head
