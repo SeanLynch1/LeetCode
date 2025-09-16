@@ -28,13 +28,11 @@ class Solution:
 
         total = str(string_left + string_right)[-1::-1]
 
-        i = 0
-        head = ListNode(int(total[i]))
+        head = ListNode(int(total[0]))
         curr = head
 
-        while i < len(total) - 1:
-            i += 1 
-            curr.next = ListNode(int(total[i]))
+        for val in total[1:]:
+            curr.next = ListNode(int(val))
             curr = curr.next
 
         return head
