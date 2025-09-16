@@ -37,8 +37,6 @@ class Solution:
             curr.next = ListNode(int(total[i]))
             curr = curr.next
 
-        print(head)          
-
         return head
 
 
