@@ -29,8 +29,9 @@ class Solution:
             idx += 1
     
         for i, node in enumerate(randoms):
-            if node.random in randoms:
-                node.random = randoms[node.random]
-                indexes[i].random = indexes[node.random]     
+            n = node.random
+            if n in randoms:
+                n = randoms[n]
+                indexes[i].random = indexes[n]     
 
         return indexes[0]
