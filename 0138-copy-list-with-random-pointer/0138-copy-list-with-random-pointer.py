@@ -15,6 +15,7 @@ class Solution:
         indexes = [Node(head.val)]
         randoms = {head : 0}
 
+
         curr = head.next
         idx = 1
 
@@ -27,11 +28,12 @@ class Solution:
 
             curr = curr.next
             idx += 1
-    
-        for i, node in enumerate(randoms):
-            n = node.random
-            if n in randoms:
-                n = randoms[n]
-                indexes[i].random = indexes[n]     
+
+        i = 0
+        for node in randoms:
+            if node.random in randoms:
+                node.random = randoms[node.random]
+                indexes[i].random = indexes[node.random]  
+            i += 1   
 
         return indexes[0]
