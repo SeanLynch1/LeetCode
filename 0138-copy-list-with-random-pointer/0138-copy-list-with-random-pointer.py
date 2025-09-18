@@ -23,8 +23,8 @@ class Solution:
             randoms[curr] = idx
 
             new = Node(curr.val)
-            indexes[-1].next = new
             indexes.append(new)
+            indexes[-2].next = indexes[-1]
 
             curr = curr.next
             idx += 1
