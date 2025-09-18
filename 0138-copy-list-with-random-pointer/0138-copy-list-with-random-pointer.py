@@ -29,11 +29,9 @@ class Solution:
             curr = curr.next
             idx += 1
 
-        i = 0
-        for node in randoms:
+        for i, node in enumerate(randoms):
             if node.random in randoms:
                 node.random = randoms[node.random]
-                indexes[i].random = indexes[node.random]  
-            i += 1   
+                indexes[i].random = indexes[node.random]     
 
         return indexes[0]
