@@ -15,19 +15,16 @@ class Solution:
         indexes = [Node(head.val)]
         randoms = {head : 0}
 
-
         curr = head.next
-        idx = 1
 
         while curr:
-            randoms[curr] = idx
+            randoms[curr] = len(indexes)
 
             new = Node(curr.val)
+            indexes[-1].next = new
             indexes.append(new)
-            indexes[-2].next = indexes[-1]
 
             curr = curr.next
-            idx += 1
 
         for i, node in enumerate(randoms):
             if node.random in randoms:
