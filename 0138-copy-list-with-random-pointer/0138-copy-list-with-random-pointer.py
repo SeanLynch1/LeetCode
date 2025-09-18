@@ -28,19 +28,9 @@ class Solution:
             curr = curr.next
             idx += 1
     
-        print("randoms = ", randoms, "\n")     
-
         for i, node in enumerate(randoms):
-            print(i)
             if node.random in randoms:
                 node.random = randoms[node.random]
                 indexes[i].random = indexes[node.random]     
-
-        for i, node in enumerate(indexes):
-            print(f"i = {i}, node.val = {node.val}, node.next = {node.next}, node.random = {node.random}")
-
-        print("\n")
-        for node, index in randoms.items():
-            print(f"idx = {index}, val = {node.val}, next = {node.next}, random = {node.random}","\n")
 
         return indexes[0]
