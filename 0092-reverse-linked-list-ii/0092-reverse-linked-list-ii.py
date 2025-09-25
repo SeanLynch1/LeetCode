@@ -25,7 +25,6 @@ class Solution:
             elif idx == left:
                 curr.next = None
             elif idx > left and idx < right:
-                print(f"setting {curr.next} to {linked_list[idx]}, idx = {idx}")
                 curr.next = linked_list[idx - 1]
             elif idx == right + 1:
                 linked_list[left].next = curr
