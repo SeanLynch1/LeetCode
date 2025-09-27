@@ -1,35 +1,57 @@
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def print_list(head, label="List"):
+    arr = []
+    while head:
+        arr.append(head.val)
+        head = head.next
+    print(f"{label}: {arr}")
+
 class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        
-        if left == right:
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+        if not head or left == right:
+            print("No operation needed.")
             return head
-        linked_list = {}
-        curr = head
-        idx = 1
 
-        while curr:
-            linked_list[idx] = curr
-            temp_next = curr.next
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
 
-            if idx == right:
-                curr.next = linked_list[idx -1]
-                if (left - 1) in linked_list:
-                    linked_list[left - 1].next = curr
-                else:
-                    head = curr
-            elif idx == left:
-                curr.next = None
-            elif idx > left and idx < right:
-                curr.next = linked_list[idx - 1]
-            elif idx == right + 1:
-                linked_list[left].next = curr
-            
-            curr = temp_next
-            idx += 1
+        print_list(dummy.next, "Initial")
 
-        return head
+        # Step 1: Move prev to node before `left`
+        for i in range(left - 1):
+            prev = prev.next
+            print(f"prev = {prev}")
+
+        # start = start of reverse
+        start = prev.next
+
+        # 1 after start of reverse
+        then = start.next
+        print(f"Start = {start}, Then ={then}")
+
+        # Step 2: Reverse nodes between left and right
+        for i in range(right - left):
+            print(f"\nIteration {i+1}:")
+            start.next = then.next
+            print(start.next, "points to", then.next )
+            then.next = prev.next
+            print(then.next, "points to", prev.next )
+            prev.next = then
+            print(prev.next, "points to",then )
+
+            #print_list(dummy.next, "  Current list")
+
+            then = start.next
+            print(then, "equals ", start.next)
+
+            print("\n")
+
+        print_list(dummy.next, "Final")
+        return dummy.next
+
