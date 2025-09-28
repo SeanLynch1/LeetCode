@@ -8,13 +8,14 @@ class Solution:
         
         dummy = ListNode(0)
         dummy.next = head
-        prev = dummy
-        curr = head
+        prev = head
         count = 0
 
-        while curr:
-            curr = curr.next
+        while prev:
+            prev = prev.next
             count += 1
+
+        prev = dummy
         
         for i in range(count // k):
             start = prev.next
