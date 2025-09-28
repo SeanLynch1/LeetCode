@@ -1,58 +1,41 @@
 # Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-def print_list(head, label="List"):
-    arr = []
-    while head:
-        arr.append(head.val)
-        head = head.next
-    print(f"{label}: {arr}")
-
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
-        if not head or left == right:
-            print("No operation needed.")
-            return head
-
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        # since head could be what gets reversed, if we return it, we are returning the listnode that head originally pointed to, so instead make a new listNode that points to the first listNode, and return it's next, we will update what it points to but we can confirm it will always be first, head may not always be first. we are not making a copy of the current linked list, we are modifying it in place, but just adding a pointer to the first node, as the first node could change depending on where the reverse begins
+        
         dummy = ListNode(0)
         dummy.next = head
+        print(dummy)
+
+        # set prev
         prev = dummy
 
-        print_list(dummy.next, "Initial")
+        # iterate through the linked list until we reach the start of the reversal
 
-        # Step 1: Move prev to node before `left`
         for i in range(left - 1):
             prev = prev.next
-            print(f"prev = {prev}")
 
-        # start = start of reverse
+        print(prev)
         start = prev.next
-
-        # 1 after start of reverse
         then = start.next
-        print(f"Start = {start}, ")
-        print(f"Then ={then}")
+        print("start = ", start)
+        print("then = ", then)
 
-        # Step 2: Reverse nodes between left and right
         for i in range(right - left):
-            print(f"\nIteration {i+1}:")
+            # start will always equal start, just update who it points to, we want it to point to the .next of right
             start.next = then.next
-            print("start = ",start)
+            # then, who will move forward one each iteration, always will point to its previous, the reason it points to prev.next it because then moves forward one, and prev.next points to what then used to be
             then.next = prev.next
-            print("then = ",then)
+
+            # this step will always be wrong until the last iteration of the loop
             prev.next = then
-            print("prev = ", prev)
 
-            #print_list(dummy.next, "  Current list")
-
+            # move then forward to what it originally pointed to
             then = start.next
-            print("then = ", then)
+            
 
-            print("\n")
-
-        print_list(dummy.next, "Final")
         return dummy.next
-
