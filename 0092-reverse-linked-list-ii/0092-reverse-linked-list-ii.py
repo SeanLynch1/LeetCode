@@ -33,22 +33,23 @@ class Solution:
 
         # 1 after start of reverse
         then = start.next
-        print(f"Start = {start}, Then ={then}")
+        print(f"Start = {start}, ")
+        print(f"Then ={then}")
 
         # Step 2: Reverse nodes between left and right
         for i in range(right - left):
             print(f"\nIteration {i+1}:")
             start.next = then.next
-            print(start.next, "points to", then.next )
+            print("start = ",start)
             then.next = prev.next
-            print(then.next, "points to", prev.next )
+            print("then = ",then)
             prev.next = then
-            print(prev.next, "points to",then )
+            print("prev = ", prev)
 
             #print_list(dummy.next, "  Current list")
 
             then = start.next
-            print(then, "equals ", start.next)
+            print("then = ", then)
 
             print("\n")
 
