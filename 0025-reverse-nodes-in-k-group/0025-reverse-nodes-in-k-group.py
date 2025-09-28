@@ -21,7 +21,7 @@ class Solution:
             start = prev.next
             then = start.next
 
-            for i in range(k - 1):
+            for j in range(k - 1):
                 start.next = then.next
                 then.next = prev.next
                 prev.next = then
