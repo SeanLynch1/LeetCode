@@ -9,7 +9,6 @@ class Solution:
         
         dummy = ListNode(0)
         dummy.next = head
-        print(dummy)
 
         # set prev
         prev = dummy
@@ -19,11 +18,8 @@ class Solution:
         for i in range(left - 1):
             prev = prev.next
 
-        print(prev)
         start = prev.next
         then = start.next
-        print("start = ", start)
-        print("then = ", then)
 
         for i in range(right - left):
             # start will always equal start, just update who it points to, we want it to point to the .next of right
