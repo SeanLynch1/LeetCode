@@ -7,7 +7,6 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         
         nodes = {}
-
         curr = head
         count = 1
 
@@ -16,9 +15,6 @@ class Solution:
             curr = curr.next
             count += 1
 
-        for key, value in nodes.items():
-            print(key, value, "\n")
-        print("count = ", count)
         if (count - n - 1) > 0:
             if (count-n-1 + 2) in nodes:
                 nodes[count - n - 1].next = nodes[count-n-1 + 2]
