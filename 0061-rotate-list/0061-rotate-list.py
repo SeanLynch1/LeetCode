@@ -9,7 +9,7 @@ class Solution:
         
         if not head or k == 0:
             return head
-            
+
         curr = head
         count = 0
 
@@ -37,8 +37,6 @@ class Solution:
             temp = temp.next
 
         temp.next = head
-        print(new)
-
 
         return new.next
 
