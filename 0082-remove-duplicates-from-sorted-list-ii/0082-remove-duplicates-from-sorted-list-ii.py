@@ -23,8 +23,6 @@ class Solution:
                     curr = curr.next
             else:
                 temp = temp.next
-
-        
-        curr.next = temp.next
+                curr.next = temp.next
 
         return dummy.next
