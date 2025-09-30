@@ -13,28 +13,18 @@ class Solution:
         curr = dummy
         temp = curr
 
-        duplicated_val = dummy.val
-
         while temp.next:
-            
-            if temp.next.val == duplicated_val:
+
+            if temp.val != temp.next.val:
                 temp = temp.next
+
+                if temp.next == None or temp.val != temp.next.val:
+                    curr.next = temp
+                    curr = curr.next
             else:
                 temp = temp.next
 
-                if temp.next != None:
-                    if temp.val != temp.next.val:
-                        curr.next = temp
-                        curr = curr.next
-                else:
-                    curr.next = temp
-                    curr = curr.next
-
-
-            duplicated_val = temp.val
-
         
         curr.next = temp.next
-
 
         return dummy.next
