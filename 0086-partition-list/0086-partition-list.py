@@ -33,10 +33,6 @@ class Solution:
                 
             temp = temp.next
 
-        print("left_head = ", left_head)
-        print("right_head = ", right_head)
-        print("temp = ", temp, "\n")
-
         if right:
             right.next = None
         if left:
