@@ -57,8 +57,7 @@ class LRUCache:
             if len(self.my_dict) > self.capacity:
                 self.remove(self.tail.prev)
         else:
-            node = self.my_dict[key]
-            self.remove(node)
+            self.remove(self.my_dict[key])
 
             node = ListNode(key, value)
             self.my_dict[key] = node
