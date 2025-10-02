@@ -20,7 +20,6 @@ class LRUCache:
         prev.next = next
         next.prev = prev
 
-        del self.my_dict[node.key]
         
     def insert(self, node: ListNode):
         prev, next = self.head, self.head.next
@@ -37,15 +36,12 @@ class LRUCache:
             return -1
         else:
             node = self.my_dict[key]
-            value = node.val
 
             self.remove(node)
 
-            node = ListNode(key, value)
-            self.my_dict[key] = node
             self.insert(node)
 
-            return value
+            return node.val
 
     def put(self, key: int, value: int) -> None:
 
@@ -55,12 +51,14 @@ class LRUCache:
             self.insert(node)
 
             if len(self.my_dict) > self.capacity:
-                self.remove(self.tail.prev)
-        else:
-            self.remove(self.my_dict[key])
+                node = self.tail.prev
+                self.remove(node)
+                del self.my_dict[node.key]
 
-            node = ListNode(key, value)
-            self.my_dict[key] = node
+        else:
+            node = self.my_dict[key]
+            node.val = value
+            self.remove(node)
             self.insert(node)
 
 
