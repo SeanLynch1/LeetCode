@@ -17,7 +17,6 @@ class LRUCache:
 
         temp = self.head
 
-
     def remove(self, key: int):
         prev, next = self.my_dict[key].prev, self.my_dict[key].next
         prev.next = next
@@ -25,8 +24,6 @@ class LRUCache:
 
         del self.my_dict[key]
         
-        
-
     def insert(self, key: int):
         prev, next = self.head, self.head.next
 
@@ -36,7 +33,6 @@ class LRUCache:
 
         self.my_dict[key].prev = prev
         self.my_dict[key].next = next
-        
 
     def get(self, key: int) -> int:
         
@@ -52,8 +48,6 @@ class LRUCache:
             temp = self.head.next
 
             return self.my_dict[key].val
-
-        
 
     def put(self, key: int, value: int) -> None:
 
