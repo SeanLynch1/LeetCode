@@ -1,48 +1,50 @@
-class Node:
-    def __init__(self, key, value):
-        self.key = key
-        self.value = value
-        self.prev = None
+class DoublyNode:
+    def __init__(self, val, key):
         self.next = None
+        self.prev = None
+        self.val = val
+        self.key = key
+
 
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.cache = {}  # key -> node
-
-        # dummy head & tail
-        self.left, self.right = Node(0, 0), Node(0, 0)
-        self.left.next = self.right
-        self.right.prev = self.left
-
-    # remove node from list
-    def _remove(self, node):
-        prev, nxt = node.prev, node.next
-        prev.next, nxt.prev = nxt, prev
-
-    # insert node at right
-    def _insert(self, node):
-        prev, nxt = self.right.prev, self.right
-        prev.next = nxt.prev = node
-        node.prev, node.next = prev, nxt
+        self.nodes_in_list = 0
+        self.lru = DoublyNode(-1, -1)
+        self.mru = DoublyNode(-1, -1)
+        self.lru.next = self.mru
+        self.mru.prev = self.lru
+        self.hash = {}
 
     def get(self, key: int) -> int:
-        if key in self.cache:
-            node = self.cache[key]
-            self._remove(node)
-            self._insert(node)  # move to right (most recent)
-            return node.value
+        if key in self.hash:
+            self.remove(self.hash[key])
+            self.append(self.hash[key])
+            return self.hash[key].val
+
         return -1
 
-    def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self._remove(self.cache[key])
-        node = Node(key, value)
-        self.cache[key] = node
-        self._insert(node)
+    def remove(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
 
-        if len(self.cache) > self.capacity:
-            # remove from left
-            lru = self.left.next
-            self._remove(lru)
-            del self.cache[lru.key]
+    def append(self, node):
+        node.next = self.mru
+        node.prev = self.mru.prev
+        self.mru.prev.next = node
+        self.mru.prev = node
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.hash:
+            self.remove(self.hash[key])
+            self.append(self.hash[key])
+            self.hash[key].val = value
+        else:
+            self.nodes_in_list += 1
+            if self.nodes_in_list > self.capacity:
+                self.nodes_in_list -= 1
+                del self.hash[self.lru.next.key]
+                self.remove(self.lru.next)
+            node = DoublyNode(value, key)
+            self.hash[key] = node
+            self.append(node)
