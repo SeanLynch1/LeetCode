@@ -37,7 +37,6 @@ class LRUCache:
             return -1
         else:
             node = self.my_dict[key]
-            key = node.key
             value = node.val
 
             self.remove(node)
