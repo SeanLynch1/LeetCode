@@ -15,8 +15,6 @@ class LRUCache:
         self.head.next = self.tail
         self.tail.prev = self.head
 
-        temp = self.head
-
     def remove(self, key: int):
         prev, next = self.my_dict[key].prev, self.my_dict[key].next
         prev.next = next
@@ -45,8 +43,6 @@ class LRUCache:
             self.my_dict[key] = ListNode(key, value)
             self.insert(key)
 
-            temp = self.head.next
-
             return self.my_dict[key].val
 
     def put(self, key: int, value: int) -> None:
@@ -61,9 +57,6 @@ class LRUCache:
             self.remove(key)
             self.my_dict[key] = ListNode(key, value)
             self.insert(key)
-
-        temp = self.head.next
-
 
 
 # Your LRUCache object will be instantiated and called as such:
