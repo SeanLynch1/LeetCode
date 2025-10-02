@@ -19,7 +19,6 @@ class LRUCache:
 
 
     def remove(self, key: int):
-        print(f"removing key, {key}")
         prev, next = self.my_dict[key].prev, self.my_dict[key].next
         prev.next = next
         next.prev = prev
@@ -31,7 +30,6 @@ class LRUCache:
     def insert(self, key: int):
         prev, next = self.head, self.head.next
 
-        print(f"inserting {key}")
         
         next.prev = self.my_dict[key]
         self.head.next = self.my_dict[key]
@@ -42,11 +40,7 @@ class LRUCache:
 
     def get(self, key: int) -> int:
         
-        print(f"getting key, {key}")
         if key not in self.my_dict:
-
-            print(f"key, {key} not in self.my_dict")
-            print("\n")
             return -1
         else:
             value = self.my_dict[key].val
@@ -56,18 +50,6 @@ class LRUCache:
             self.insert(key)
 
             temp = self.head.next
-
-            print("linked list = ")
-            while temp.next:
-                print(f"key = {temp.key}, val = {temp.val}, prev = {temp.prev.key}, next = {temp.next.key}")
-                temp = temp.next
-
-            print()
-            print("dictionary status = ")
-            for key, value in self.my_dict.items():
-                print(f"key = {key}, val = {value.val}")
-            
-            print("\n")
 
             return self.my_dict[key].val
 
@@ -88,18 +70,6 @@ class LRUCache:
 
         temp = self.head.next
 
-        print("linked list = ")
-        while temp.next:
-            print(f"key = {temp.key}, val = {temp.val}, prev = {temp.prev.key}, next = {temp.next.key}")
-            temp = temp.next
-
-        print()
-        print("dictionary status = ")
-        for key, value in self.my_dict.items():
-            print(f"key = {key}, val = {value.val}")
-        
-        print("\n")
-        
 
 
 # Your LRUCache object will be instantiated and called as such:
