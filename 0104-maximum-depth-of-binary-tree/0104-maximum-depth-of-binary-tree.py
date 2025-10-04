@@ -9,13 +9,8 @@ class Solution:
         
         if not root:
             return 0
-            
-        self.maxDepth = 1
 
         def recursiveSearch(root, level: int) -> int:
-            print("val = ", root.val)
-            print(f"level = {level}")
-            print("maxDepth = ",self.maxDepth)
             left, right = level, level
             if root.left != None:
                 left = recursiveSearch(root.left, level + 1)
@@ -26,7 +21,7 @@ class Solution:
             return max(left, right)
 
          
-        return recursiveSearch(root, self.maxDepth)
+        return recursiveSearch(root, 1)
 
         
 
