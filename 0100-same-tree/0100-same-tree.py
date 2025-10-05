@@ -19,15 +19,11 @@ class Solution:
                 else:
                     return False
 
-
                 stack_p.append(p)
                 stack_q.append(q)
 
                 p = p.left
                 q = q.left
-
-            print("stack_p = ", stack_p)
-            print("stack_q = ", stack_q)
 
             # hit None
             p = stack_p.pop()
