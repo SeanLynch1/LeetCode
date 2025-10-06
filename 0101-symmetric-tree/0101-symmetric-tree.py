@@ -8,9 +8,6 @@ class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         # recursive solution:
 
-        p = root.left
-        q = root.right
-
         def mirror(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
             if not p and not q:
                 return True
@@ -27,7 +24,7 @@ class Solution:
 
             return output
 
-        return mirror(p, q)
+        return mirror(root.left, root.right)
 
 
 
