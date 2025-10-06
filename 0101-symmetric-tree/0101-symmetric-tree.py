@@ -11,25 +11,19 @@ class Solution:
         p = root.left
         q = root.right
 
-        def mirror(p_root: Optional[TreeNode], q_root: Optional[TreeNode]) -> bool:
-            if not p_root and not q_root:
+        def mirror(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+            if not p and not q:
                 return True
 
-            if (not p_root and q_root) or (p_root and not q_root) or (p_root.val != q_root.val):
+            if (not p and q) or (p and not q) or (p.val != q.val):
                 return False
 
-            p = p_root.left
-            q = q_root.right
-
-            output = mirror(p, q)
+            output = mirror(p.left, q.right)
 
             if not output:
                 return output
 
-            p = p_root.right
-            q = q_root.left
-
-            output = mirror(p, q)
+            output = mirror(p.right, q.left)
 
             return output
 
