@@ -13,7 +13,6 @@ class Solution:
         q = root.right
 
         while stack or p or q:
-
             while p or q:
                 if (not p or not q) or p.val != q.val:
                     return False
