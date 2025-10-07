@@ -15,14 +15,7 @@ class Solution:
             if (not p and q) or (p and not q) or (p.val != q.val):
                 return False
 
-            output = mirror(p.left, q.right)
-
-            if not output:
-                return output
-
-            output = mirror(p.right, q.left)
-
-            return output
+            return (mirror(p.left, q.right) and  mirror(p.right, q.left))
 
         return mirror(root.left, root.right)
 
