@@ -12,10 +12,9 @@ class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
         curr = root
-        extra_node = Node(0)
         while curr:
+            extra_node = Node(0)
             tail = extra_node
-            tail.next = None
 
             while curr:
                 if curr.left:
