@@ -30,5 +30,3 @@ class Solution:
             else:
                 curr = curr.right
 
-
-        return root
