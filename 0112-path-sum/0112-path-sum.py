@@ -19,7 +19,6 @@ class Solution:
 
             curr_sum += node.val
 
-
             left = helper(node.left, curr_sum)
             right = helper(node.right,curr_sum)
 
