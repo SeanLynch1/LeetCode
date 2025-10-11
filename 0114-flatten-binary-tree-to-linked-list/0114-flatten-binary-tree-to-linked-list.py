@@ -26,7 +26,4 @@ class Solution:
                 curr.left, curr.right = None, curr.left
                 deepest_right.right = temp_right
 
-                curr = curr.right
-            else:
-                curr = curr.right
-
+            curr = curr.right
