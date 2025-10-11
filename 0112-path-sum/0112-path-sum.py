@@ -30,6 +30,8 @@ class Solution:
                 if curr_sum == targetSum:
                     print(f"curr_sum = {curr_sum}")
                     self.found = True
+            
+            return True
 
         helper(root, 0)
 
