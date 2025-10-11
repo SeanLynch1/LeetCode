@@ -23,12 +23,9 @@ class Solution:
             left = helper(node.left, curr_sum)
             right = helper(node.right,curr_sum)
 
-            print(f"curr_sum = {curr_sum}, left = {left}, right = {right}")
-
             # found leaf node
             if not left and not right:
                 if curr_sum == targetSum:
-                    print(f"curr_sum = {curr_sum}")
                     self.found = True
             
             return True
