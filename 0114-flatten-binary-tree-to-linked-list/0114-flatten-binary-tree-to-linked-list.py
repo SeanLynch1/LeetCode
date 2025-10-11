@@ -9,21 +9,26 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+        # preorder -> node left right
+        curr = root 
 
-        curr = root
-        
         while curr:
             
+            temp_right = curr.right
+
             if curr.left:
+                # find the deepest piece on the right side
+                deepest_right = curr.left
 
-                right_most = curr.left
+                while deepest_right.right:
+                    deepest_right = deepest_right.right
 
-                while right_most.right:
-                    right_most = right_most.right
-
-                right_most.right = curr.right
                 curr.left, curr.right = None, curr.left
+                deepest_right.right = temp_right
 
-            curr = curr.right
+                curr = curr.right
+            else:
+                curr = curr.right
+
 
         return root
