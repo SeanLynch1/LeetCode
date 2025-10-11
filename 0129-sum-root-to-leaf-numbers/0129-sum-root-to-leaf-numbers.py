@@ -7,15 +7,14 @@
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         
-        nums = []
-
+        total = 0
         stack = [(root, str(root.val))]
 
         while stack:
             node, string_val = stack.pop()
 
             if not node.left and not node.right:
-                nums.append(int(string_val))
+                total += int(string_val)
 
             if node.left:
                 stack.append((node.left, string_val + str(node.left.val)))
@@ -24,6 +23,6 @@ class Solution:
                 stack.append((node.right, string_val + str(node.right.val)))
 
 
-        return sum(nums)
+        return total
 
         
