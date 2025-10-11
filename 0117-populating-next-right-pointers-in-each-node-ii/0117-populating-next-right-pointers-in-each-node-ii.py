@@ -12,19 +12,23 @@ class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
         curr = root
+
         while curr:
-            extra_node = Node(0)
-            tail = extra_node
+
+            dummyNode = Node(0)
+            tail = dummyNode
 
             while curr:
                 if curr.left:
                     tail.next = curr.left
                     tail = tail.next
+
                 if curr.right:
                     tail.next = curr.right
                     tail = tail.next
 
                 curr = curr.next
+            
+            curr = dummyNode.next
 
-            curr = extra_node.next
         return root
