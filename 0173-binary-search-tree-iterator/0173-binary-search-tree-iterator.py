@@ -9,29 +9,30 @@ class BSTIterator:
     # inorder traversal -> left node right
 
     def __init__(self, root: Optional[TreeNode]):
-        self.res = []
-        self.pointer = 0
-        stack = []
-        curr = root
+        self.stack = []
+        self.curr = root
 
-        while stack or curr:
-            
-            while curr:
-                stack.append(curr)
-                curr = curr.left
+        # begin by finding left_most, that will be there pointer
+        while self.curr:
+            self.stack.append(self.curr)
+            self.curr = self.curr.left
 
-            curr = stack.pop()
-            self.res.append(curr.val)
-            curr = curr.right
+    def find_next(self, node: Optional[TreeNode]):
+        self.curr = node.right
+
+        while self.curr:
+            self.stack.append(self.curr)
+            self.curr = self.curr.left
+
 
     def next(self) -> int:
-        num = self.res[self.pointer]
-        self.pointer += 1
-        return num
+        node = self.stack.pop()
+        self.find_next(node)
+        return node.val
 
 
     def hasNext(self) -> bool:
-        return not (self.pointer + 1 > len(self.res))
+        return len(self.stack) > 0
         
 
 
