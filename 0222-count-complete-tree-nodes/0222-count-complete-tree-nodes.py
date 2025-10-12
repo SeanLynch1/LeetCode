@@ -26,14 +26,10 @@ class Solution:
                 stack.append(curr)
                 nodes += 1
                 curr = curr.left
-
             
             if len(stack) == h - 1 and curr is not None:
-                print(len(stack))
-                print("breaking")
                 break
 
-            print("\n")
             # set to 3
             curr = stack.pop()
             curr = curr.right
