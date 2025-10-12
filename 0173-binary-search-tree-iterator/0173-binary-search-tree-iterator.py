@@ -10,7 +10,6 @@ class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
         self.stack = []
-
         # begin by finding left_most, that will be there pointer
         self.find_next(root)
 
