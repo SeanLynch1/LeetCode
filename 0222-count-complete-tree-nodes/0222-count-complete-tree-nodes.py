@@ -6,8 +6,6 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
 
         stack = []
         curr = root
