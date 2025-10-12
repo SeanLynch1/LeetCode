@@ -20,14 +20,9 @@ class Solution:
             left_side = max(helper(node.left), 0)
             right_side = max(helper(node.right), 0)
 
-            combined = node.val + left_side + right_side
-            max_side = max(left_side + node.val, right_side + node.val)
-            largest = max(combined, max_side)
+            self.optimal_sum = max(node.val + left_side + right_side, self.optimal_sum)
 
-            
-            self.optimal_sum = max(largest, self.optimal_sum)
-
-            return max_side
+            return max(left_side, right_side) + node.val
         
         helper(root)
         return self.optimal_sum
