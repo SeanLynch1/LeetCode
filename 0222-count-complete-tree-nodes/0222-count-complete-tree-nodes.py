@@ -6,20 +6,19 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        
         if not root:
             return 0
 
         stack = []
         curr = root
-        h = 0
         nodes = 0
-
         
-        temp = root
-        while temp:
-            temp = temp.left
-            h += 1
+        while curr:
+            stack.append(curr)
+            nodes += 1
+            curr = curr.left
+
+        h = nodes
 
         while stack or curr:
             while curr:
