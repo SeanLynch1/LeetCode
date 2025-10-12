@@ -27,19 +27,7 @@ class Solution:
             largest = max(combined, max_side)
             self.optimal_sum = max(largest, self.optimal_sum)
 
-            print(f"node.val = {node.val}")
-            print(f"left_side = {left_side}")
-            print(f"right_side = {right_side}")
-            print(f"optimal_sum = {self.optimal_sum}")
-            print(f"right_side sum = {right_side + node.val}")
-            print(f"left_sum sum = {left_side + node.val}")
-
-
-            print("\n")
-
             return max_side
         
         final = helper(root)
-        print("final optimal_sum = ", self.optimal_sum)
-        print("final = ", final)
         return max(final, self.optimal_sum)
