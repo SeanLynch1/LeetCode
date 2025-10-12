@@ -10,24 +10,18 @@ class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
         self.stack = []
-        self.curr = root
 
         # begin by finding left_most, that will be there pointer
-        while self.curr:
-            self.stack.append(self.curr)
-            self.curr = self.curr.left
+        self.find_next(root)
 
     def find_next(self, node: Optional[TreeNode]):
-        self.curr = node.right
-
-        while self.curr:
-            self.stack.append(self.curr)
-            self.curr = self.curr.left
-
+        while node:
+            self.stack.append(node)
+            node = node.left
 
     def next(self) -> int:
         node = self.stack.pop()
-        self.find_next(node)
+        self.find_next(node.right)
         return node.val
 
 
