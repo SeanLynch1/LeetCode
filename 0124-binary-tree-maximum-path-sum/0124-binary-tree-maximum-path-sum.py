@@ -29,5 +29,5 @@ class Solution:
 
             return max_side
         
-        final = helper(root)
-        return max(final, self.optimal_sum)
+        helper(root)
+        return self.optimal_sum
