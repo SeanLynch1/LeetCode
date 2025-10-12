@@ -24,7 +24,6 @@ class BSTIterator:
         self.find_next(node.right)
         return node.val
 
-
     def hasNext(self) -> bool:
         return len(self.stack) > 0
         
