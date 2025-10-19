@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        if not root:
+        '''if not root:
             return 0
 
         def getHeight(node):
@@ -28,34 +28,34 @@ class Solution:
             return (2 ** left_height) + self.countNodes(root.right)
         else:
             # right subtree is perfect
-            return (2 ** right_height) + self.countNodes(root.left)
+            return (2 ** right_height) + self.countNodes(root.left)'''
 
 
         # iterative
-        ''' stack = []
-            curr = root
-            nodes = 0
-            
+        stack = []
+        curr = root
+        nodes = 0
+        
+        while curr:
+            stack.append(curr)
+            nodes += 1
+            curr = curr.left
+
+        h = nodes
+
+        while stack or curr:
             while curr:
                 stack.append(curr)
                 nodes += 1
                 curr = curr.left
+            
+            if len(stack) == h - 1 and curr is not None:
+                break
 
-            h = nodes
+            # set to 3
+            curr = stack.pop()
+            curr = curr.right
 
-            while stack or curr:
-                while curr:
-                    stack.append(curr)
-                    nodes += 1
-                    curr = curr.left
-                
-                if len(stack) == h - 1 and curr is not None:
-                    break
-
-                # set to 3
-                curr = stack.pop()
-                curr = curr.right
-
-            return nodes'''
+        return nodes
 
 
