@@ -11,6 +11,7 @@ class Solution:
 
         def getHeight(node):
             height = 0
+
             while node:
                 height += 1
                 node = node.left
@@ -19,12 +20,15 @@ class Solution:
         left_height = getHeight(root.left)
         right_height = getHeight(root.right)
 
+        print("left_height = ", left_height)
+
         if left_height == right_height:
+            # when calculating the left we always include the root node
             # left subtree is perfect
-            return (1 << left_height) + self.countNodes(root.right)
+            return (2 ** left_height) + self.countNodes(root.right)
         else:
             # right subtree is perfect
-            return (1 << right_height) + self.countNodes(root.left)
+            return (2 ** right_height) + self.countNodes(root.left)
 
 
         # iterative
