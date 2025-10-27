@@ -18,7 +18,7 @@ class Solution:
             if not helper(left_node.left, right_node.right):
                 return False
 
-            if not helper(left_node.right, right_node.left)
+            if not helper(left_node.right, right_node.left):
                 return False
 
             return True
