@@ -6,19 +6,13 @@
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        
-        branch = root
-        stack = []
+        if not root:
+            return
 
-        while stack or branch:
-            while branch:
-                stack.append(branch)
+        root.left, root.right = root.right, root.left
 
-                # swap
-                branch.left, branch.right = branch.right, branch.left
-                branch = branch.left
-            
-            branch = stack.pop()
-            branch = branch.right
+        self.invertTree(root.left)
+        self.invertTree(root.right)
 
         return root
+
