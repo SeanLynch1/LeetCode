@@ -11,10 +11,10 @@ class Solution:
         if not root:
             return 0
 
-        depth = 1
-        max_depth = 1
-        stack = [(root, depth)]
-        curr = root.left
+        depth = 0
+        max_depth = 0
+        stack = []
+        curr = root
         while stack or curr:
             while curr:
                 depth += 1
