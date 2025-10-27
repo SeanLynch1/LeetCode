@@ -6,48 +6,27 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        # recursive solution:
 
-        def mirror(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-            if not p and not q:
+        def helper(left_node, right_node):
+            if not left_node and not right_node:
                 return True
-
-            if (not p and q) or (p and not q) or (p.val != q.val):
+            elif not left_node or not right_node:
+                return False
+            elif left_node.val != right_node.val:
                 return False
 
-            return (mirror(p.left, q.right) and  mirror(p.right, q.left))
+            outcome = helper(left_node.left, right_node.right)
+            if outcome == False:
+                return False
 
-        return mirror(root.left, root.right)
+            outcome = helper(left_node.right, right_node.left)
+            if outcome == False:
+                return False
 
-
-
-
-
-        # iterative solution:
-        ''' stack = []
-
-        p = root.left
-        q = root.right
-
-        while stack or p or q:
-            while p or q:
-                if (not p or not q) or p.val != q.val:
-                    return False
-
-                stack.append(p)
-                stack.append(q)
-
-                p = p.left
-                q = q.right
-
-            q = stack.pop().left
-            p = stack.pop().right
-
+            return outcome
         
-        return True'''
+        return helper(root.left, root.right)
 
 
-
-            
 
         
