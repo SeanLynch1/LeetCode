@@ -20,6 +20,7 @@ class Solution:
                 depth += 1
                 stack.append((curr, depth))
                 curr = curr.left
+            max_depth = max(max_depth, depth)
             curr, depth = stack.pop()
             curr = curr.right
 
