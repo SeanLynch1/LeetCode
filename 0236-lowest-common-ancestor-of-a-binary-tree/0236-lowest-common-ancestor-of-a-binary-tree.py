@@ -23,6 +23,7 @@ class Solution:
 
             if found == 2:
                 self.ancestor = node
+                found = 0
 
             return found
 
