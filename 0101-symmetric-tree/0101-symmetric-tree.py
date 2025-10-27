@@ -15,15 +15,13 @@ class Solution:
             elif left_node.val != right_node.val:
                 return False
 
-            outcome = helper(left_node.left, right_node.right)
-            if outcome == False:
+            if not helper(left_node.left, right_node.right):
                 return False
 
-            outcome = helper(left_node.right, right_node.left)
-            if outcome == False:
+            if not helper(left_node.right, right_node.left)
                 return False
 
-            return outcome
+            return True
         
         return helper(root.left, root.right)
 
