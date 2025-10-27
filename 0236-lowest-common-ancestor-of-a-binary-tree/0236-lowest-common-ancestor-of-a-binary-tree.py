@@ -7,7 +7,30 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        # Base case
+        self.ancestor = root
+
+        def helper(node: TreeNode):
+            if not node:
+                return 0
+
+            found = 0
+            if node == p or node == q:
+                found += 1
+
+            found += helper(node.left)
+            found += helper(node.right)
+
+            if found == 2:
+                self.ancestor = node
+                return 0
+
+            return found
+
+        helper(root)
+
+        return self.ancestor
+
+        '''# Base case
         if not root or root == p or root == q:
             return root
 
@@ -20,4 +43,6 @@ class Solution:
             return root
 
         # Otherwise, return whichever side is non-null (propagate up)
-        return left if left else right
+        return left if left else right'''
+
+        
