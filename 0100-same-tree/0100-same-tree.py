@@ -14,11 +14,11 @@ class Solution:
 
             if not curr_p and not curr_q:
                 continue
-            if curr_p and not curr_q:
+            elif curr_p and not curr_q:
                 return False
-            if curr_q and not curr_p:
+            elif curr_q and not curr_p:
                 return False
-            if curr_p.val != curr_q.val:
+            elif curr_p.val != curr_q.val:
                 return False
 
             stack.append((curr_p.left, curr_q.left))
