@@ -11,18 +11,15 @@ class Solution:
         if not root:
             return 0
 
-        depth = 1
-        max_depth = 1
-        stack = [(root, depth)]
-        curr = root.left
-        while stack or curr:
-            while curr:
-                depth += 1
-                stack.append((curr, depth))
-                curr = curr.left
-            max_depth = max(max_depth, depth)
-            curr, depth = stack.pop()
-            curr = curr.right
+        stack = [(root, 1)]
+        max_depth = 0
+
+        while stack:
+            node, depth = stack.pop()
+            if node:
+                max_depth = max(max_depth, depth)
+                stack.append((node.left, depth + 1))
+                stack.append((node.right, depth + 1))
 
         return max_depth
         # recursive
