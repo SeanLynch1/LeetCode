@@ -7,27 +7,17 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        self.ancestor = root
+        # Base case
+        if not root or root == p or root == q:
+            return root
 
-        def helper(node: TreeNode):
-            if not node:
-                return 0
+        # Recurse into left and right subtrees
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
 
-            found = 0
-            if node == p or node == q:
-                found += 1
+        # If p and q are found in different branches, root is their LCA
+        if left and right:
+            return root
 
-            found += helper(node.left)
-            found += helper(node.right)
-
-            if found == 2:
-                self.ancestor = node
-                return 0
-
-            return found
-
-        helper(root)
-
-        return self.ancestor
-
-        
+        # Otherwise, return whichever side is non-null (propagate up)
+        return left if left else right
