@@ -22,7 +22,6 @@ class Solution:
             if left >= right:
                 return None
 
-            
             val = preorder[self.next_pre]
             node = TreeNode(val)
             mid = self.inorder_map[val]
@@ -37,7 +36,4 @@ class Solution:
 
             return node
 
-
-        self.root = helper(0,len(inorder))
-
-        return self.root
+        return helper(0,len(inorder))
