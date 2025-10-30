@@ -12,13 +12,11 @@ class Solution:
             if not node:
                 return 0
 
-            predecessor += node.val
+            predecessor = predecessor * 10 + node.val
 
             if not node.left and not node.right:
                 return predecessor
                 
-            predecessor *= 10
-
             return helper(node.left, predecessor) + helper(node.right, predecessor)
 
         return  helper(root, 0)
