@@ -9,21 +9,30 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        # preorder -> node left right
-        curr = root 
+        
+        stack = []
+        curr = root
 
-        while curr:
+        while stack or curr:
             
-            temp_right = curr.right
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+                
+            curr = stack.pop()
 
-            if curr.left:
-                # find the deepest piece on the right side
-                deepest_right = curr.left
+            while not curr.right and stack:
+                parent = stack.pop()
 
-                while deepest_right.right:
-                    deepest_right = deepest_right.right
+                next_node = parent.right
+                parent.right = parent.left
+                parent.left = None
 
-                curr.left, curr.right = None, curr.left
-                deepest_right.right = temp_right
-
+                curr.right = next_node
+                    
             curr = curr.right
+
+        return root
+                
+
+
