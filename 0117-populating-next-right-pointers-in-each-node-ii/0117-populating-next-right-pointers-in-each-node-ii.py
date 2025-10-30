@@ -11,14 +11,18 @@ class Node:
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
+        # we use a dummyNode for constant extra space
+        # this dummy node points to the first node left or right of the tree
+
+
         curr = root
 
         while curr:
-
             dummyNode = Node(0)
             tail = dummyNode
 
             while curr:
+                
                 if curr.left:
                     tail.next = curr.left
                     tail = tail.next
@@ -28,7 +32,7 @@ class Solution:
                     tail = tail.next
 
                 curr = curr.next
-            
+
             curr = dummyNode.next
 
         return root
