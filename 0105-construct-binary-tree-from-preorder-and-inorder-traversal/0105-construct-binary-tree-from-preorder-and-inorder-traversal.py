@@ -22,8 +22,6 @@ class Solution:
             if left >= right:
                 return None
 
-            if self.next_pre >= len(preorder):
-                return None
             
             val = preorder[self.next_pre]
             node = TreeNode(val)
