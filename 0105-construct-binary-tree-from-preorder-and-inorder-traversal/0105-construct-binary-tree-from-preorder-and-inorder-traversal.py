@@ -23,11 +23,12 @@ class Solution:
                 return None
 
             val = preorder[self.next_pre]
+            self.next_pre += 1
+
             node = TreeNode(val)
             mid = self.inorder_map[val]
 
             # for the next iteration
-            self.next_pre += 1
 
             # next value is to the left of current
             node.left = helper(left, mid)
