@@ -10,23 +10,30 @@ class Solution:
         # inorder -> left node right
         # postorder -> left right node
 
-        inorder_map = {val: idx for idx, val in enumerate(inorder)}
-        self.post_idx = len(postorder) - 1
+        inorder_map = {}
 
-        def helper(left, right):
-            
-            if left > right:
+        for idx, val in enumerate(inorder):
+            inorder_map[val] = idx
+
+        self.next_idx = len(inorder) - 1
+
+        def helper(left, right) -> TreeNode:
+            if left >= right:
                 return None
 
-            val = postorder[self.post_idx]
-            self.post_idx -= 1
-            root = TreeNode(val)
+            val = postorder[self.next_idx]
+            self.next_idx -= 1
 
+            node = TreeNode(val)
             mid = inorder_map[val]
+            
+            node.right = helper(mid + 1, right)
+            node.left = helper(left, mid)
 
-            root.right = helper(mid + 1, right)
-            root.left = helper(left, mid - 1)
+            return node
 
-            return root
+        
+        return helper(0, len(inorder))
 
-        return helper(0, len(postorder) - 1) # 4
+
+                
