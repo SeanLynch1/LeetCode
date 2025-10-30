@@ -16,10 +16,7 @@ class Solution:
             return True
 
 
-        if self.hasPathSum(root.left, curr_sum):
-            return True
-
-        if self.hasPathSum(root.right, curr_sum):
+        if self.hasPathSum(root.left, curr_sum) or self.hasPathSum(root.right, curr_sum):
             return True
 
         return False
