@@ -6,13 +6,34 @@
 #         self.right = right
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        if not root:
-            return False
+        
+        stack = []
+        curr = root
+        val = 0
 
-        # Leaf node check
-        if not root.left and not root.right:
-            return targetSum == root.val
+        while stack or curr:
 
-        remaining = targetSum - root.val
-        return (self.hasPathSum(root.left, remaining) or 
-                self.hasPathSum(root.right, remaining))
+            while curr:
+                val += curr.val
+                stack.append(curr)
+                curr = curr.left
+            
+            
+                
+            curr = stack.pop()
+
+            print(f"val = {val}")
+            print("\n")
+
+            if not curr.left and not curr.right:
+                if val == targetSum:
+                    return True
+            
+            if not curr.right:
+                val -= curr.val
+
+            curr = curr.right
+            
+            
+
+        return False
