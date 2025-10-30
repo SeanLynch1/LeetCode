@@ -33,7 +33,7 @@ class Solution:
             return node
 
         
-        return helper(0, len(inorder))
+        return helper(0, self.next_idx)
 
 
                 
