@@ -6,26 +6,27 @@
 #         self.right = right
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
-        if not root:
-            return None
+        """
+        Do not return anything, modify root in-place instead.
+        """
 
-        stack = [root]
+        curr = root
+        while curr:
 
-        while stack:
-            curr = stack.pop()
-
-            # Push right first so left is processed first (preorder: root → left → right)
-            if curr.right:
-                stack.append(curr.right)
             if curr.left:
-                stack.append(curr.left)
 
-            # Rewire the current node's right to the next node in preorder
-            if stack:
-                curr.right = stack[-1]
-            curr.left = None  # Flatten left pointer
+                predecessor = curr.left
+
+                # go rightmost
+                while predecessor.right:
+                    predecessor = predecessor.right
+
+                predecessor.right = curr.right
+
+                curr.right = curr.left
+                curr.left = None
+                
+            curr = curr.right
 
         return root
-
-
 
