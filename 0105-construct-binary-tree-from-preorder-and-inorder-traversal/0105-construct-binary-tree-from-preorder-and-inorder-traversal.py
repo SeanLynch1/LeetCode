@@ -12,30 +12,34 @@ class Solution:
 
         # since preorder records each node straight away, iterate through it, checking left in inorder of the next in preorder gives you what's left of the tree, checking right of the next in preorder gives you what's right of the tree
 
-        # tracks index of preorder list
-        self.preorder_idx = 0
-
-        # create inorder dictionary to find what goes left and right of node
-        inorder_map = {}
+        self.inorder_map = {}
+        self.next_pre = 0
 
         for idx, val in enumerate(inorder):
-            inorder_map[val] = idx
+            self.inorder_map[val] = idx
 
-
-        def tracker(left, right):
-            
-            if left > right:
+        def helper(left,right) -> TreeNode:
+            if left >= right:
                 return None
 
-            val = preorder[self.preorder_idx]
-            self.preorder_idx += 1
-            root = TreeNode(val)
+            if self.next_pre >= len(preorder):
+                return None
+            
+            val = preorder[self.next_pre]
+            node = TreeNode(val)
+            mid = self.inorder_map[val]
 
-            # to the left of mid is left subtree, to the right of mid is right subtree
-            mid = inorder_map[val]
-            root.left = tracker(left, mid - 1) # minus 1 as not inclusive
-            root.right = tracker(mid + 1, right) # plus 1 as we want to check the next node
+            # for the next iteration
+            self.next_pre += 1
 
-            return root
+            # next value is to the left of current
+            node.left = helper(left, mid)
+            # value is the right of current
+            node.right = helper(mid + 1, right)
 
-        return tracker(0, len(inorder) - 1)
+            return node
+
+
+        self.root = helper(0,len(inorder))
+
+        return self.root
