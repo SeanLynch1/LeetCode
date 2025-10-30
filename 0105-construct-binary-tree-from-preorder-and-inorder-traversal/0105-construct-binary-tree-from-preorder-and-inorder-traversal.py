@@ -19,7 +19,7 @@ class Solution:
             self.inorder_map[val] = idx
 
         def helper(left,right) -> TreeNode:
-            if left >= right:
+            if left == right:
                 return None
 
             val = preorder[self.next_pre]
