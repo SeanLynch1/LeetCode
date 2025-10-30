@@ -7,27 +7,19 @@
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         
-        self.sum = 0
 
         def helper(node: TreeNode, predecessor: int) -> int:
             if not node:
-                return
-                
+                return 0
+
             predecessor += node.val
 
             if not node.left and not node.right:
-                self.sum += predecessor
-                return
-
+                return predecessor
+                
             predecessor *= 10
 
-            helper(node.left, predecessor)
+            return helper(node.left, predecessor) + helper(node.right, predecessor)
 
-            helper(node.right, predecessor)
-
-            return
-
-        helper(root, 0)
-
-        return self.sum
+        return  helper(root, 0)
 
