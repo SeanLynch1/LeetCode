@@ -15,7 +15,6 @@ class Solution:
         if not root.left and not root.right and curr_sum == 0:
             return True
 
-
         if self.hasPathSum(root.left, curr_sum) or self.hasPathSum(root.right, curr_sum):
             return True
 
