@@ -21,9 +21,7 @@ class Solution:
             
             self.max_sum = max(left + right + val, self.max_sum)
 
-            outcome = val + max(left, right) # 39
-
-            return outcome
+            return val + max(left, right) # 39
 
         helper(root)
         return self.max_sum
