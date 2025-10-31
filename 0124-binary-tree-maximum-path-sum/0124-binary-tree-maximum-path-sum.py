@@ -7,22 +7,33 @@
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         
-        # post order -> left right node
-        # 9, 15, 7, 20, -10
+        self.max_sum = root.val
 
-        self.optimal_sum = root.val
+        def helper(node: TreeNode) -> int:
 
-        def helper(node: Optional[TreeNode]) -> int:
-            
             if not node:
                 return 0
+            
+            val = node.val
 
-            left_side = max(helper(node.left), 0)
-            right_side = max(helper(node.right), 0)
+            left = helper(node.left) # 30
+            right = helper(node.right) # 4
+            
+            left_sum = left + val # 39
+            right_sum = right + val # 4
 
-            self.optimal_sum = max(node.val + left_side + right_side, self.optimal_sum)
+            outcome = max(val,max(left_sum, right_sum)) # 39
 
-            return max(left_side, right_side) + node.val
-        
+            left_right_sum = left + right + val # 43
+
+            if left_right_sum > outcome:
+                self.max_sum = max(left_right_sum, self.max_sum)
+            else:
+                self.max_sum = max(outcome, self.max_sum)
+                
+            return outcome
+
+
         helper(root)
-        return self.optimal_sum
+
+        return self.max_sum
