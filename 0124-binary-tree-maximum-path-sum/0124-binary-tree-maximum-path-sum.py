@@ -19,13 +19,11 @@ class Solution:
             left = max(helper(node.left), 0) # 30
             right = max(helper(node.right), 0) # 4
             
-            left_right_sum = left + right + val # 43
-            self.max_sum = max(left_right_sum, self.max_sum)
+            self.max_sum = max(left + right + val, self.max_sum)
 
             outcome = val + max(left, right) # 39
 
             return outcome
 
         helper(root)
-
         return self.max_sum
