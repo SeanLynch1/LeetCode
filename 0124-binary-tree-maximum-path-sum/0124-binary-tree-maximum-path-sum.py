@@ -33,7 +33,6 @@ class Solution:
                 
             return outcome
 
-
         helper(root)
 
         return self.max_sum
