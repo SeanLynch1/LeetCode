@@ -16,21 +16,14 @@ class Solution:
             
             val = node.val
 
-            left = helper(node.left) # 30
-            right = helper(node.right) # 4
+            left = max(helper(node.left), 0) # 30
+            right = max(helper(node.right), 0) # 4
             
-            left_sum = left + val # 39
-            right_sum = right + val # 4
-
-            outcome = max(val,max(left_sum, right_sum)) # 39
-
             left_right_sum = left + right + val # 43
+            self.max_sum = max(left_right_sum, self.max_sum)
 
-            if left_right_sum > outcome:
-                self.max_sum = max(left_right_sum, self.max_sum)
-            else:
-                self.max_sum = max(outcome, self.max_sum)
-                
+            outcome = val + max(left, right) # 39
+
             return outcome
 
         helper(root)
