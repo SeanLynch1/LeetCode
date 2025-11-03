@@ -19,7 +19,6 @@ class Solution:
             if node == p or node == q:
                 found += 1
 
-
             left = helper(node.left)
             right = helper(node.right)
 
