@@ -17,7 +17,6 @@ class BSTIterator:
         
         
     def next(self) -> int:
-        
         if self.curr:
             self.curr = self.curr.right
         
@@ -31,10 +30,7 @@ class BSTIterator:
         return val
 
     def hasNext(self) -> bool:
-        if not self.stack and (not self.curr or not self.curr.right):
-            return False
-        else:
-            return True
+        return not( not self.stack and (not self.curr or not self.curr.right))
 
         
 
