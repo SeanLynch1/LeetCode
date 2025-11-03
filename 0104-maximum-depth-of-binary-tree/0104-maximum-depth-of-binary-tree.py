@@ -4,34 +4,28 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        # iterative
         if not root:
             return 0
 
-        depth = 1
-        max_depth = 1
-        stack = [(root, depth)]
+        stack = [(root, 1)]
         curr = root.left
+        max_depth = 1
+        val = 1
+
         while stack or curr:
+            
             while curr:
-                depth += 1
-                stack.append((curr, depth))
+                val += 1
+                stack.append((curr, val))
                 curr = curr.left
-            max_depth = max(max_depth, depth)
+
             curr, depth = stack.pop()
+            val = depth
+            print(f"depth = {depth}")
             curr = curr.right
-
+            max_depth = max(depth, max_depth)
+        
         return max_depth
-        # recursive
-        '''if not root:
-            return 0
-        
-        left = self.maxDepth(root.left) + 1
-        right = self.maxDepth(root.right) + 1
 
-        return max(left,right)'''
-        
-        
