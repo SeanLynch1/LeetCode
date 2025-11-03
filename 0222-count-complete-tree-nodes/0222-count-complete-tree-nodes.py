@@ -38,13 +38,9 @@ class Solution:
 
                 curr = stack.pop().right
 
-            print("HI")
-
         # left side is possibly imperfect
         else:
-            print(f"right_depth = {right_depth}")
             depth = (2 ** right_depth)
-            print(f"depth = {depth}")
             curr = root.left
 
             while stack or curr:
