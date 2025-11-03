@@ -24,7 +24,6 @@ class Solution:
             right = helper(node.right)
 
             num = left + right + found
-            print(f"node = {node.val}, num = {num}")
             if num == 2:
                 self.lca = node
                 return 0
