@@ -6,56 +6,54 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        '''if not root:
+        if not root:
             return 0
-
-        def getHeight(node):
-            height = 0
-
-            while node:
-                height += 1
-                node = node.left
-            return height
-
-        left_height = getHeight(root.left)
-        right_height = getHeight(root.right)
-
-        print("left_height = ", left_height)
-
-        if left_height == right_height:
-            # when calculating the left we always include the root node
-            # left subtree is perfect
-            return (2 ** left_height) + self.countNodes(root.right)
-        else:
-            # right subtree is perfect
-            return (2 ** right_height) + self.countNodes(root.left)'''
-
-
-        # iterative
-        stack = []
-        curr = root
-        nodes = 0
         
-        while curr:
-            stack.append(curr)
-            nodes += 1
-            curr = curr.left
+        left_curr = root.left
+        left_depth = 0
+        # find left_curr of far left of left side
+        while left_curr:
+            left_curr = left_curr.left
+            left_depth += 1
+        
+        # find depth of far left on right side
+        right_curr = root.right
+        right_depth = 0
 
-        h = nodes
+        while right_curr:
+            right_curr = right_curr.left
+            right_depth += 1
 
-        while stack or curr:
-            while curr:
-                stack.append(curr)
-                nodes += 1
-                curr = curr.left
-            
-            if len(stack) == h - 1 and curr is not None:
-                break
+        stack = []
+        # right side is possibly imperfect
+        if right_depth == left_depth:
+            depth = (2 ** left_depth)
+            curr = root.right
 
-            # set to 3
-            curr = stack.pop()
-            curr = curr.right
+            while stack or curr:
+                while curr:
+                    depth += 1
+                    stack.append(curr)
+                    curr = curr.left
 
-        return nodes
+                curr = stack.pop().right
 
+            print("HI")
+
+        # left side is possibly imperfect
+        else:
+            print(f"right_depth = {right_depth}")
+            depth = (2 ** right_depth)
+            print(f"depth = {depth}")
+            curr = root.left
+
+            while stack or curr:
+                while curr:
+                    depth += 1
+                    stack.append(curr)
+                    curr = curr.left
+
+                curr = stack.pop().right
+
+        return depth
 
