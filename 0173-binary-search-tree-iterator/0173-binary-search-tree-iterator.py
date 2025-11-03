@@ -7,7 +7,6 @@
 class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
-        self.root = root
         self.curr = root
         self.stack = []
 
@@ -30,7 +29,10 @@ class BSTIterator:
         return val
 
     def hasNext(self) -> bool:
-        return not( not self.stack and (not self.curr or not self.curr.right))
+        if not self.stack and (not self.curr or not self.curr.right):
+            return False
+        else:
+            return True
 
         
 
