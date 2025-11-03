@@ -6,50 +6,29 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
+        count = 0
+        curr = root
         
-        left_curr = root.left
-        left_depth = 0
-        # find left_curr of far left of left side
-        while left_curr:
-            left_curr = left_curr.left
-            left_depth += 1
-        
-        # find depth of far left on right side
-        right_curr = root.right
-        right_depth = 0
+        while curr:
+            left, right = curr.left, curr.right
+            left_depth = self._depth(left)
+            right_depth = self._depth(right)
+            
+            if left_depth == right_depth:
+                # Left subtree is perfect
+                count += 1 << left_depth  # 2^left_depth
+                curr = curr.right
+            else:
+                # Right subtree is perfect
+                count += 1 << right_depth  # 2^right_depth
+                curr = curr.left
+                
+        return count
 
-        while right_curr:
-            right_curr = right_curr.left
-            right_depth += 1
-
-        stack = []
-        # right side is possibly imperfect
-        if right_depth == left_depth:
-            depth = (2 ** left_depth)
-            curr = root.right
-
-            while stack or curr:
-                while curr:
-                    depth += 1
-                    stack.append(curr)
-                    curr = curr.left
-
-                curr = stack.pop().right
-
-        # left side is possibly imperfect
-        else:
-            depth = (2 ** right_depth)
-            curr = root.left
-
-            while stack or curr:
-                while curr:
-                    depth += 1
-                    stack.append(curr)
-                    curr = curr.left
-
-                curr = stack.pop().right
-
+    def _depth(self, node):
+        depth = 0
+        while node:
+            depth += 1
+            node = node.left
         return depth
 
