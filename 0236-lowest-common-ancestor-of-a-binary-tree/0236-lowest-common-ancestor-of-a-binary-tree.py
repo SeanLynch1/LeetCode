@@ -8,27 +8,13 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
-        self.lca = root
+        # don't need to check the whole line
+        if not root or root == p or root == q:
+            return root
 
-        def helper(node) -> int:
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
 
-            if node == None:
-                return 0
-
-            found = 0
-            if node == p or node == q:
-                found += 1
-
-            left = helper(node.left)
-            right = helper(node.right)
-
-            num = left + right + found
-            if num == 2:
-                self.lca = node
-                return 0
-
-            return num
-
-
-        helper(root)
-        return self.lca
+        if left and right:
+            return root
+        return left or right
