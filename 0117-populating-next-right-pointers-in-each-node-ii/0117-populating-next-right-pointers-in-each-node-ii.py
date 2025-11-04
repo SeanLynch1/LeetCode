@@ -16,7 +16,6 @@ class Solution:
         while curr:
 
             dummy_node = Node()
-                
             tail = dummy_node
 
             while curr:
