@@ -7,21 +7,23 @@
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         
-        self.max_sum = root.val
+        self.max_path = root.val
 
         def helper(node: TreeNode) -> int:
-
             if not node:
                 return 0
-            
-            val = node.val
 
-            left = max(helper(node.left), 0) # 30
-            right = max(helper(node.right), 0) # 4
-            
-            self.max_sum = max(left + right + val, self.max_sum)
+            if not node.left and not node.right:
+                self.max_path = max(self.max_path, node.val)
+                return node.val
 
-            return val + max(left, right) # 39
+            left = max(helper(node.left), 0)
+            right = max(helper(node.right), 0)
 
+            self.max_path = max(self.max_path, left + right + node.val)
+
+            return max(left + node.val, right + node.val)
+        
         helper(root)
-        return self.max_sum
+
+        return self.max_path
