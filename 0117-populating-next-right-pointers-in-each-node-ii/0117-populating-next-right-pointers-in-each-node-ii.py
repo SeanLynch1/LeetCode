@@ -15,21 +15,20 @@ class Solution:
 
         while curr:
 
-            dummy_node = TreeNode()
-            dummy_node.next = curr
-            temp = curr.left
+            dummy_node = Node()
+                
+            tail = dummy_node
 
-            while temp and curr:
-                if curr.left and temp != curr.left:
-                    temp.next = curr.left
-                    temp = temp.next
-                elif curr.right:
-                    temp.next = curr.right
-                    temp = temp.next
-                    
+            while curr:
+                if curr.left:
+                    tail.next = curr.left
+                    tail = tail.next
+                if curr.right:
+                    tail.next = curr.right
+                    tail = tail.next
+
                 curr = curr.next
 
-            curr = dummy_node.next.left
-
+            curr = dummy_node.next
         return root
             
