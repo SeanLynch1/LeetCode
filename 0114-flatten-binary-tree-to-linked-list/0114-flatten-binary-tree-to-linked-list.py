@@ -12,11 +12,9 @@ class Solution:
         if not root:
             return
 
-        print("hey")
         if root.left:
             right_most = root.left
 
-            print("hi")
             while right_most.right:
                 right_most = right_most.right
 
@@ -24,5 +22,4 @@ class Solution:
 
             root.left, root.right = None, root.left
 
-        print(f"root.val = {root.val}")
         self.flatten(root.right)
