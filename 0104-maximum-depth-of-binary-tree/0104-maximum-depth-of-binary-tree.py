@@ -16,9 +16,8 @@ class Solution:
         while stack:
             curr, depth = stack.pop()
 
-            if curr.left:
+            if curr :
                 stack.append((curr.left, depth+1))
-            if curr.right:
                 stack.append((curr.right, depth+1))
 
             max_depth = max(max_depth, depth)
