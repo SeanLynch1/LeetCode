@@ -9,24 +9,20 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+        if not root:
+            return
 
-        curr = root
-        while curr:
+        print("hey")
+        if root.left:
+            right_most = root.left
 
-            if curr.left:
+            print("hi")
+            while right_most.right:
+                right_most = right_most.right
 
-                predecessor = curr.left
+            right_most.right = root.right
 
-                # go rightmost
-                while predecessor.right:
-                    predecessor = predecessor.right
+            root.left, root.right = None, root.left
 
-                predecessor.right = curr.right
-
-                curr.right = curr.left
-                curr.left = None
-                
-            curr = curr.right
-
-        return root
-
+        print(f"root.val = {root.val}")
+        self.flatten(root.right)
