@@ -11,28 +11,25 @@ class Node:
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
-        # we use a dummyNode for constant extra space
-        # this dummy node points to the first node left or right of the tree
-
-
         curr = root
 
         while curr:
-            dummyNode = Node(0)
-            tail = dummyNode
 
-            while curr:
-                
-                if curr.left:
-                    tail.next = curr.left
-                    tail = tail.next
+            dummy_node = TreeNode()
+            dummy_node.next = curr
+            temp = curr.left
 
-                if curr.right:
-                    tail.next = curr.right
-                    tail = tail.next
-
+            while temp and curr:
+                if curr.left and temp != curr.left:
+                    temp.next = curr.left
+                    temp = temp.next
+                elif curr.right:
+                    temp.next = curr.right
+                    temp = temp.next
+                    
                 curr = curr.next
 
-            curr = dummyNode.next
+            curr = dummy_node.next.left
 
         return root
+            
