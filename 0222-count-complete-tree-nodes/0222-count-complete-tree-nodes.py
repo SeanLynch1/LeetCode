@@ -15,7 +15,6 @@ class Solution:
             left_depth = self.count_depth(left)
             right_depth = self.count_depth(right)
 
-            print(f"left_depth = {left_depth}, right_depth = {right_depth}")
             # if right side is possibly imperfect
             if left_depth == right_depth:
                 
