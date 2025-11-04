@@ -18,10 +18,7 @@ class Solution:
             if not node.left and not node.right:
                 return predecessor
 
-            left = helper(node.left, predecessor)
-            right = helper(node.right, predecessor)
-
-            return left + right
+            return helper(node.left, predecessor) + helper(node.right, predecessor)
 
 
         return helper(root, 0)
