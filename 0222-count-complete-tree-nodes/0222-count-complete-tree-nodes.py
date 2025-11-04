@@ -6,31 +6,28 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        curr = root
-        count = 0
-
-        while curr:
-
-            left, right = curr.left, curr.right
-            left_depth = self.count_depth(left)
-            right_depth = self.count_depth(right)
-
-            # if right side is possibly imperfect
-            if left_depth == right_depth:
-                
-                count += (2 ** left_depth)
-                curr = curr.right
-            # if left side is possibly imperfect
-            else:
-                count += (2 ** right_depth)
-                curr = curr.left
-
-        return count
-
-    def count_depth(self, node: TreeNode) -> int:
-        num = 0
-        while node:
-            num += 1
-            node = node.left
         
-        return num
+        if not root:
+            return 0
+
+        left_depth = 0
+        left_curr = root.left
+
+        while left_curr:
+            left_depth += 1
+            left_curr = left_curr.left
+
+        right_depth = 0
+        right_curr = root.right
+
+        while right_curr:
+            right_depth += 1
+            right_curr = right_curr.left
+
+        # left side is perfect (possibly)
+        if left_depth == right_depth:
+            return self.countNodes(root.right) + (2 ** left_depth)
+            
+        # right side is perfect (possibly)
+        else:
+            return self.countNodes(root.left) + (2 ** right_depth)
