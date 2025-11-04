@@ -5,24 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def getDepth(self, node: TreeNode) -> int:
+        depth = 0
+        while node:
+            depth += 1
+            node = node.left
+
+        return depth
+
     def countNodes(self, root: Optional[TreeNode]) -> int:
         
         if not root:
             return 0
 
-        left_depth = 0
-        left_curr = root.left
-
-        while left_curr:
-            left_depth += 1
-            left_curr = left_curr.left
-
-        right_depth = 0
-        right_curr = root.right
-
-        while right_curr:
-            right_depth += 1
-            right_curr = right_curr.left
+        left_depth = self.getDepth(root.left)
+        right_depth = self.getDepth(root.right)
 
         # left side is perfect (possibly)
         if left_depth == right_depth:
