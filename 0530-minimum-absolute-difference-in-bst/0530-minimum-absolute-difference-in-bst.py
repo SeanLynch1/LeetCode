@@ -9,7 +9,7 @@ class Solution:
         
         minimum_distance = float('inf')
 
-        inorder_vals = []
+        prev_val = None
         stack = []
 
         curr = root
@@ -21,12 +21,11 @@ class Solution:
                 curr = curr.left
 
             curr = stack.pop()
-            inorder_vals.append(curr.val)
 
-            if len(inorder_vals) > 1:
-                diff = abs(inorder_vals[-1] - inorder_vals[-2])
-                minimum_distance = min(diff, minimum_distance)
+            if prev_val is not None:
+                minimum_distance = min(abs(curr.val - prev_val), minimum_distance)
 
+            prev_val = curr.val
             curr = curr.right
             
         return minimum_distance
