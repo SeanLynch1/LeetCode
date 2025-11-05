@@ -11,7 +11,6 @@ class Solution:
 
         prev_val = None
         stack = []
-
         curr = root
 
         while stack or curr:
