@@ -8,7 +8,7 @@ class Solution:
 
         # change all o's found to e
         def helper(row: int, col: int):
-            if (row < 0 or row == no_rows) or (col < 0 or col == no_cols) or board[row][col] == "E" or board[row][col] == "X":
+            if (row < 0 or row == no_rows) or (col < 0 or col == no_cols) or board[row][col] != "O":
                 return
 
             board[row][col] = "E"
