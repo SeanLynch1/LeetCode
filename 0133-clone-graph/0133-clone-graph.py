@@ -11,8 +11,6 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return node
-        print(f"node = {node.val}, neighbours = {node.neighbors}")
-
         visited = {}
 
         def helper(node: Optional['Node']) -> Node:
@@ -28,6 +26,4 @@ class Solution:
 
             return new_node
 
-        root = helper(node)
-        return root
-        
+        return helper(node)
