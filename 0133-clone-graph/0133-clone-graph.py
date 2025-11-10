@@ -15,11 +15,11 @@ class Solution:
 
         def helper(node: Optional['Node']) -> Node:
 
-            if node.val in visited:
-                return visited[node.val]
+            if node in visited:
+                return visited[node]
             
             new_node = Node(node.val)
-            visited[node.val] = new_node
+            visited[node] = new_node
 
             for n in node.neighbors:
                 new_node.neighbors.append(helper(n))
