@@ -21,18 +21,13 @@ class Solution:
 
             mapping[var_1][var_0] = 1 / values[i]
 
-        print(mapping)
-
         def helper(start: str, target: str, visited: set, product: float) -> float:
             if start == target:
                 return product
 
             visited.add(start)
             
-            print(f"start = {start}")
-            print(f"start = {mapping[start]}")
             for key, value in mapping[start].items():
-                print(f"key = {key}, value = {value}, product = {product}")
                 if key in visited:
                     continue
 
@@ -53,6 +48,5 @@ class Solution:
 
             visited = set()
             output.append(helper(var_0, var_1, visited, 1))
-            print("\n")
 
         return output
