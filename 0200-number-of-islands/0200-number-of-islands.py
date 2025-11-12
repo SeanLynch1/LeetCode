@@ -1,33 +1,32 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        # recursion baby let's go
+        if not grid:
+            return 0
 
         islands = 0
-        num_rows = len(grid)
-        num_cols = len(grid[0])
-        
-        def helper(row: int, col: int) -> bool:
-            
-            if (row >= num_rows or row < 0) or (col >= num_cols or col < 0) or grid[row][col] == '0':
-                # represents water...
-                return 
-            
-            grid[row][col] = '0'
-            
-            # check left
-            helper(row, col - 1)
-            # check up
-            helper(row - 1, col)
-            # check right
-            helper(row, col + 1)
-            # check down
-            helper(row + 1, col)
 
-        for row in range(num_rows):
-            for col in range(num_cols):
-                if grid[row][col] == '1':
-                    # obilterate island
-                    helper(row, col)
+        no_rows = len(grid)
+        no_cols = len(grid[0])
+
+        def helper(x: int, y: int):
+
+            if x < 0 or x == no_rows or y < 0 or y == no_cols or grid[x][y] == "0":
+                return
+
+            # down
+            helper(x + 1, y)
+            grid[x][y] = "0"
+            # left
+            helper(x, y - 1)
+            # right
+            helper(x, y + 1)
+            # up
+            helper(x - 1, y)
+
+        for r in range(no_rows):
+            for c in range(no_cols):
+                if grid[r][c] == "1":
+                    helper(r,c)
                     islands += 1
 
         return islands
