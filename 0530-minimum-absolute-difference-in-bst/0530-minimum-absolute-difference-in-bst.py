@@ -7,9 +7,8 @@
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
         
-        self.min_diff = float('inf')
-
-        self.last_val = None
+        self.last_val = float('inf')
+        self.min_diff = self.last_val
         # inorder traversal
         def helper(node: TreeNode) -> int:
             if not node:
@@ -17,9 +16,8 @@ class Solution:
 
             helper(node.left)
 
-            if self.last_val is not None:
-                diff = abs(self.last_val - node.val)
-                self.min_diff = min(self.min_diff, diff)
+            diff = abs(self.last_val - node.val)
+            self.min_diff = min(self.min_diff, diff)
 
             self.last_val = node.val
 
