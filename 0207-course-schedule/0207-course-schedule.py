@@ -1,28 +1,40 @@
-from collections import defaultdict
-
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        graph = defaultdict(list)
-        for course, prereq in prerequisites:
-            graph[course].append(prereq)
+        
+        graph = {}
+        visited = [0] * numCourses
+        # build graph
+        for course_1, course_2 in prerequisites:
+            
+            if course_1 not in graph:
+                graph[course_1] = []
 
-        visited = [0] * numCourses  # 0 = unvisited, 1 = visiting, 2 = visited
+            if course_2 not in graph:
+                graph[course_2] = []
 
-        def dfs(course):
-            if visited[course] == 1:  # cycle detected
-                return False
-            if visited[course] == 2:  # already checked, safe
+            graph[course_1].append(course_2)
+
+        # define helper funciton to loop through graph
+
+        def helper(start: int) -> bool:
+            if len(graph[start]) == 0 or visited[start] == 2:
                 return True
+            elif visited[start] == 1:
+                return False
 
-            visited[course] = 1  # mark as visiting
-            for prereq in graph[course]:
-                if not dfs(prereq):
-                    return False
-            visited[course] = 2  # mark as safe
+            visited[start] = 1
+            for val in graph[start]:
+                outcome = helper(val)
+                if outcome == False:
+                    return outcome
+                    
+            visited[start] = 2
             return True
 
-        for c in range(numCourses):
-            if not dfs(c):
-                return False
+        for idx in prerequisites:
+            res = helper(idx[1])
 
+            if not res:
+                return False
+            
         return True
