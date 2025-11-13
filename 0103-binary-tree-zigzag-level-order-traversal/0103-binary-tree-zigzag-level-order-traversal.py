@@ -14,24 +14,34 @@ class Solution:
 
         while queue:
             level_nodes = []
-
+            print(f"queue = {queue}")
             for i in range(len(queue)):
-                curr = queue.popleft()
-                level_nodes.append(curr.val)
 
                 if toggle:
-                    if curr.left:
-                        queue.append(curr.left)
+                    curr = queue.pop()
+                    print(f"curr = {curr.val}")
+                    level_nodes.append(curr.val)
 
                     if curr.right:
-                        queue.append(curr.right)
+                        queue.appendleft(curr.right)
+
+                    if curr.left:
+                        queue.appendleft(curr.left)
                 else:
-                    if curr.right:
-                        queue.append(curr.right)
+                    curr = queue.popleft()
+                    print(f"curr = {curr.val}")
+                    level_nodes.append(curr.val)
 
                     if curr.left:
+                        print(f"curr.left = {curr.left.val}")
                         queue.append(curr.left)
 
+                    if curr.right:
+                        print(f"curr.right = {curr.right.val}")
+
+                        queue.append(curr.right)
+
+            print("\n")
             output.append(level_nodes)
 
             toggle = not toggle
