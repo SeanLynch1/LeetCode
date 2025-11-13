@@ -1,52 +1,49 @@
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         
-        mapping = {}
+        # build a graph
+        graph = {}
         output = []
 
-        # build query mapping
         for i in range(len(equations)):
+
+            var_1 = equations[i][0]
+            var_2 = equations[i][1]
+
+            if var_1 not in graph:
+                graph[var_1] = {}
+
+            graph[var_1][var_2] = values[i]
+
+            if var_2 not in graph:
+                graph[var_2] = {}
             
-            var_0 = equations[i][0]
-            var_1 = equations[i][1]
+            graph[var_2][var_1] = 1 / values[i]
 
-            if var_0 not in mapping:
-                # initalise new query
-                mapping[var_0] = {}
-
-            mapping[var_0][var_1] = values[i]
-            
-            if var_1 not in mapping:
-                mapping[var_1] = {}
-
-            mapping[var_1][var_0] = 1 / values[i]
-
+        # create a helper function to search through graph
         def helper(start: str, target: str, visited: set, product: float) -> float:
             if start == target:
                 return product
 
-            visited.add(start)
-            
-            for key, value in mapping[start].items():
-                if key in visited:
+            if start not in visited:
+                visited.add(start)
+
+            for divisor, value in graph[start].items():
+                if divisor in visited:
                     continue
 
-                output = helper(key, target, visited, product * value)
+                res = helper(divisor, target, visited, product * value)
 
-                if output != -1: return output
-            
+                if res != -1:
+                    return res
+
             return -1
 
-        for j in range(len(queries)):
-            
-            var_0 = queries[j][0]
-            var_1 = queries[j][1]
-
-            if var_0 not in mapping or var_1 not in mapping:
+        for numerator, denomenator in queries:
+            if numerator not in graph or denomenator not in graph:
                 output.append(-1)
-                continue
-
-            visited = set()
-            output.append(helper(var_0, var_1, visited, 1))
+            else:
+                visited = set()
+                output.append(helper(numerator, denomenator, visited, 1))
 
         return output
