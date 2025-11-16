@@ -5,10 +5,8 @@ class Solution:
         visited = [0] * numCourses
         # build graph
         for course_1, course_2 in prerequisites:
-            
             if course_1 not in graph:
                 graph[course_1] = []
-
             if course_2 not in graph:
                 graph[course_2] = []
 
@@ -32,9 +30,10 @@ class Solution:
             return True
 
         for idx in prerequisites:
-            res = helper(idx[1])
+            if visited[idx[1]] == 0:
+                res = helper(idx[1])
 
-            if not res:
-                return False
+                if not res:
+                    return False
             
         return True
