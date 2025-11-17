@@ -12,7 +12,6 @@ class Solution:
         def helper(node: TreeNode, last_val: int) -> int:
             
             curr_val = node.val
-            self.min_abs = min(self.min_abs, abs(curr_val - last_val))
 
             if node.left:
                 left_val = helper(node.left, last_val)
