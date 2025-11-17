@@ -1,29 +1,27 @@
 # Definition for a binary tree node.
 # class TreeNode:
-#     def __init__(self, val=0, left_val=None, right_val=None):
+#     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
-#         self.left = left_val
-#         self.right = right_val
+#         self.left = left
+#         self.right = right
+
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
-        
-        self.min_abs = float('inf')
+        self.prev = None
+        self.ans = float('inf')
 
-        def helper(node: TreeNode, last_val: int) -> int:
-            
-            curr_val = node.val
-            self.min_abs = min(self.min_abs, abs(curr_val - last_val))
+        def inorder(node):
+            if not node:
+                return
 
-            if node.left:
-                left_val = helper(node.left, last_val)
-                self.min_abs = min(self.min_abs, abs(curr_val - left_val))
+            inorder(node.left)
 
-            if node.right:
-                right_val = helper(node.right, curr_val)
-                self.min_abs = min(self.min_abs, abs(curr_val - right_val))
-                return right_val
+            if self.prev is not None:
+                self.ans = min(self.ans, node.val - self.prev)
 
-            return curr_val
+            self.prev = node.val
 
-        helper(root, float('inf'))
-        return self.min_abs
+            inorder(node.right)
+
+        inorder(root)
+        return self.ans
