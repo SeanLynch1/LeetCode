@@ -5,8 +5,11 @@ class Solution:
 
         if no_tiles < 6:
             return 1
-        visited = set()
+            
+        
+
         mapping = {}
+
 
         tile = 1
         for i in range(len(board)-1, -1, -1):
@@ -22,34 +25,23 @@ class Solution:
         for i in range(len(board)):
             print(board[i])
         
-        queue = deque()
+        visited = set()
+        queue = deque([1])
+        visited.add(1)
 
-        # initialize queue
-        for i in range(2, 8):
-            curr = i
-            # for ladders that lead to another ladder
-
-            if mapping[curr] != -1 and mapping[curr] != curr:
-                curr = mapping[curr]
-
-            if curr not in visited:
-                queue.append(curr)
-                if mapping[curr] == -1:
-                    visited.add(curr)
-            
         steps = 0
         while queue:
             for i in range(len(queue)):
                 curr = queue.popleft()
 
                 if curr == no_tiles:
-                    return steps + 1
+                    return steps
                 
                 # add next 6 from
                 for j in range(curr + 1, min(curr + 7, no_tiles + 1)):
                     temp = j
 
-                    if mapping[temp] != -1 and mapping[temp] != temp:
+                    if mapping[temp] != -1:
                         temp = mapping[temp]
 
                     if temp not in visited:
