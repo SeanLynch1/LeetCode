@@ -37,8 +37,6 @@ class Solution:
                 if mapping[curr] == -1:
                     visited.add(curr)
             
-        print(f"queue = {queue}")
-        print(f"visited = {visited}","\n")
         steps = 0
         while queue:
             for i in range(len(queue)):
@@ -59,8 +57,5 @@ class Solution:
                         visited.add(temp)
             
             steps += 1
-            print(f"queue = {queue}")
-            print(f"visited = {visited}", "\n")
-
 
         return -1
