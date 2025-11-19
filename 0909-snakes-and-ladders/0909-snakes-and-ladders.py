@@ -51,16 +51,14 @@ class Solution:
                 for j in range(curr + 1, min(curr + 7, no_tiles + 1)):
                     temp = j
 
-                    if temp not in visited and mapping[temp] not in visited:
-                        if mapping[temp] != -1 and mapping[temp] != temp:
-                            visited.add(temp)
-                            temp = mapping[temp]
-                            #visited.add(temp)
+                    # Take snake or ladder once
+                    if mapping[temp] != -1:
+                        temp = mapping[temp]
 
-                        if temp not in visited:
-                            queue.append(temp)
-                            if mapping[temp] == -1:
-                                visited.add(temp)
+                    # Only check the final tile
+                    if temp not in visited:
+                        visited.add(temp)
+                        queue.append(temp)
             
             steps += 1
             print(f"queue = {queue}")
