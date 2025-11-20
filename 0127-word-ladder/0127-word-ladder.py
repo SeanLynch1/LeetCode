@@ -7,10 +7,8 @@ class Solution:
         L = len(beginWord)
         for word in wordList:
             for i in range(L):
-                temp = list(word)
-                temp[i] = "*"
-
-                mapping["".join(temp)].append(word)
+                temp = word[:i] + "*" + word[i+1:]
+                mapping[temp].append(word)
 
         steps = 1
         while queue:
