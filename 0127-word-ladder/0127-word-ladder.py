@@ -1,47 +1,34 @@
+from collections import defaultdict, deque
+
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        
+        wordList = set(wordList)
+        if endWord not in wordList:
+            return 0
+
         mapping = defaultdict(list)
-        queue = deque([beginWord])
-        visited = {beginWord}
+        L = len(beginWord)
 
         for word in wordList:
-            for i in range(len(word)):
-                temp = list(word)
-                temp[i] = "*"
+            for i in range(L):
+                mapping[word[:i] + "*" + word[i+1:]].append(word)
 
-                mapping["".join(temp)].append(word)
-
-        def compare(x: str, y: str) -> bool:
-
-            diff = 0
-            for i in range(len(x)):
-                if x[i] != y[i]:
-                    diff += 1
-                    if diff > 1:
-                        return False
-            
-            return True
-
+        queue = deque([beginWord])
+        visited = {beginWord}
         steps = 1
+
         while queue:
-
-            for i in range(len(queue)):
+            for _ in range(len(queue)):
                 curr = queue.popleft()
-
                 if curr == endWord:
                     return steps
 
-                for i in range(len(curr)):
-                    temp = list(curr)
-                    temp[i] = "*"
-
-                    for word in mapping["".join(temp)]:
-                        if word != curr and word not in visited and compare(curr, word):
-                            queue.append(word)
-                            visited.add(word)
-            
+                for i in range(L):
+                    pattern = curr[:i] + "*" + curr[i+1:]
+                    for neighbor in mapping[pattern]:
+                        if neighbor not in visited:
+                            visited.add(neighbor)
+                            queue.append(neighbor)
             steps += 1
 
         return 0
-
