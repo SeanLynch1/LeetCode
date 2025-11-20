@@ -22,10 +22,9 @@ class Solution:
                     return steps
 
                 for i in range(L):
-                    temp = list(curr)
-                    temp[i] = "*"
+                    temp = curr[:i] + "*" + curr[i+1:]
 
-                    for word in mapping["".join(temp)]:
+                    for word in mapping[temp]:
                         if word not in visited:
                             queue.append(word)
                             visited.add(word)
