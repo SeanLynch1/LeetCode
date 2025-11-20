@@ -3,8 +3,8 @@ class Solution:
         
         # need to build a graph
         queue = deque([startGene])
-        visited = {startGene}
-
+        visited = set()
+        
         def compare(x: str, y: str) -> bool:
             diff = 0
             for i in range(len(x)):
