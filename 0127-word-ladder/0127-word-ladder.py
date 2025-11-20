@@ -7,8 +7,7 @@ class Solution:
         L = len(beginWord)
         for word in wordList:
             for i in range(L):
-                temp = word[:i] + "*" + word[i+1:]
-                mapping[temp].append(word)
+                mapping[word[:i] + "*" + word[i+1:]].append(word)
 
         steps = 1
         while queue:
@@ -20,9 +19,7 @@ class Solution:
                     return steps
 
                 for i in range(L):
-                    temp = curr[:i] + "*" + curr[i+1:]
-
-                    for word in mapping[temp]:
+                    for word in mapping[curr[:i] + "*" + curr[i+1:]]:
                         if word not in visited:
                             queue.append(word)
                             visited.add(word)
