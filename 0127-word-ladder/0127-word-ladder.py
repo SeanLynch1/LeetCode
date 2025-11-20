@@ -4,7 +4,6 @@ class Solution:
 
         queue = deque([beginWord])
         visited = {beginWord}
-        word_bank = set(wordList)
 
         def compare(x: str, y: str) -> bool:
 
@@ -30,9 +29,6 @@ class Solution:
                     if word not in visited and compare(curr, word):
                         queue.append(word)
                         visited.add(word)
-                        word_bank.remove(word)
-                
-                wordList = list(word_bank)
             
             steps += 1
 
