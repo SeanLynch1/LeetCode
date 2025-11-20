@@ -3,16 +3,16 @@ class Solution:
         
         # need to build a graph
         queue = deque([startGene])
-        visited = set()
+        visited = {startGene}
 
-        def compare(x: str, y: str) -> int:
+        def compare(x: str, y: str) -> bool:
             diff = 0
-
             for i in range(len(x)):
                 if x[i] != y[i]:
                     diff += 1
-
-            return diff
+                    if diff > 1:
+                        return False
+            return True
 
         steps = 0
         while queue:
@@ -26,7 +26,7 @@ class Solution:
                     if gene not in visited:
                         diff = compare(curr, gene)
 
-                        if diff == 1:
+                        if diff:
                             queue.append(gene)
                             visited.add(gene)
             steps += 1
