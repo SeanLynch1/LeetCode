@@ -12,17 +12,6 @@ class Solution:
 
                 mapping["".join(temp)].append(word)
 
-        def compare(x: str, y: str) -> bool:
-
-            diff = 0
-            for i in range(L):
-                if x[i] != y[i]:
-                    diff += 1
-                    if diff > 1:
-                        return False
-            
-            return True
-
         steps = 1
         while queue:
 
@@ -37,7 +26,7 @@ class Solution:
                     temp[i] = "*"
 
                     for word in mapping["".join(temp)]:
-                        if word != curr and word not in visited and compare(curr, word):
+                        if word != curr and word not in visited:
                             queue.append(word)
                             visited.add(word)
             
