@@ -26,7 +26,6 @@ class Solution:
                     return steps
 
                 for word in wordList:
-
                     if word not in visited and compare(curr, word):
                         queue.append(word)
                         visited.add(word)
