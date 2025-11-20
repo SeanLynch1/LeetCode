@@ -26,7 +26,7 @@ class Solution:
                     temp[i] = "*"
 
                     for word in mapping["".join(temp)]:
-                        if word != curr and word not in visited:
+                        if word not in visited:
                             queue.append(word)
                             visited.add(word)
             
