@@ -4,14 +4,11 @@ class Solution:
         mapping = defaultdict(set)
         visited = [0] * numCourses
 
-        pre = []
-        suff = []
+        order = []
 
         for slot in prerequisites:
             mapping[slot[0]].add(slot[1])
 
-            if slot[1] not in mapping:
-                mapping[slot[1]] = set()
 
         def helper(start) -> bool:
 
@@ -28,23 +25,12 @@ class Solution:
             
             visited[start] = 2
 
-            res.append(start)
+            order.append(start)
             return True
 
         
         for n in range(numCourses):
-            if n not in mapping:
-                pre.append(n)
-            else:
-                res = []
+            if not helper(n):
+                return []
 
-                output = helper(n)
-                
-                if not output:
-                    return []
-                else:
-                    suff.extend(res)
-
-        pre.extend(suff)
-
-        return pre
+        return order
