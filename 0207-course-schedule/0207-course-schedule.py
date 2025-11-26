@@ -2,7 +2,7 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         mapping = defaultdict(set)
-        visited = defaultdict(int)
+        visited = [0] * numCourses
 
         for slot in prerequisites:
             mapping[slot[0]].add(slot[1])
