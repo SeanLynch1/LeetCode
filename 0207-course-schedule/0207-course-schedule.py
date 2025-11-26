@@ -10,25 +10,17 @@ class Solution:
 
         def helper(start) -> bool:
             
-            if visited[start] == -1:
-                return True
-            elif visited[start] > 1:
+            if visited[start] == 1:
                 return False
-
-            # already looped through contents
-            if len(mapping[start]) == 0:
-                visited[start] = -1
+            elif visited[start] == 2:
                 return True
 
-            visited[start] += 1
+            visited[start] = 1
             for val in mapping[start]:
-                output = helper(val)
-
-                if not output:
-                    visited[start] = 2
+                if not helper(val):
                     return False
 
-            visited[start] = -1
+            visited[start] = 2
 
             return True
 
