@@ -11,8 +11,9 @@ class Solution:
             mapping[slot[0]].add(slot[1])
 
             if slot[1] not in mapping:
-                mapping[slot[1]] = {}
+                mapping[slot[1]] = set()
 
+        print(mapping)
 
         def helper(start) -> bool:
 
