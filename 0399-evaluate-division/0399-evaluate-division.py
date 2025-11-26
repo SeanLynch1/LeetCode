@@ -1,7 +1,7 @@
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         
-        mapping = defaultdict(dict)
+        mapping = defaultdict(list)
         res = []
 
         for i in range(len(equations)):
@@ -20,8 +20,8 @@ class Solution:
                 return -1
 
             visited.add(start)
-            for key, val in mapping[start].items():
-                output = helper(key, end, product * val)
+            for block in mapping[start]:
+                output = helper(block[0], end, product * block[1])
 
                 if output != -1:
                     return output
