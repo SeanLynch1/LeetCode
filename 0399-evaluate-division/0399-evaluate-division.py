@@ -10,11 +10,12 @@ class Solution:
 
             mapping[equations[i][1]][equations[i][0]] = 1 / values[i]
 
-        print(mapping)
         # traverse mapping
         def helper(start, end, product):
             if end in mapping[start]:
                 return product * mapping[start][end]
+            elif start == end:
+                return 1
             elif start in visited:
                 return -1
 
