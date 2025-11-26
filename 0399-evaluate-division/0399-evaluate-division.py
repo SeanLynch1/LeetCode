@@ -21,7 +21,6 @@ class Solution:
 
             visited.add(start)
             for key, val in mapping[start].items():
-                print(key, val, f"end = {end}")
                 output = helper(key, end, product * val)
 
                 if output != -1:
