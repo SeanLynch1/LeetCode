@@ -6,7 +6,6 @@ class Solution:
 
         for slot in prerequisites:
             mapping[slot[0]].add(slot[1])
-            mapping[slot[0]].add(slot[1]) 
 
         def helper(start) -> bool:
             
@@ -24,7 +23,7 @@ class Solution:
 
             return True
 
-        for n in range(0, numCourses):
+        for n in range(numCourses):
             if n in mapping:
                 res = helper(n)
 
