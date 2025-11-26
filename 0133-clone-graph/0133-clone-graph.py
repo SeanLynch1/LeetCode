@@ -14,18 +14,18 @@ class Solution:
             
         visited = {}
 
-        def helper(node: Node) -> Node:
-            if node in visited:
-                return visited[node]
+        def helper(node) -> Node:
+            if node.val in visited:
+                return visited[node.val]
 
-            clone = Node(node.val)
-            visited[node] = clone
+            root = Node(node.val)
 
-            # create neighbours
-            for neighbor in node.neighbors:
-                clone.neighbors.append(helper(neighbor))
+            visited[node.val] = root
 
-            return clone
+            # explore neighbors
+            for n in node.neighbors:
+                root.neighbors.append(helper(n))
+
+            return root
 
         return helper(node)
-
