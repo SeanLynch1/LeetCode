@@ -24,10 +24,7 @@ class Solution:
             return True
 
         for n in range(numCourses):
-            if n in mapping:
-                res = helper(n)
-
-                if not res:
-                    return False
+            if not helper(n):
+                return False
 
         return True
