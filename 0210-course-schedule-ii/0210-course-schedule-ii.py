@@ -1,13 +1,13 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
-        mapping = defaultdict(set)
+        mapping = defaultdict(list)
         visited = [0] * numCourses
 
         order = []
 
-        for slot in prerequisites:
-            mapping[slot[0]].add(slot[1])
+        for a,b  in prerequisites:
+            mapping[slot[0]].append(slot[1])
 
 
         def helper(start) -> bool:
