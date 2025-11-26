@@ -11,16 +11,16 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return
-            
+
         visited = {}
 
         def helper(node) -> Node:
-            if node.val in visited:
-                return visited[node.val]
+            if node in visited:
+                return visited[node]
 
             root = Node(node.val)
 
-            visited[node.val] = root
+            visited[node] = root
 
             # explore neighbors
             for n in node.neighbors:
