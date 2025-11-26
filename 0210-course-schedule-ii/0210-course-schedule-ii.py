@@ -13,8 +13,6 @@ class Solution:
             if slot[1] not in mapping:
                 mapping[slot[1]] = set()
 
-        print(mapping)
-
         def helper(start) -> bool:
 
             if visited[start] == 1:
@@ -40,7 +38,6 @@ class Solution:
             else:
                 res = []
 
-                print(f"n = {n}, visited = {visited}")
                 output = helper(n)
                 
                 if not output:
