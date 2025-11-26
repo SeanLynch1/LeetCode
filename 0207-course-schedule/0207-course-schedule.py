@@ -8,8 +8,6 @@ class Solution:
             mapping[slot[0]].add(slot[1])
             mapping[slot[0]].add(slot[1]) 
 
-        print(mapping)
-
         def helper(start) -> bool:
             
             if visited[start] == -1:
