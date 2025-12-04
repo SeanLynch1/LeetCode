@@ -6,9 +6,10 @@ class Solution:
         total_squares = n * n
         tile_no = total_squares
 
+        order = n % 2
         for i in range(n):
             for j in range(n):
-                if i % 2 == 0:
+                if i % 2 == order:
                     if board[i][j] == -1:
                         mapping[tile_no] = tile_no
                     else:
