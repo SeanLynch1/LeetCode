@@ -28,6 +28,7 @@ class Solution:
                                 visited.add(find)
 
             moves += 1
+            print(queue, "\n")
 
         return 0
 
