@@ -5,7 +5,6 @@ class Solution:
             return -1
 
         bank = set(bank) 
-        bank.add(endGene)
 
         visited = set([startGene])
         queue = deque([startGene])
