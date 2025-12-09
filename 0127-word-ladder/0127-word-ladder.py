@@ -2,7 +2,7 @@ class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if not wordList:
             return 0
-        if endword not in wordList:
+        if endWord not in wordList:
             return 0
 
         wordList = set(wordList)
