@@ -2,19 +2,16 @@ class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if not wordList:
             return 0
+        
+
+        wordList = set(wordList)
+
         if endWord not in wordList:
             return 0
 
-        wordList = set(wordList)
-        visited = set([beginWord])
         queue = deque([beginWord])
 
-        letters = set()
-
-        for word in wordList:
-            for w in word:
-                if w not in letters:
-                    letters.add(w)
+        letters = "abcdefghijklmnopqrstuv"
 
         moves = 1
         while queue:
@@ -31,9 +28,9 @@ class Solution:
                         if curr[i] != c:
                             find = curr[:i] + c + curr[i + 1:]
                             
-                            if find in wordList and find not in visited:
+                            if find in wordList:
                                 queue.append(find)
-                                visited.add(find)
+                                wordList.remove(find)
 
             moves += 1
 
