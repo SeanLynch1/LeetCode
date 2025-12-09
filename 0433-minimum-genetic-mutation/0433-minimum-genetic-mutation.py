@@ -1,36 +1,38 @@
 class Solution:
     def minMutation(self, startGene: str, endGene: str, bank: List[str]) -> int:
         
-        # need to build a graph
-        queue = deque([startGene])
-        visited = set()
-        
-        def compare(x: str, y: str) -> bool:
-            diff = 0
-            for i in range(len(x)):
-                if x[i] != y[i]:
-                    diff += 1
-                    if diff > 1:
-                        return False
-            return True
+        if not bank:
+            return -1
 
-        steps = 0
+        bank = set(bank) 
+        bank.add(endGene)
+
+        visited = set([startGene])
+        queue = deque([startGene])
+        mutations = 0
+
         while queue:
-            for i in range(len(queue)):
+            for genes in range(len(queue)):
                 curr = queue.popleft()
 
                 if curr == endGene:
-                    return steps
+                    return mutations
 
                 for gene in bank:
-                    if gene not in visited:
-                        diff = compare(curr, gene)
+                    diff = 0
 
-                        if diff:
+                    if gene not in visited:
+                        for i in range(len(gene)):
+                            if curr[i] != gene[i]:
+                                diff += 1
+                            
+                            if diff == 2:
+                                break
+                        
+                        if diff == 1:
                             queue.append(gene)
                             visited.add(gene)
-            steps += 1
-
-        return -1
-
             
+            mutations += 1
+            print(queue,"\n")
+        return -1
