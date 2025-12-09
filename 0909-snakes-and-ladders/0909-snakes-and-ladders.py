@@ -2,52 +2,48 @@ class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         
         mapping = {}
+
         n = len(board)
-        total_squares = n * n
-        tile_no = total_squares
+        no_tiles = n * n
+        tile = no_tiles
 
-        order = n % 2
-        for i in range(n):
-            for j in range(n):
-                if i % 2 == order:
-                    if board[i][j] == -1:
-                        mapping[tile_no] = tile_no
-                    else:
-                        mapping[tile_no] = board[i][j]
+        even_odd = n % 2
+
+        for row in range(len(board)):
+            for col in range(len(board)):
+
+                if row % 2 == even_odd:
+                    val = board[row][col]
                 else:
-                    if board[i][ (n - 1) - j] == -1:
-                        mapping[tile_no] = tile_no
-                    else:
-                        mapping[tile_no] = board[i][ (n - 1) - j]
+                    val = board[row][n - col - 1]
 
-                tile_no -= 1
+                if val != -1:
+                    mapping[tile] = val
+                else:
+                    mapping[tile] = tile
+            
+                tile -= 1
 
         print(mapping)
-                
-        # Breadth First Search
-
-        moves = 0
         queue = deque([1])
         visited = {1}
+        move = 0
 
-        while(queue):
-            for j in range(len(queue)):
+        while queue:
+            for i in range(len(queue)):
                 curr = queue.popleft()
 
-                if curr == total_squares:
-                    print("SQUARE FOUND")
-                    return moves
+                if curr == no_tiles:
+                    return move
 
-                for i in range(curr + 1, min(curr + 7, total_squares + 1)):
-                    
-                    print(mapping[i])
-                    
-                    if mapping[i] not in visited:
-                        visited.add(mapping[i])
-                        queue.append(mapping[i])
-                
-            print(f"queue = {queue} \n")
-                
-            moves += 1
+                # add next 6
+                for j in range(curr + 1, min(curr+7, no_tiles + 1)):
 
+                    if mapping[j] not in visited:
+                        queue.append(mapping[j])
+                        visited.add(mapping[j])
+                
+            move += 1
+
+        
         return -1
