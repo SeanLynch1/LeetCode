@@ -33,5 +33,4 @@ class Solution:
                             visited.add(gene)
             
             mutations += 1
-            print(queue,"\n")
         return -1
