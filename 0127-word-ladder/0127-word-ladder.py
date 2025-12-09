@@ -6,7 +6,13 @@ class Solution:
         wordList = set(wordList)
         visited = set([beginWord])
         queue = deque([beginWord])
-        letters = 'abcdefghijklmnopqrstuvwxyz'
+
+        letters = set()
+
+        for word in wordList:
+            for w in word:
+                if w not in letters:
+                    letters.add(w)
 
         moves = 1
         while queue:
@@ -30,4 +36,3 @@ class Solution:
             moves += 1
 
         return 0
-
