@@ -11,8 +11,7 @@ class Solution:
 
         queue = deque([beginWord])
 
-        letters = "abcdefghijklmnopqrstuv"
-
+        letters = "abcdefghijklmnopqrstuvwxyz"
         moves = 1
         while queue:
             for _ in range(len(queue)):
