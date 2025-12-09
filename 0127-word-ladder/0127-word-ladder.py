@@ -6,6 +6,7 @@ class Solution:
         wordList = set(wordList)
         visited = set([beginWord])
         queue = deque([beginWord])
+        letters = 'abcdefghijklmnopqrstuvwxyz'
 
         moves = 1
         while queue:
@@ -16,20 +17,15 @@ class Solution:
                 if curr == endWord:
                     return moves
             
-                for word in wordList:
-                    diff = 0
 
-                    if word not in visited:
-                        for i in range(len(curr)):
-                            if word[i] != curr[i]:
-                                diff += 1
+                for i in range(len(curr)):
+                    for c in letters:
+                        if curr[i] != c:
+                            find = curr[:i] + c + curr[i + 1:]
                             
-                            if diff == 2:
-                                break
-                    
-                    if diff == 1:
-                        queue.append(word)
-                        visited.add(word)
+                            if find in wordList and find not in visited:
+                                queue.append(find)
+                                visited.add(find)
 
             moves += 1
 
