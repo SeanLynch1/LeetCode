@@ -3,32 +3,33 @@ from typing import List
 
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        if not wordList:
+        wordSet = set(wordList)
+        if endWord not in wordSet:
             return 0
 
-        wordList = set(wordList)
-        if endWord not in wordList:
-            return 0
-
-        queue = deque([beginWord])
+        beginSet = {beginWord}
+        endSet = {endWord}
+        visited = set([beginWord, endWord])
         letters = "abcdefghijklmnopqrstuvwxyz"
         moves = 1
 
-        while queue:
-            for _ in range(len(queue)):
-                curr = queue.popleft()
+        while beginSet and endSet:
+            # Always expand the smaller frontier
+            if len(beginSet) > len(endSet):
+                beginSet, endSet = endSet, beginSet
 
-                if curr == endWord:
-                    return moves
-
-                for i in range(len(curr)):
+            nextLevel = set()
+            for word in beginSet:
+                for i in range(len(word)):
                     for c in letters:
-                        if curr[i] != c:
-                            find = curr[:i] + c + curr[i + 1:]
-                            if find in wordList:
-                                queue.append(find)
-                                wordList.remove(find)
-
+                        if word[i] != c:
+                            newWord = word[:i] + c + word[i+1:]
+                            if newWord in endSet:
+                                return moves + 1
+                            if newWord in wordSet and newWord not in visited:
+                                visited.add(newWord)
+                                nextLevel.add(newWord)
+            beginSet = nextLevel
             moves += 1
 
         return 0
