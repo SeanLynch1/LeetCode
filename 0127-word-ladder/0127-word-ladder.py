@@ -32,7 +32,6 @@ class Solution:
                         visited.add(word)
 
             moves += 1
-            print(f"{queue}", "\n")
 
         return 0
 
