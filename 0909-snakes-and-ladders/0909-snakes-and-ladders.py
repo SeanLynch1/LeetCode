@@ -6,44 +6,29 @@ class Solution:
         n = len(board)
         no_tiles = n * n
         tile = no_tiles
+        toggle = (n % 2 == 0)
 
-        even_odd = n % 2
+        for i in range(n):
+            for j in range(n):
 
-        for row in range(len(board)):
-            for col in range(len(board)):
-
-                if row % 2 == even_odd:
-                    val = board[row][col]
+                if toggle:
+                    if board[i][j] != -1:
+                        mapping[tile] = board[i][j]
+                    else:
+                        mapping[tile] = -1
                 else:
-                    val = board[row][n - col - 1]
-
-                if val != -1:
-                    mapping[tile] = val
-                else:
-                    mapping[tile] = tile
-            
+                    if board[i][n + 1 - j] != -1:
+                        mapping[tile] = board[i][n + 1 - j]
+                    else:
+                        mapping[tile] = -1
+                
                 tile -= 1
+            
+            toggle = not toggle
 
         print(mapping)
-        queue = deque([1])
-        visited = {1}
-        move = 0
 
-        while queue:
-            for i in range(len(queue)):
-                curr = queue.popleft()
+        moves = 0
 
-                if curr == no_tiles:
-                    return move
 
-                # add next 6
-                for j in range(curr + 1, min(curr+7, no_tiles + 1)):
-
-                    if mapping[j] not in visited:
-                        queue.append(mapping[j])
-                        visited.add(mapping[j])
-                
-            move += 1
-
-        
-        return -1
+        return moves
