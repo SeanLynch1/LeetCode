@@ -22,9 +22,6 @@ class Solution:
         while begin_list:
             
             nxt_begin_list = set()
-            print(f"begin_list = {begin_list}")
-            print(f"end_list = {end_list}")
-            print("\n")
 
             if len(begin_list) > len(end_list):
                 begin_list, end_list = end_list, begin_list
