@@ -4,33 +4,49 @@ class Solution:
         if not bank:
             return -1
 
-        bank = set(bank) 
+        
+        
+        bank_map = set(bank)
 
-        visited = set([startGene])
-        queue = deque([startGene])
-        mutations = 0
+        if endGene not in bank_map:
+            return -1
 
-        while queue:
-            for genes in range(len(queue)):
-                curr = queue.popleft()
+        bank_map.add(endGene)
 
-                if curr == endGene:
-                    return mutations
+        letters = "ACGT"
 
-                for gene in bank:
-                    diff = 0
+        begin_list = {startGene}
+        end_list = {endGene}
+        visited = set([startGene, endGene])
+        moves = 0
 
-                    if gene not in visited:
-                        for i in range(len(gene)):
-                            if curr[i] != gene[i]:
-                                diff += 1
-                            
-                            if diff == 2:
-                                break
-                        
-                        if diff == 1:
-                            queue.append(gene)
-                            visited.add(gene)
+        while begin_list:
             
-            mutations += 1
+            nxt_begin_list = set()
+            print(f"begin_list = {begin_list}")
+            print(f"end_list = {end_list}")
+            print("\n")
+
+            if len(begin_list) > len(end_list):
+                begin_list, end_list = end_list, begin_list
+
+            for word in range(len(begin_list)):
+                curr_word = begin_list.pop()
+                
+                for i in range(len(curr_word)):
+                    for c in letters:
+                        if curr_word[i] != c:
+
+                            search_word = curr_word[:i] + c + curr_word[i + 1:]
+                            
+                            if search_word in end_list:
+                                return moves + 1
+
+                            if search_word in bank_map and search_word not in visited:
+                                nxt_begin_list.add(search_word)
+                                visited.add(search_word)
+                    
+                begin_list = nxt_begin_list
+                moves += 1
+
         return -1
