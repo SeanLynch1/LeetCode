@@ -11,7 +11,6 @@ class Solution:
         if endGene not in bank_map:
             return -1
 
-        bank_map.add(endGene)
 
         letters = "ACGT"
 
