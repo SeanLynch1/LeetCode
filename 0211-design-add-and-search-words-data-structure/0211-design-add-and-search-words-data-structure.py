@@ -24,14 +24,22 @@ class WordDictionary:
         if idx == len(word):
             return node.is_word
         
-        for val, next_dict in node.children.items():
-            if val == word[idx] or word[idx] == ".":
-                outcome = self.dfs(next_dict, word, idx + 1)
+        print(node, idx)
+        if not node or not node.children:
+            return False
+
+        outcome = False
+        if word[idx] == ".":
+            for next_dict in node.children:
+                outcome = self.dfs(node.children[next_dict], word, idx + 1)
 
                 if outcome:
                     return outcome
 
-        return False
+        elif word[idx] in node.children:
+            outcome = self.dfs(node.children[word[idx]], word, idx + 1)
+
+        return outcome
 
     def search(self, word: str) -> bool:
         node = self.trie
