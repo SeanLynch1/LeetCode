@@ -11,9 +11,6 @@ class Solution:
         rows = len(board)
         cols = len(board[0])
 
-        print(f"rows = {rows}")
-        print(f"cols = {cols}")
-        
         # build trie
         for word in words:
             curr = trie
@@ -32,12 +29,9 @@ class Solution:
         def dfs(curr: TrieNode, x: int, y: int):
 
             l = board[x][y]
-            print(f"current letter = {l}")
             if l not in curr.children:
                 return
             
-            print("children =", curr.children)
-            print("word = ", curr.word)
             if curr.children[l].word is not None:
                 output.add(curr.children[l].word)
 
@@ -66,9 +60,7 @@ class Solution:
 
         for r in range(rows):
             for c in range(cols):
-                print(board[r][c])
                 dfs(trie, r, c)   
-                print("\n")       
             
         return list(output)
                 
