@@ -37,11 +37,9 @@ class WordDictionary:
                 if outcome:
                     return outcome
 
-        print("\n")
         return False
 
     def search(self, word: str) -> bool:
-        print("\n")
         node = self.trie
 
         for i in range(len(word)):
