@@ -36,17 +36,9 @@ class WordDictionary:
     def search(self, word: str) -> bool:
         node = self.trie
 
-        for i in range(len(word)):
-            l = word[i]
-            
-            if l == ".":
-                return self.dfs(node, word, i)
-            elif l not in node.children:
-                return False
+        return self.dfs(node, word, 0)
 
-            node = node.children[l]
         
-        return node.is_word
 # Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()
 # obj.addWord(word)
