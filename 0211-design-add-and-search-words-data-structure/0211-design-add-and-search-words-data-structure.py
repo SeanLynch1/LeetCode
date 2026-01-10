@@ -24,9 +24,6 @@ class WordDictionary:
         if idx == len(word):
             return node.is_word
         
-        if not node or not node.children:
-            return False
-
         outcome = False
         if word[idx] == ".":
             for next_dict in node.children:
