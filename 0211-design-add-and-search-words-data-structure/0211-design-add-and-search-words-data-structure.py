@@ -24,9 +24,6 @@ class WordDictionary:
         if idx == len(word):
             return node.is_word
         
-        if not node.children:
-            return False
-
         for val, next_dict in node.children.items():
             if val == word[idx] or word[idx] == ".":
                 outcome = self.dfs(next_dict, word, idx + 1)
