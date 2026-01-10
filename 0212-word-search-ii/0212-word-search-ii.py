@@ -6,7 +6,7 @@ class TrieNode:
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         
-        output = set()
+        output = []
         trie = TrieNode()
         rows = len(board)
         cols = len(board[0])
@@ -33,7 +33,8 @@ class Solution:
                 return
             
             if curr.children[l].word is not None:
-                output.add(curr.children[l].word)
+                output.append(curr.children[l].word)
+                curr.children[l].word = None
 
             # mark visited, if we snake back to the tile later this is a no no
             board[x][y] = "#"
@@ -62,5 +63,5 @@ class Solution:
             for c in range(cols):
                 dfs(trie, r, c)   
             
-        return list(output)
+        return output
                 
