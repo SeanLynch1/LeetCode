@@ -11,33 +11,26 @@ class WordDictionary:
     def addWord(self, word: str) -> None:
         node = self.root
         for ch in word:
-            node = node.children.setdefault(ch, TrieNode())
+            if ch not in node.children:
+                node.children[ch] = TrieNode()
+            node = node.children[ch]
         node.is_word = True
 
-    def dfs(self, node: TrieNode, word: str, idx: int) -> bool:
-        if idx == len(word):
-            return node.is_word
-
-        ch = word[idx]
-
-        if ch == ".":
-            for child in node.children.values():
-                if self.dfs(child, word, idx + 1):
-                    return True
-            return False
-        else:
-            if ch not in node.children:
-                return False
-            return self.dfs(node.children[ch], word, idx + 1)
-
     def search(self, word: str) -> bool:
-        node = self.root
+        def dfs(node: TrieNode, idx: int) -> bool:
+            if idx == len(word):
+                return node.is_word
 
-        for i, ch in enumerate(word):
+            ch = word[idx]
+
             if ch == ".":
-                return self.dfs(node, word, i)
-            if ch not in node.children:
+                for child in node.children.values():
+                    if dfs(child, idx + 1):
+                        return True
                 return False
-            node = node.children[ch]
+            else:
+                if ch not in node.children:
+                    return False
+                return dfs(node.children[ch], idx + 1)
 
-        return node.is_word
+        return dfs(self.root, 0)
