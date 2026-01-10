@@ -24,7 +24,6 @@ class WordDictionary:
         if idx == len(word):
             return node.is_word
         
-        print(node, idx)
         if not node or not node.children:
             return False
 
