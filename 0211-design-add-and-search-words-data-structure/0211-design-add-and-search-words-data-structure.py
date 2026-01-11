@@ -1,5 +1,5 @@
 class TrieNode:
-    def __init__(self):
+    def __init__ (self):
         self.children = {}
         self.is_word = False
 
@@ -9,39 +9,53 @@ class WordDictionary:
         self.trie = TrieNode()
 
     def addWord(self, word: str) -> None:
-        
-        node = self.trie
+        curr = self.trie
 
         for l in word:
-            if l not in node.children:
-                node.children[l] = TrieNode()
+            if l not in curr.children:
+                curr.children[l] = TrieNode()
             
-            node = node.children[l]
+            curr = curr.children[l]
         
-        node.is_word = True
-
-    def dfs(self, node: TrieNode, word: str, idx: int) -> bool:
-        if idx == len(word):
-            return node.is_word
-
-        if word[idx] == ".":
-            for next_dict in node.children:
-                outcome = self.dfs(node.children[next_dict], word, idx + 1)
-
-                if outcome:
-                    return outcome
-
-        elif word[idx] in node.children:
-            return self.dfs(node.children[word[idx]], word, idx + 1)
-
-        return False
+        curr.is_word = True
 
     def search(self, word: str) -> bool:
-        node = self.trie
-
-        return self.dfs(node, word, 0)
-
         
+        # dfs the trie
+        def dfs(curr: TrieNode, idx: int) -> bool:
+            
+            print(f"word = {word}")
+            print(f"curr = {curr.is_word}")
+            if idx == len(word):
+                return curr.is_word
+
+            l = word[idx]
+            print(f"current letter = {l}")
+            outcome = False
+
+            if l != ".":
+                if l not in curr.children:
+                    return False
+
+                print("we've gone here")
+                outcome = dfs(curr.children[l], idx + 1)
+            else:
+                
+                print(curr.children)
+                for val in curr.children:
+                    print(val)
+                    outcome = dfs(curr.children[val], idx + 1)
+
+                    if outcome:
+                        return True
+            
+
+            return outcome
+
+
+        return dfs(self.trie, 0)
+
+
 # Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()
 # obj.addWord(word)
