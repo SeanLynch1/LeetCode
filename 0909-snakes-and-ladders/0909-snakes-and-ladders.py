@@ -8,28 +8,25 @@ class Solution:
         tiles = n * n
         squares = tiles
         offset = n % 2 == 0
-        print(f"offset = {offset}")
+
+        def left_to_right(x,y):
+            if board[x][y] != - 1:
+                mapping[tiles] = board[x][y]
+            else:
+                mapping[tiles] = -1
+
         for i in range(n):
             for j in range(n):
                 
                 if offset:
-                    if board[i][j] != - 1:
-                        mapping[tiles] = board[i][j]
-                    else:
-                        mapping[tiles] = -1
+                   left_to_right(i,j)
                 else:
-                    if board[i][n - j - 1] != -1:
-                        mapping[tiles] = board[i][n - j - 1]
-                    else:
-                        mapping[tiles] = -1
+                    left_to_right(i,n - j - 1)
 
                 tiles -= 1
             
             offset = not offset
-
         
-        print(mapping)
-
         queue = deque([1])
         visited = set()
         moves = 0
@@ -41,7 +38,6 @@ class Solution:
             for i in range(len(queue)):
                 curr = queue.popleft()
 
-                print(curr)
                 if curr == squares:
                     return moves
 
