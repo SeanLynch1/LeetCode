@@ -1,55 +1,60 @@
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         
+        # build map
+        mapping = {}
 
-        mapping = defaultdict(int)
-        
-        n_rows = len(board[0])
-        tiles = n_rows **2
-        squares = tiles + 1
-        toggle = n_rows % 2 == 0
-        for i in range(n_rows):
-            for j in range(n_rows):
-                if toggle:
-                    if board[i][j] != -1:
+        n = len(board)
+        tiles = n * n
+        squares = tiles
+        offset = n % 2 == 0
+        print(f"offset = {offset}")
+        for i in range(n):
+            for j in range(n):
+                
+                if offset:
+                    if board[i][j] != - 1:
                         mapping[tiles] = board[i][j]
                     else:
                         mapping[tiles] = -1
                 else:
-                    start_right = n_rows - j - 1
-                    if board[i][start_right] != -1:
-                        mapping[tiles] = board[i][start_right]
+                    if board[i][n - j - 1] != -1:
+                        mapping[tiles] = board[i][n - j - 1]
                     else:
                         mapping[tiles] = -1
 
                 tiles -= 1
+            
+            offset = not offset
 
-            toggle = not toggle
+        
+        print(mapping)
 
         queue = deque([1])
         visited = set()
         moves = 0
+
         while queue:
-            
-            for val in range(len(queue)):
+
+            # add next 6 tiles
+
+            for i in range(len(queue)):
                 curr = queue.popleft()
-                for k in range(curr + 1, min(curr + 7,squares)):
 
-                    if mapping[k] != -1:
-                        k = mapping[k]
+                print(curr)
+                if curr == squares:
+                    return moves
 
-                    print(f"k = {k}")
+                for i in range(curr + 1, min(curr + 7, squares + 1)):
 
-                    if k == squares-1:
-                        return moves + 1
+                    val = i
+                    if mapping[val] != -1:
+                        val = mapping[val]
 
-                    if k not in visited:
-                        queue.append(k)
-                        visited.add(k)
+                    if val not in visited:
+                        queue.append(val)
+                        visited.add(val)
 
-                    
-                    
             moves += 1
 
         return -1
-
