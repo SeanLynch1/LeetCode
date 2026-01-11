@@ -8,26 +8,32 @@ class Solution:
 
         letters = "ACGT"
 
-        queue = deque([startGene])
+        begin_list = {startGene}
+        end_list = {endGene}
         moves = 0
 
-        while queue:
+        while begin_list:
+            
+            if len(begin_list) > len(end_list):
+                begin_list, end_list = end_list, begin_list
 
-            for i in range(len(queue)):
-                curr_word = queue.popleft()
+            for curr_word in begin_list:
+
+                next_list = set()
 
                 for j in range(len(curr_word)):
                     for l in letters:
 
-                        search_word = curr_word[:j] + l + curr_word[j+1:]
+                        search_word = curr_word[:j] + l + curr_word[ j+1:]
 
-                        if search_word == endGene:
+                        if search_word in end_list:
                             return moves + 1
 
                         if search_word in bank:
-                            queue.append(search_word)
+                            next_list.add(search_word)
                             bank.remove(search_word)
             
+            begin_list = next_list
             moves += 1
 
         return -1
