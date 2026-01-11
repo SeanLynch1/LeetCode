@@ -1,48 +1,36 @@
 class Solution:
     def minMutation(self, startGene: str, endGene: str, bank: List[str]) -> int:
-        
-        if not bank:
+
+        bank = set(bank)
+
+        if endGene not in bank:
             return -1
-
-        
-        
-        bank_map = set(bank)
-
-        if endGene not in bank_map:
-            return -1
-
 
         letters = "ACGT"
 
-        begin_list = {startGene}
-        end_list = {endGene}
-        visited = set([startGene, endGene])
+        queue = deque([startGene])
         moves = 0
 
-        while begin_list:
+        while queue:
+
+            for i in range(len(queue)):
+                curr_word = queue.popleft()
+
+                for j in range(len(curr_word)):
+                    for l in letters:
+
+                        search_word = curr_word[:j] + l + curr_word[j+1:]
+
+                        if search_word == endGene:
+                            return moves + 1
+
+                        if search_word in bank:
+                            queue.append(search_word)
+                            bank.remove(search_word)
             
-            nxt_begin_list = set()
-
-            if len(begin_list) > len(end_list):
-                begin_list, end_list = end_list, begin_list
-
-            for word in range(len(begin_list)):
-                curr_word = begin_list.pop()
-                
-                for i in range(len(curr_word)):
-                    for c in letters:
-                        if curr_word[i] != c:
-
-                            search_word = curr_word[:i] + c + curr_word[i + 1:]
-                            
-                            if search_word in end_list:
-                                return moves + 1
-
-                            if search_word in bank_map and search_word not in visited:
-                                nxt_begin_list.add(search_word)
-                                visited.add(search_word)
-                    
-                begin_list = nxt_begin_list
-                moves += 1
+            moves += 1
 
         return -1
+
+
+
