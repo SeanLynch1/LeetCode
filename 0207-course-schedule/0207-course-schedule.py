@@ -1,30 +1,37 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
-        mapping = defaultdict(set)
-        visited = [0] * numCourses
+        mapping = defaultdict(list)
+        visited = defaultdict(int)
 
-        for slot in prerequisites:
-            mapping[slot[0]].add(slot[1])
+        for x, y in prerequisites:
+            mapping[x].append(y)
 
-        def helper(start) -> bool:
+        def dfs(num: int) -> bool:
             
-            if visited[start] == 1:
-                return False
-            elif visited[start] == 2:
+            if num not in mapping:
                 return True
 
-            visited[start] = 1
-            for val in mapping[start]:
-                if not helper(val):
+            if visited[num] == 1:
+                return False
+            elif visited[num] == 2:
+                return True
+
+            visited[num] = 1
+            
+            for n in mapping[num]:
+                if not dfs(n):
                     return False
 
-            visited[start] = 2
+            visited[num] = 2
 
             return True
+        
 
-        for n in range(numCourses):
-            if not helper(n):
+        for i in range(numCourses):
+            outcome = dfs(i)
+
+            if not outcome:
                 return False
 
         return True
