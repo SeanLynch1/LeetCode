@@ -7,7 +7,7 @@ class Solution:
         order = []
 
         for a,b  in prerequisites:
-            mapping[slot[0]].append(slot[1])
+            mapping[a].append(b)
 
 
         def helper(start) -> bool:
