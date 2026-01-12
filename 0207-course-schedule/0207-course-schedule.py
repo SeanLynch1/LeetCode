@@ -2,8 +2,8 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         mapping = defaultdict(list)
-        visited = defaultdict(int)
-
+        visited = [0] * numCourses
+        
         for x, y in prerequisites:
             mapping[x].append(y)
 
