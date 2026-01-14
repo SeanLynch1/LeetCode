@@ -33,7 +33,7 @@ class Solution:
             return False
 
         for n, d in queries:
-            if n not in mapping or n not in mapping:
+            if n not in mapping:
                 output.append(-1)
             elif not findValue(set(), n, d, 1):
                 output.append(-1)
