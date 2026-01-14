@@ -15,9 +15,6 @@ class Solution:
 
         def findValue(visited: set, start: str, target: str, value: int) -> bool:
             
-            if start not in mapping or target not in mapping:
-                return False
-
             if start == target:
                 output.append(value)
                 return True
@@ -36,7 +33,9 @@ class Solution:
             return False
 
         for n, d in queries:
-            if not findValue(set(), n, d, 1):
+            if n not in mapping or n not in mapping:
+                output.append(-1)
+            elif not findValue(set(), n, d, 1):
                 output.append(-1)
 
         return output
