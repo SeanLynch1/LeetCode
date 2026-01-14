@@ -21,7 +21,6 @@ class Solution:
                 return mapping[original]
 
             mapping[original] = Node(original.val)
-
             clone = mapping[original]
 
             for n in original.neighbors:
