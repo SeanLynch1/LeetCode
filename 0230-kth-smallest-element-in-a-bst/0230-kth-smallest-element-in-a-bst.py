@@ -9,7 +9,7 @@ class Solution:
         
         stack = [root]
         curr = root
-        counter = 0
+        counter = 1
 
         while stack or curr:
             while curr.left:
@@ -18,10 +18,11 @@ class Solution:
 
             curr = stack.pop()
             curr.left = None
-            counter += 1
 
             if counter == k:
                 return curr.val
+
+            counter += 1
 
             if curr.right:
                 stack.append(curr.right)
