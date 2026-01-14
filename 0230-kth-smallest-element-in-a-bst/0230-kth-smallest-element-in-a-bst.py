@@ -7,29 +7,22 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         
-        self.output = 0
-        self.k = k
+        stack = [root]
+        curr = root
+        found = []
 
-        def helper(node: Optional[TreeNode], k: int):
+        while stack or curr:
+            while curr.left:
+                curr = curr.left
+                stack.append(curr)
 
-            if not node:
-                return
+            curr = stack.pop()
+            curr.left = None
+            found.append(curr.val)
 
-            # inorder traversal
-            # -> left node right
+            if len(found) == k:
+                return found[-1]
 
-            # search left
-            helper(node.left, k)
-
-            self.k -= 1
-
-            if self.k == 0:
-                self.output = node.val
-                return
-
-            # search right
-            helper(node.right, k)
-
-        helper(root, self.k)
-
-        return self.output
+            if curr.right:
+                stack.append(curr.right)
+                curr = curr.right
