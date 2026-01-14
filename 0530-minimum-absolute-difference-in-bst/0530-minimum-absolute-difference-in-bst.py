@@ -4,24 +4,23 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
-        self.prev = None
-        self.ans = float('inf')
+        
+        min_diff = float('inf')
+        stack = []
+        curr = root
+        prev = float('inf')
 
-        def inorder(node):
-            if not node:
-                return
+        while stack or curr:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
 
-            inorder(node.left)
+            curr = stack.pop()
+            min_diff = min(min_diff, abs(curr.val - prev))
+            print(f"min_diff = {min_diff}")
+            prev = curr.val
+            curr = curr.right
 
-            if self.prev is not None:
-                self.ans = min(self.ans, node.val - self.prev)
-
-            self.prev = node.val
-
-            inorder(node.right)
-
-        inorder(root)
-        return self.ans
+        return min_diff
