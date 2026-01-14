@@ -11,8 +11,6 @@ class Solution:
             mapping[n].append((d, v))
             mapping[d].append((n, 1 / v))
 
-        print(mapping)
-
         # traverse mapping
 
         def findValue(visited: set, start: str, target: str, value: int) -> bool:
