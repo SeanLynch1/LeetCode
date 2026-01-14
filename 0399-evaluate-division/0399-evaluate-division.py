@@ -13,13 +13,13 @@ class Solution:
 
         # traverse mapping
 
-        def findValue(visited: set, start: str, target: str, value: int) -> bool:
+        def findValue(visited: set, start: str, target: str, value: int) -> int:
             
             if start == target:
-                output.append(value)
-                return True
+                return value
 
             visited.add(start)
+            output = -1
 
             for options in mapping[start]:
 
@@ -27,15 +27,16 @@ class Solution:
                 v = options[1]
 
                 if s not in visited:
-                    if findValue(visited, s, target, value * v):
-                        return True
+                    output = findValue(visited, s, target, value * v)
+                    
+                    if output != -1:
+                        return output
 
-            return False
+            return -1
 
         for n, d in queries:
             if n not in mapping or d not in mapping:
                 output.append(-1)
-            elif not findValue(set(), n, d, 1):
-                output.append(-1)
+            else: output.append(findValue(set(), n, d, 1))
 
         return output
