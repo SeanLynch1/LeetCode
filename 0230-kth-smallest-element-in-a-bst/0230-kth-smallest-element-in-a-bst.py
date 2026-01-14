@@ -12,18 +12,15 @@ class Solution:
         counter = 1
 
         while stack or curr:
-            while curr.left:
-                curr = curr.left
+            while curr:
                 stack.append(curr)
+                curr = curr.left
 
             curr = stack.pop()
-            curr.left = None
 
             if counter == k:
                 return curr.val
 
             counter += 1
 
-            if curr.right:
-                stack.append(curr.right)
-                curr = curr.right
+            curr = curr.right
