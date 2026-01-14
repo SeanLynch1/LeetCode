@@ -20,10 +20,9 @@ class Solution:
             if original in mapping:
                 return mapping[original]
 
-            mapping[original] = Node()
+            mapping[original] = Node(original.val)
 
             clone = mapping[original]
-            clone.val = original.val
 
             for n in original.neighbors:
                 clone.neighbors.append(dfs(n))
