@@ -7,22 +7,34 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        stack = []
+        # inorder traversal
 
-        curr = root
-        prev = float('-inf')
-        
-        while stack or curr:
-
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-
-            curr = stack.pop()
-
-            if curr.val <= prev:
+        def inorder(node: TreeNode, low: int, high:int) -> bool:
+            
+            if low >= node.val or high <= node.val:
                 return False
-            prev = curr.val
-            curr = curr.right
 
-        return True
+            # left
+            if node.left:
+                if node.left.val >= node.val:
+                    return False
+
+                left = inorder(node.left, low, node.val)
+
+                if not left:
+                    return False
+
+            # right
+            if node.right:
+                    
+                if high < node.right.val:
+                    return False
+
+                right = inorder(node.right, node.val, high)
+
+                if not right:
+                    return False
+
+            return True
+        
+        return inorder(root, float('-inf'), float('inf'))
