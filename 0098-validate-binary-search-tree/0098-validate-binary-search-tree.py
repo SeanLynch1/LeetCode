@@ -27,9 +27,6 @@ class Solution:
             # right
             if node.right:
                     
-                if high < node.right.val:
-                    return False
-
                 right = inorder(node.right, node.val, high)
 
                 if not right:
