@@ -11,13 +11,15 @@ class Solution:
 
         queue = deque([root])
         output = []
-        toggle = False
+        toggle = True
 
         while queue:
+            
             temp = []
             for i in range(len(queue)):
-                if not toggle:
+                if toggle:
                     curr = queue.popleft()
+                    temp.append(curr.val)
 
                     if curr.left:
                         queue.append(curr.left)
@@ -26,16 +28,15 @@ class Solution:
                         queue.append(curr.right)
                 else:
                     curr = queue.pop()
+                    temp.append(curr.val)
 
                     if curr.right:
                         queue.appendleft(curr.right)
 
                     if curr.left:
                         queue.appendleft(curr.left)
-                
-                temp.append(curr.val)
 
-            output.append(temp)
             toggle = not toggle
+            output.append(temp)
 
         return output
