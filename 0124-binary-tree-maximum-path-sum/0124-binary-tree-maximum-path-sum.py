@@ -15,16 +15,14 @@ class Solution:
 
             me = root.val
             # evaluate left
-            left = traverse(root.left)
+            left = max(0, traverse(root.left))
 
             # evaluate right
-            right = traverse(root.right)
+            right = max(0, traverse(root.right))
 
-            self.path = max(self.path, me)
-            self.path = max(self.path, max(left + me, right + me))
             self.path = max(self.path, left + me + right)
 
-            return max(me, max(left + me, right + me))
+            return me + max(left, right)
 
         traverse(root)
         return self.path
