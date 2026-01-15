@@ -23,9 +23,6 @@ class BSTIterator:
         return
 
     def next(self) -> int:
-        print(f"Current = {self.curr.val}")
-        print(f"Stack length= {len(self.stack)}")
-        print("\n")
         self.curr = self.curr.right
 
         while self.stack or self.curr:
@@ -38,8 +35,6 @@ class BSTIterator:
             return self.curr.val
 
     def hasNext(self) -> bool:
-        print(f"Current = {self.curr.val}")
-        print(f"has next = {self.curr.right != None}")
         return len(self.stack) != 0 or self.curr.right != None
         
 
