@@ -9,8 +9,5 @@ class Solution:
        if not root:
         return 0
 
-       left = self.countNodes(root.left)
-       right = self.countNodes(root.right)
-
-       return left + right + 1
+       return self.countNodes(root.left) + self.countNodes(root.right) + 1
 
