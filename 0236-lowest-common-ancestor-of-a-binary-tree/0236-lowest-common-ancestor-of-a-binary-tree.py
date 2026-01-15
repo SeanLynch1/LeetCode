@@ -10,23 +10,35 @@ class Solution:
         
         self.lca = root
 
-        def helper(node: TreeNode) -> bool:
+        def dfs(node: TreeNode, p: TreeNode, q: TreeNode) -> int:
+            
             if not node:
-                return False
+                return 0
+
+            found = 0
 
             if node == p or node == q:
+                found += 1
+
+            # check left
+            found += dfs(node.left, p, q)
+            
+            if found == 2:
                 self.lca = node
-                return True
+                found = 0
+                
+            # check right
+            found += dfs(node.right, p, q)
 
-            left = helper(node.left)
-            right = helper(node.right)
-
-            if left and right:
+            if found == 2:
                 self.lca = node
+                found = 0
 
-            return (left or right)
+            return found
 
-        helper(root)
+        dfs(root,p,q)
 
         return self.lca
+
+
 
