@@ -25,14 +25,14 @@ class Solution:
             
             if found == 2:
                 self.lca = node
-                found = 0
-                
+                return 0
+            
             # check right
             found += dfs(node.right, p, q)
 
             if found == 2:
                 self.lca = node
-                found = 0
+                return 0
 
             return found
 
