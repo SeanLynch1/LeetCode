@@ -7,18 +7,18 @@
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         
+        def dfs(root: TreeNode, value: int) -> int:
+            if not root.left and not root.right:
+                return root.val + value
 
-        def helper(node: TreeNode, val: int) -> int:
+            val = 0
 
-            if not node:
-                return 0
+            if root.left:
+                val += dfs(root.left, (value + root.val) * 10)
 
-            predecessor = (val * 10) + node.val
+            if root.right:
+                val += dfs(root.right, (value + root.val) * 10)
+            
+            return val
 
-            if not node.left and not node.right:
-                return predecessor
-
-            return helper(node.left, predecessor) + helper(node.right, predecessor)
-
-
-        return helper(root, 0)
+        return dfs(root, 0)
