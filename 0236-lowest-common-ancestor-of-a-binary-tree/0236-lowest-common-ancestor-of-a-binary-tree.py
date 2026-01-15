@@ -10,39 +10,30 @@ class Solution:
         
         self.lca = root
 
-        def dfs(node: TreeNode, p: TreeNode, q: TreeNode) -> int:
+        def dfs(node: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
             
-            if not node:
-                return 0
-
-            found = 0
-
-            if node == p or node == q:
-                found += 1
+            if not node or node == p or node == q:
+                return node
 
             # check left
-            found += dfs(node.left, p, q)
+            left = dfs(node.left, p, q)
             
-            if found == -1:
-                return -1
-            if found == 2:
-                self.lca = node
-                return -1
-
             # check right
-            found += dfs(node.right, p, q)
+            right = dfs(node.right, p, q)
 
-            if found == -1:
-                return -1
-            if found == 2:
-                self.lca = node
-                return -1
+            if left and right:
+                return node
 
-            return found
+            if left and not right:
+                return left
 
-        dfs(root,p,q)
+            if right and not left:
+                return right
 
-        return self.lca
+            return None
+
+        return dfs(root,p,q)
+
 
 
 
