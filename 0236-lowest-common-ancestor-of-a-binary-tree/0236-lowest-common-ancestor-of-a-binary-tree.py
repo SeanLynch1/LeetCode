@@ -12,10 +12,10 @@ class Solution:
             return root
 
         # check left
-        left = lowestCommonAncestor(root.left, p, q)
+        left = self.lowestCommonAncestor(root.left, p, q)
         
         # check right
-        right = lowestCommonAncestor(root.right, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
 
         if left and right:
             return root
