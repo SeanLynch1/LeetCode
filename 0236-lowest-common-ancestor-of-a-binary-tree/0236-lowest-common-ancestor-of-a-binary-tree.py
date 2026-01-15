@@ -23,16 +23,20 @@ class Solution:
             # check left
             found += dfs(node.left, p, q)
             
+            if found == -1:
+                return -1
             if found == 2:
                 self.lca = node
-                return 0
-            
+                return -1
+
             # check right
             found += dfs(node.right, p, q)
 
+            if found == -1:
+                return -1
             if found == 2:
                 self.lca = node
-                return 0
+                return -1
 
             return found
 
