@@ -24,13 +24,7 @@ class Solution:
             if left and right:
                 return node
 
-            if left and not right:
-                return left
-
-            if right and not left:
-                return right
-
-            return None
+            return left or right
 
         return dfs(root,p,q)
 
