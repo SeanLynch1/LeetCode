@@ -7,29 +7,23 @@
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         
-
         queue = deque([root])
         output = []
-
-
         while queue:
             
-            nodes = len(queue)
-            summation = 0
-            for i in range(nodes):
+            count = len(queue)
+            average = 0
+
+            for i in range(len(queue)):
                 curr = queue.popleft()
 
-                summation += curr.val
-
+                average += curr.val
                 if curr.left:
                     queue.append(curr.left)
-
+                
                 if curr.right:
                     queue.append(curr.right)
-            
-            output.append(summation/ nodes)
+
+            output.append(average/count)
 
         return output
-            
-
-
