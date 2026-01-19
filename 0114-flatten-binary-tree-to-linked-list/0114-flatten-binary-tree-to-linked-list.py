@@ -9,17 +9,26 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        if not root:
-            return
+        stack = []
+        curr = root
+        prev = None
 
-        if root.left:
-            right_most = root.left
+        while stack or curr:
 
-            while right_most.right:
-                right_most = right_most.right
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            
+            curr = stack.pop()
 
-            right_most.right = root.right
+            if curr.left:
+                prev.right = curr.right
+                curr.left, curr.right = None, curr.left
+                curr = prev.right
+            else:
 
-            root.left, root.right = None, root.left
-
-        self.flatten(root.right)
+                prev = curr
+                
+                curr = curr.right
+               
+            
