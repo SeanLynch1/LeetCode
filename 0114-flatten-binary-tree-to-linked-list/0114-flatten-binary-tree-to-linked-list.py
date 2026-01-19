@@ -20,7 +20,6 @@ class Solution:
                 curr = curr.left
             
             curr = stack.pop()
-
             if curr.left:
                 prev.right = curr.right
                 curr.left, curr.right = None, curr.left
