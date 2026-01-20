@@ -15,9 +15,11 @@ class Solution:
             return root
 
         queue = deque([root])
+        dummy = Node(0)
 
         while queue:
-            prev = Node()
+            prev = dummy
+
             for i in range(len(queue)):
                 
                 curr = queue.popleft()
@@ -31,5 +33,6 @@ class Solution:
                     queue.append(curr.right)
 
                 prev = curr
+            
 
         return root
