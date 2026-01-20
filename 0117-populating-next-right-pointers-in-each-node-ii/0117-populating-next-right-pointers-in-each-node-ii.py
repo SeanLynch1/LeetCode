@@ -15,15 +15,15 @@ class Solution:
             return root
 
         queue = deque([root])
+        dummy = Node(0)
 
         while queue:
-            prev = None
+            prev = dummy
 
             for i in range(len(queue)):
                 
                 curr = queue.popleft()
-                if prev:
-                    prev.next = curr
+                prev.next = curr
 
                 # add left
                 if curr.left:
@@ -31,7 +31,7 @@ class Solution:
 
                 if curr.right:
                     queue.append(curr.right)
-                
+
                 prev = curr
             
 
