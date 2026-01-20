@@ -26,7 +26,6 @@ class Solution:
                         right_most_start.right = curr.right
                         curr.left, curr.right = None, curr.left
                         curr = curr.right
-                        right_most_start = None
                     else:
                         right_most_start.left, right_most_start.right = None, right_most_start.left
                         right_most_start = right_most_start.right
