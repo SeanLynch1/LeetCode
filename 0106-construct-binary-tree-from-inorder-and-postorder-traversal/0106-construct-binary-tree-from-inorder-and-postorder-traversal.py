@@ -22,17 +22,12 @@ class Solution:
                 return None
 
             # find value's position in mapping
-            print(f"pos = {self.pos}")
             val = postorder[self.pos]
             idx = mapping[val]
 
             new_node = TreeNode(val)
             self.pos -= 1
 
-            print(f"val = {val}")
-            print(f"left = {left}, idx = {idx}")
-            print(f"idx = {idx}, right = {right}")
-            print("\n")
             new_node.right = check_sides(idx + 1, right)
 
             new_node.left = check_sides(left, idx - 1)     
