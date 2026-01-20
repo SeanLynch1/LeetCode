@@ -11,28 +11,39 @@ class Node:
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
-        if not root:
-            return root
+        parent = root
 
-        queue = deque([root])
         dummy = Node(0)
+        dummy.next = parent
 
-        while queue:
-            prev = dummy
-
-            for i in range(len(queue)):
-                
-                curr = queue.popleft()
-                prev.next = curr
-
-                # add left
-                if curr.left:
-                    queue.append(curr.left)
-
-                if curr.right:
-                    queue.append(curr.right)
-
-                prev = curr
+        while parent:
             
+            child = None
+
+            while parent:
+
+                if parent.left:
+                    if not child:
+                        child = parent.left
+                        dummy.next = child
+                    else:
+                        child.next = parent.left
+                        child = child.next
+
+                if parent.right:
+                    if not child:
+                        child = parent.right
+                        dummy.next = child
+                    else:
+                        child.next = parent.right
+                        child = child.next
+
+                parent = parent.next
+
+            parent = dummy.next
+            dummy.next = None
 
         return root
+
+
+            
