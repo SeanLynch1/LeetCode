@@ -11,23 +11,25 @@ class Node:
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
-        curr = root
+        if not root:
+            return root
 
-        while curr:
+        queue = deque([root])
 
-            dummy_node = Node()
-            tail = dummy_node
+        while queue:
+            prev = Node()
+            for i in range(len(queue)):
+                
+                curr = queue.popleft()
+                prev.next = curr
 
-            while curr:
+                # add left
                 if curr.left:
-                    tail.next = curr.left
-                    tail = tail.next
+                    queue.append(curr.left)
+
                 if curr.right:
-                    tail.next = curr.right
-                    tail = tail.next
+                    queue.append(curr.right)
 
-                curr = curr.next
+                prev = curr
 
-            curr = dummy_node.next
         return root
-            
