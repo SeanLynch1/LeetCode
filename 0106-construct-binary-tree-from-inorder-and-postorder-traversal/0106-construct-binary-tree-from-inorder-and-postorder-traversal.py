@@ -6,28 +6,37 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        
 
-        # postorder is preorder but backwards
+        # find where postorder value is in mapping
+        mapping = {}
 
-        self.inorder_mapping = {val: idx for idx, val in enumerate(inorder)}
+        for i in range(len(inorder)):
+            mapping[inorder[i]] = i
 
-        self.next_val = len(postorder) - 1
+        self.pos = len(postorder) - 1
 
-        def helper(left, right) -> TreeNode:
-            
-            if left == right:
+        def check_sides(left: int, right: int) -> TreeNode:
+
+            if left > right:
                 return None
 
-            node = TreeNode(postorder[self.next_val])
+            # find value's position in mapping
+            print(f"pos = {self.pos}")
+            val = postorder[self.pos]
+            idx = mapping[val]
 
-            mid = self.inorder_mapping[node.val]
-            self.next_val -= 1
+            new_node = TreeNode(val)
+            self.pos -= 1
 
-            node.right = helper(mid + 1, right)
-            node.left = helper(left, mid)
+            print(f"val = {val}")
+            print(f"left = {left}, idx = {idx}")
+            print(f"idx = {idx}, right = {right}")
+            print("\n")
+            new_node.right = check_sides(idx + 1, right)
 
-            return node
+            new_node.left = check_sides(left, idx - 1)     
 
-        return helper(0, len(postorder))
+            return new_node
 
-        
+        return check_sides(0, len(inorder) - 1)
