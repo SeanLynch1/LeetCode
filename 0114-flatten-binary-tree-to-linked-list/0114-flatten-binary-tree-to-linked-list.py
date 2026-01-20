@@ -9,25 +9,30 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        stack = []
+        
         curr = root
-        prev = None
 
-        while stack or curr:
-
-            while curr:
-                stack.append(curr)
-                curr = curr.left
+        while curr:
             
-            curr = stack.pop()
+            
             if curr.left:
-                prev.right = curr.right
-                curr.left, curr.right = None, curr.left
-                curr = prev.right
-            else:
+                right_most_start = curr.left
 
-                prev = curr
-                
+                while right_most_start:
+                    while right_most_start.right:
+                        right_most_start = right_most_start.right
+
+                    if not right_most_start.left:
+                        right_most_start.right = curr.right
+                        curr.left, curr.right = None, curr.left
+                        curr = curr.right
+                        right_most_start = None
+                    else:
+                        right_most_start.left, right_most_start.right = None, right_most_start.left
+                        right_most_start = right_most_start.right
+
+
+            else:
                 curr = curr.right
-               
-            
+
+
