@@ -15,7 +15,7 @@ class Solution:
 
         def helper(left, right) -> TreeNode:
             
-            if left >= right:
+            if left == right:
                 return None
 
             node = TreeNode(postorder[self.next_val])
