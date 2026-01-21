@@ -18,7 +18,6 @@ class Solution:
             if left > right:
                 return None
           
-            print(self.pos)
             val = preorder[self.pos]
             idx = mapping[val]
 
