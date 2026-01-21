@@ -10,20 +10,8 @@ class Solution:
         if not root:
             return 0
 
-        max_depth = 0
+        left = self.maxDepth(root.left)
 
-        queue = deque([(root, 1)])
+        right = self.maxDepth(root.right)
 
-        while queue:
-
-            curr, lvl = queue.popleft()
-
-            max_depth = max(max_depth, lvl)
-
-            if curr.left:
-                queue.append((curr.left, lvl + 1))
-
-            if curr.right:
-                queue.append((curr.right, lvl + 1))
-
-        return max_depth
+        return max(left, right) + 1
