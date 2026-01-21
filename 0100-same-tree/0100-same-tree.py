@@ -7,12 +7,12 @@
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         
-        stack = [p, q]
+        queue = deque([p, q])
 
-        while stack:
+        while queue:
             
-            curr_q = stack.pop()
-            curr_p = stack.pop()
+            curr_q = queue.popleft()
+            curr_p = queue.popleft()
 
             if not curr_q and not curr_p:
                 continue
@@ -23,10 +23,10 @@ class Solution:
             if curr_q.val != curr_p.val:
                 return False
 
-            stack.append(curr_p.left)
-            stack.append(curr_q.left)
+            queue.append(curr_p.left)
+            queue.append(curr_q.left)
 
-            stack.append(curr_p.right)
-            stack.append(curr_q.right)
+            queue.append(curr_p.right)
+            queue.append(curr_q.right)
 
         return True
