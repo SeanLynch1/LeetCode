@@ -10,32 +10,23 @@ class Solution:
         if not root:
             return True
 
-        stack = []
+        stack = [(root.left, root.right)]
         
-        curr_left = root.left
-        curr_right = root.right
-        while stack or curr_left or curr_right:
+        while stack:
             
-            while curr_left and curr_right:
-                
-                if curr_left.val != curr_right.val:
-                    return False
+            curr_left, curr_right = stack.pop()
 
-                stack.append(curr_left)
-                stack.append(curr_right)
+            if not curr_left and not curr_right:
+                continue
 
-                curr_left = curr_left.left
-                curr_right = curr_right.right
-
-            if (curr_left is None and curr_right) or (curr_right is None and curr_left):
+            if (curr_left and not curr_right) or (not curr_left and curr_right):
                 return False
 
-            curr_right = stack.pop()
-            curr_left = stack.pop()
+            if curr_left.val != curr_right.val:
+                return False
 
-            curr_right = curr_right.left
-            curr_left = curr_left.right
-
+            stack.append((curr_left.left, curr_right.right))
+            stack.append((curr_left.right, curr_right.left))
 
         return True
                 
