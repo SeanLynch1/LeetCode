@@ -21,8 +21,6 @@ class Solution:
 
                 curr_left, curr_right = queue.popleft()
 
-                print(f"curr_left = {curr_left}, curr_right = {curr_right}")
-                
                 if (not curr_left.left and curr_right.right) or (not curr_right.right and curr_left.left):
                     return False
                 
