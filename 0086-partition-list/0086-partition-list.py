@@ -6,36 +6,41 @@
 class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
         
-        if not head or not head.next:
-            return head
+        # begin by finding first occurance of node with val x
 
-        left_head = None
-        right_head = None
-        temp = head
-        left = None
-        right = None
+        curr = head
 
-        while temp:
-            if temp.val >= x:
-                if right_head == None:
-                    right_head = temp
-                    right = right_head
-                else:
-                    right.next = temp
-                    right = right.next
+        left_end = ListNode(0, curr)
+        head = left_end
+
+        mid_point = None
+
+        while curr:
+            if curr.val >= x:
+                mid_point = curr
+                break
+            
+            left_end = curr
+            curr = curr.next
+        
+        print(f"left_end = {left_end}")
+        print(f"mid_point = {mid_point}")
+
+        right_end = mid_point
+
+        while curr:
+            start = curr
+            if curr.val >= x:
+                right_end = curr
             else:
-                if left_head == None:
-                    left_head = temp
-                    left = left_head
-                else:
-                    left.next = temp
-                    left = left.next
-                
-            temp = temp.next
+                right_end.next = curr.next
+                left_end.next = curr
 
-        if right:
-            right.next = None
-        if left:
-            left.next = right_head
+                curr.next = mid_point
+                left_end = curr
 
-        return left_head if left_head is not None else right_head
+            curr = start.next
+
+        return head.next
+
+        
