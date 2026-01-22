@@ -40,10 +40,10 @@ class LRUCache:
         node = self.mapping[key]
         last_node = self.head.last  
 
-        last_node.next = node
+        node.next = self.head
         node.last = last_node
 
-        node.next = self.head
+        last_node.next = node
         node.next.last = node
 
     def get(self, key: int) -> int:
