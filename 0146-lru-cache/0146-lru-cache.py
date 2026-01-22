@@ -18,15 +18,12 @@ class LRUCache:
         self.capacity = capacity
 
 
-    def get_node(self, key: int) -> Node:
-        node = self.mapping[key]
-        last_node = self.head.last  
-
-        if node == last_node:
-            return node
-
+    def remove(self, node: Node) -> None:
         node.next.last = node.last
         node.last.next = node.next
+
+    def add_node(self, node: Node) -> Node:
+        last_node = self.head.last  
 
         node.next = self.head
         node.last = last_node
@@ -36,21 +33,14 @@ class LRUCache:
 
         return node
 
-    def add_node(self, key: int) -> None:
-        node = self.mapping[key]
-        last_node = self.head.last  
-
-        node.next = self.head
-        node.last = last_node
-
-        last_node.next.last = node
-        last_node.next = node
-
     def get(self, key: int) -> int:
 
         if key in self.mapping:
             # rearrange head
-            val = self.get_node(key).val
+            node = self.mapping[key]
+
+            self.remove(node)
+            val = self.add_node(node).val
             return val
         else:
             return -1
@@ -59,12 +49,12 @@ class LRUCache:
 
         if key in self.mapping:
             # update key
-
-
-            node = self.get_node(key)
+            node = self.mapping[key]
+            
+            self.remove(node)
+            node = self.add_node(node)
             node.val = value
         else:
-
             # remove first node
             if len(self.mapping) == self.capacity:
                 
@@ -78,7 +68,7 @@ class LRUCache:
             
             # add new node
             self.mapping[key] = Node(key, value)
-            self.add_node(key)
+            self.add_node(self.mapping[key])
 
 
 # Your LRUCache object will be instantiated and called as such:
