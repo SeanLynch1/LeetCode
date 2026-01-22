@@ -44,7 +44,7 @@ class LRUCache:
         node.last = last_node
 
         node.next = self.head
-        self.head.last = node
+        node.next.last = node
 
     def get(self, key: int) -> int:
 
