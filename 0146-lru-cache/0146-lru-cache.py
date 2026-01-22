@@ -60,11 +60,9 @@ class LRUCache:
                 
                 first_node = self.tail.next
 
+                self.remove(first_node)
                 del self.mapping[first_node.key]
 
-                first_node.next.last = self.tail
-
-                self.tail.next = first_node.next
             
             # add new node
             self.mapping[key] = Node(key, value)
