@@ -1,65 +1,102 @@
-class ListNode:
-    def __init__(self,key,value):
+class Node:
+    def __init__(self, key, val):
         self.key = key
-        self.val = value
+        self.val = val
         self.next = None
-        self.prev = None
+        self.last = None
 
 class LRUCache:
 
     def __init__(self, capacity: int):
+        self.mapping = {}
+        self.tail = Node(0,0)
+        self.head = Node(0,0)
+
+        self.head.last = self.tail
+        self.tail.next = self.head
+
         self.capacity = capacity
-        self.my_dict = {}
-        self.head = ListNode(0,0)
-        self.tail = ListNode(0,0)
-        self.head.next = self.tail
-        self.tail.prev = self.head
 
-    def remove(self, node: ListNode):
-        prev, next = node.prev, node.next
-        prev.next = next
-        next.prev = prev
 
-        
-    def insert(self, node: ListNode):
-        prev, next = self.head, self.head.next
+    def get_node(self, key: int) -> Node:
+        node = self.mapping[key]
+        last_node = self.head.last  
 
-        next.prev = node
-        self.head.next = node
+        if node == last_node:
+            return node
 
-        node.prev = prev
-        node.next = next
+        node.next.last = node.last
+        node.last.next = node.next
+
+        node.next = self.head
+        node.last = last_node
+
+        last_node.next = node
+        self.head.last = node
+
+        return node
+
+    def add_node(self, key: int) -> None:
+        node = self.mapping[key]
+        last_node = self.head.last  
+
+        last_node.next = node
+        node.last = last_node
+
+        node.next = self.head
+        self.head.last = node
 
     def get(self, key: int) -> int:
-        
-        if key not in self.my_dict:
-            return -1
+
+        if key in self.mapping:
+            # rearrange head
+            val = self.get_node(key).val
+            node = self.tail
+
+            while node:
+                node = node.next
+            return val
         else:
-            node = self.my_dict[key]
+            return -1
 
-            self.remove(node)
-
-            self.insert(node)
-
-            return node.val
+        
 
     def put(self, key: int, value: int) -> None:
 
-        if key not in self.my_dict:
-            node = ListNode(key, value)
-            self.my_dict[key] = node
-            self.insert(node)
+        if key in self.mapping:
+            # update key
 
-            if len(self.my_dict) > self.capacity:
-                node = self.tail.prev
-                self.remove(node)
-                del self.my_dict[node.key]
 
-        else:
-            node = self.my_dict[key]
+            node = self.get_node(key)
             node.val = value
-            self.remove(node)
-            self.insert(node)
+        else:
+
+            node = self.tail
+            while node:
+                node = node.next
+
+            
+            # remove first node
+            if len(self.mapping) == self.capacity:
+                
+                first_node = self.tail.next
+
+                del self.mapping[first_node.key]
+
+                first_node.next.last = self.tail
+
+                self.tail.next = first_node.next
+            
+            # add new node
+            self.mapping[key] = Node(key, value)
+            self.add_node(key)
+
+            node = self.tail
+
+            while node:
+                node = node.next
+
+
 
 
 # Your LRUCache object will be instantiated and called as such:
