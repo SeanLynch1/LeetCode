@@ -55,8 +55,6 @@ class LRUCache:
         else:
             return -1
 
-        
-
     def put(self, key: int, value: int) -> None:
 
         if key in self.mapping:
