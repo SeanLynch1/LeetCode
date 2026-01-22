@@ -9,27 +9,26 @@ class Solution:
         if not head or k == 0:
             return head
 
-        nodes = []
+        node_count = 1
         curr = head
 
-        while curr:
-            nodes.append(curr)
+        while curr.next:
+            node_count += 1
             curr = curr.next
 
-        node_count = len(nodes)
-
-        if node_count == 1 or node_count == k:
-            return head
-
         k = k % node_count
-        mid = node_count - k
 
         if k == 0:
             return head
 
-        right_dummy = ListNode(0, nodes[mid])
+        mid = node_count - k
+        
+        temp = head
+        for i in range(mid):
+            tail = temp   
+            temp = temp.next
+        
+        tail.next = None
+        curr.next = head
 
-        nodes[-1].next = head
-        nodes[mid - 1].next = None
-
-        return right_dummy.next
+        return temp
