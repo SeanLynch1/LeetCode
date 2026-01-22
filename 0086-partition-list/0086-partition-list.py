@@ -23,9 +23,6 @@ class Solution:
             left_end = curr
             curr = curr.next
         
-        print(f"left_end = {left_end}")
-        print(f"mid_point = {mid_point}")
-
         right_end = mid_point
 
         while curr:
