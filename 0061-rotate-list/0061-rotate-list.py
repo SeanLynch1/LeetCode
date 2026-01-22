@@ -3,42 +3,33 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         
-        if not head or k == 0 or not head.next:
+        if not head or k == 0:
             return head
 
+        nodes = []
         curr = head
-        count = 1
 
-        while curr.next:
+        while curr:
+            nodes.append(curr)
             curr = curr.next
-            count += 1
 
-        k = count - (k % count)
+        node_count = len(nodes)
 
-        if k == count:
+        if node_count == 1 or node_count == k:
             return head
-            
-        print("count = ", count)
-        print(k % count)
-        temp = head
-        print("k = ", k)
-        for i in range(1, k):
-            temp = temp.next
 
-        print("curr = ", curr)
-        print(temp)
+        k = k % node_count
+        mid = node_count - k
 
-        start = temp.next
-        temp.next = None
-        print(head)
-        curr.next = head
+        if k == 0:
+            return head
 
-        return start
+        right_dummy = ListNode(0, nodes[mid])
 
+        nodes[-1].next = head
+        nodes[mid - 1].next = None
 
-             
-        
+        return right_dummy.next
