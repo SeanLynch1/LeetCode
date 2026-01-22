@@ -6,38 +6,25 @@
 class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
         
-        # begin by finding first occurance of node with val x
+        left_dummy = ListNode(0)
+        right_dummy = ListNode(0)
 
-        curr = head
+        left = left_dummy
+        right = right_dummy
 
-        left_end = ListNode(0, curr)
-        head = left_end
-
-        mid_point = None
-
-        while curr:
-            if curr.val >= x:
-                mid_point = curr
-                break
-            
-            left_end = curr
-            curr = curr.next
-        
-        right_end = mid_point
-
-        while curr:
-            start = curr
-            if curr.val >= x:
-                right_end = curr
+        while head:
+            if head.val < x:
+                left.next = head
+                left = head
             else:
-                right_end.next = curr.next
-                left_end.next = curr
+                right.next = head
+                right = head
+            head = head.next
 
-                curr.next = mid_point
-                left_end = curr
+        right.next = None
+        left.next = right_dummy.next
 
-            curr = start.next
+        return left_dummy.next
 
-        return head.next
 
         
