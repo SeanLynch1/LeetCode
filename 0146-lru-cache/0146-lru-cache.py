@@ -28,7 +28,7 @@ class LRUCache:
         node.next = self.head
         node.last = last_node
 
-        last_node.next.last = node
+        self.head.last = node
         last_node.next = node
 
         return node
