@@ -51,10 +51,6 @@ class LRUCache:
         if key in self.mapping:
             # rearrange head
             val = self.get_node(key).val
-            node = self.tail
-
-            while node:
-                node = node.next
             return val
         else:
             return -1
@@ -71,11 +67,6 @@ class LRUCache:
             node.val = value
         else:
 
-            node = self.tail
-            while node:
-                node = node.next
-
-            
             # remove first node
             if len(self.mapping) == self.capacity:
                 
@@ -90,13 +81,6 @@ class LRUCache:
             # add new node
             self.mapping[key] = Node(key, value)
             self.add_node(key)
-
-            node = self.tail
-
-            while node:
-                node = node.next
-
-
 
 
 # Your LRUCache object will be instantiated and called as such:
