@@ -27,12 +27,7 @@ class Solution:
                         
                     start = curr
 
-
             start.next = temp
-            if start.next:
-                print(f"start = {start.val}, start points to {start.next.val}")
-            else:
-                print(f"start = {start.val}, start points to {start.next}")
 
             curr = start.next
 
