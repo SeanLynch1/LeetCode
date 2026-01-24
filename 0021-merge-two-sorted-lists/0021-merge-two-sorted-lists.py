@@ -3,39 +3,33 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         
-        if not list1:
-            return list2
 
-        if not list2:
-            return list1
+        curr_red = list1
 
-        if list1.val < list2.val:
-            head = list1
-            list1 = list1.next
-        else:
-            head = list2
-            list2 = list2.next
+        curr_purple = list2
 
-        curr = head
+        dummy_node = ListNode(0)
+        curr = dummy_node
 
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
+        while curr:
+            if not curr_purple:
+                curr.next = curr_red
+                break
+            elif not curr_red:
+                curr.next = curr_purple
+                break
+
+            if curr_purple.val <= curr_red.val:
+                curr.next = curr_purple
+                curr_purple = curr_purple.next
             else:
-                curr.next = list2
-                list2 = list2.next
+                curr.next = curr_red
+                curr_red = curr_red.next
+
             curr = curr.next
 
-        curr.next = list2 if list1 == None else list1
 
-        return head
-
-
-
-            
-
+        return dummy_node.next
