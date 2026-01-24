@@ -1,32 +1,35 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head:
             return None
 
-        # 1. Interleave copied nodes
+        mapping = {}
         curr = head
-        while curr:
-            copy = Node(curr.val, curr.next)
-            curr.next = copy
-            curr = copy.next
+        dummy_node = Node(0)
+        copy = dummy_node
 
-        # 2. Assign random pointers
-        curr = head
         while curr:
+            if curr not in mapping:
+                mapping[curr] = Node(curr.val)
+
+            copy.next = mapping[curr]
+            copy = copy.next
+
             if curr.random:
-                curr.next.random = curr.random.next
-            curr = curr.next.next
+                if curr.random not in mapping:
+                    mapping[curr.random] = Node(curr.random.val)
 
-        # 3. Separate the lists
-        dummy = Node(0)
-        copy_curr = dummy
-        curr = head
+                copy.random = mapping[curr.random]
 
-        while curr:
-            copy = curr.next
-            curr.next = copy.next
-            copy_curr.next = copy
-            copy_curr = copy
             curr = curr.next
 
-        return dummy.next
+        return dummy_node.next
