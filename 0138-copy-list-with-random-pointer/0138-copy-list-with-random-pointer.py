@@ -11,7 +11,7 @@ class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head:
             return head
-            
+
         mapping = {}
         curr = head
         copy = None
@@ -31,13 +31,6 @@ class Solution:
 
                 copy.random = mapping[curr.random]
                 
-            print(f"curr = {copy.val}", end = ", ")
-            if copy.random:
-                print(f"it points to {copy.random.val}")
-            else:
-                print(f"it points to {copy.random}")
-                
             curr = curr.next
-            print("\n")
 
         return mapping[head]
