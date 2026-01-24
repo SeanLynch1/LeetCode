@@ -31,13 +31,10 @@ class Solution:
         dummy_node = ListNode(0)
         prev = dummy_node
         for i in range(len(total)-1, -1, -1):
-            print(total[i])
             curr = ListNode(int(total[i]))
             prev.next = curr
             prev = curr
             curr = curr.next
-
-            
 
         return dummy_node.next
         
