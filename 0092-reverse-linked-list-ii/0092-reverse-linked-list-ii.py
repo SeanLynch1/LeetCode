@@ -17,15 +17,11 @@ class Solution:
 
         idx = 1
         while curr:
-            print(curr.val)
             if idx == left:
-                print("hi")
                 start = prev
                 fast = curr.next
-                print(f"right - left = {right - left}")
                 for _ in range(right - left + 1):
                     
-                    print("hello")
                     curr.next = prev
                     prev = curr
 
