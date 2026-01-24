@@ -14,14 +14,7 @@ class Solution:
         dummy_node = ListNode(0)
         curr = dummy_node
 
-        while curr:
-            if not curr_purple:
-                curr.next = curr_red
-                break
-            elif not curr_red:
-                curr.next = curr_purple
-                break
-
+        while curr_red and curr_purple:
             if curr_purple.val <= curr_red.val:
                 curr.next = curr_purple
                 curr_purple = curr_purple.next
@@ -31,5 +24,5 @@ class Solution:
 
             curr = curr.next
 
-
+        curr.next = curr_red if curr_red else curr_purple
         return dummy_node.next
