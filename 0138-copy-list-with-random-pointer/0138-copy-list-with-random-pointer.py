@@ -11,27 +11,33 @@ class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head:
             return head
-
-        indexes = [Node(head.val)]
-        randoms = {head : 0}
-
-
-        curr = head.next
-        idx = 1
+            
+        mapping = {}
+        curr = head
+        copy = None
 
         while curr:
-            randoms[curr] = idx
+            if curr not in mapping:
+                mapping[curr] = Node(curr.val)
 
-            new = Node(curr.val)
-            indexes[-1].next = new
-            indexes.append(new)
+            if copy:
+                copy.next = mapping[curr]
 
+            copy = mapping[curr]
+
+            if curr.random:
+                if curr.random not in mapping:
+                    mapping[curr.random] = Node(curr.random.val)
+
+                copy.random = mapping[curr.random]
+                
+            print(f"curr = {copy.val}", end = ", ")
+            if copy.random:
+                print(f"it points to {copy.random.val}")
+            else:
+                print(f"it points to {copy.random}")
+                
             curr = curr.next
-            idx += 1
+            print("\n")
 
-        for i, node in enumerate(randoms):
-            if node.random in randoms:
-                node.random = randoms[node.random]
-                indexes[i].random = indexes[node.random]     
-
-        return indexes[0]
+        return mapping[head]
