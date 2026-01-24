@@ -27,7 +27,6 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         
         total = str(self.get_num(l1) + self.get_num(l2))
-        curr = None
         dummy_node = ListNode(0)
         prev = dummy_node
         for i in range(len(total)-1, -1, -1):
