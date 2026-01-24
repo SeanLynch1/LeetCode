@@ -8,12 +8,12 @@ class Solution:
         
         if k == 1:
             return head
-            
+
         dummy_node = ListNode(0, head)
         prev = dummy_node
         curr = head
 
-        n = 0
+        n = 1
 
         while curr:
             n += 1
@@ -33,7 +33,8 @@ class Solution:
                     prev = curr
 
                     curr = fast
-                    fast = fast.next
+                    if fast:
+                        fast = fast.next
 
                     n -= 1
 
