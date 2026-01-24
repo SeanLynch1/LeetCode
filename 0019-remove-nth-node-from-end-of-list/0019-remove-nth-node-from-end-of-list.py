@@ -7,19 +7,20 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         
 
-        mapping = {}
-
-        dummy_node = ListNode(-101, head)
-        mapping[-1] = dummy_node
-
+        dummy_node = ListNode(0, head)
+        prev = dummy_node
         curr = head
-        key = 0
+        difference = 1
+        # we need to track how far away the current node is to the reference node
+        n += 1
         while curr:
-            mapping[key] = curr
-            key += 1
-            curr = curr.next
-        
-        n = len(mapping) - n - 1
-        mapping[n-1].next = mapping[n].next
+            if difference == n:
+                prev = prev.next
+                difference -= 1
 
+            curr = curr.next
+            difference += 1
+
+        prev.next = prev.next.next
+        
         return dummy_node.next
