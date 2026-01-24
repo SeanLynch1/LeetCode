@@ -9,33 +9,27 @@ class Solution:
         if left == right:
             return head
 
-
         dummy_node = ListNode(0, head)
-
-        curr = head
         prev = dummy_node
 
-        idx = 1
-        while curr:
-            if idx == left:
-                start = prev
-                fast = curr.next
-                for _ in range(right - left + 1):
-                    
-                    curr.next = prev
-                    prev = curr
+        for _ in range(left - 1):
+            prev = prev.next
 
-                    curr = fast
-                    if fast:
-                        fast = fast.next
+        print(f"prev = {prev.val}")
+        curr = prev.next
+        next_node = None
 
-                start.next.next = curr
-                start.next = prev
-                break
+        for _ in range(right - left + 1):
+            tmp = curr.next
+            print(f"curr = {curr.val}")
 
-            prev = curr
-            curr = curr.next
-            idx += 1
+            curr.next = next_node
+            next_node = curr
+            curr = tmp
+
+        prev.next.next = curr
+        prev.next = next_node
+
 
         return dummy_node.next
 
