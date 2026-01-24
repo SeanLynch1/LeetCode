@@ -15,21 +15,17 @@ class Solution:
         for _ in range(left - 1):
             prev = prev.next
 
-        print(f"prev = {prev.val}")
         curr = prev.next
         next_node = None
 
         for _ in range(right - left + 1):
             tmp = curr.next
-            print(f"curr = {curr.val}")
-
             curr.next = next_node
             next_node = curr
             curr = tmp
 
         prev.next.next = curr
         prev.next = next_node
-
 
         return dummy_node.next
 
