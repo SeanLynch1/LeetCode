@@ -6,24 +6,22 @@
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         
-        dummy = ListNode()
-        dummy.next = head
-        slow = fast = dummy
 
-        # keep a gap of n + 1 between fast and slow
-        for i in range(n + 1):
-            fast = fast.next
+        mapping = {}
+
+        dummy_node = ListNode(-101, head)
+        mapping[-1] = dummy_node
+
+        curr = head
+        key = 0
+        while curr:
+            mapping[key] = curr
+            key += 1
+            curr = curr.next
         
-        # great, now fast is the correct distance ahead of slow
+        n = len(mapping) - n - 1
+        print(f"n = {n}")
+        print(f"mapping = {mapping}")
+        mapping[n-1].next = mapping[n].next
 
-        # move fast to the very end, once this has been achieve, we know slow is one before the node that needs to be removed
-        while fast:
-            fast = fast.next
-            slow = slow.next
-
-
-        # okay so now jut update slow.next to skip its current and point straight to its next
-
-        slow.next = slow.next.next
-
-        return dummy.next
+        return dummy_node.next
