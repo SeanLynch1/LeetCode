@@ -14,23 +14,42 @@ class Solution:
 
         mapping = {}
         curr = head
-        copy = None
+        dummy_node = Node(-101, None, None)
+        copy = dummy_node
 
         while curr:
             if curr not in mapping:
                 mapping[curr] = Node(curr.val)
 
-            if copy:
-                copy.next = mapping[curr]
-
-            copy = mapping[curr]
+            copy.next = mapping[curr]
+            copy = copy.next
 
             if curr.random:
                 if curr.random not in mapping:
                     mapping[curr.random] = Node(curr.random.val)
 
                 copy.random = mapping[curr.random]
-                
+
+            if copy.random:
+                print(copy.val, f"next = {copy.next}, ", f"random = {copy.random.val}")
+
             curr = curr.next
 
-        return mapping[head]
+            print("\n")
+
+
+        while head:
+            if mapping[head].random:
+                if mapping[head].next:
+                    print(mapping[head].val, mapping[head].next.val, mapping[head].random.val)
+                else:
+                    print(mapping[head].val, mapping[head].next, mapping[head].random.val)
+            else:
+                if mapping[head].next:
+                    print(mapping[head].val, mapping[head].next.val, mapping[head].random)
+                else:
+                    print(mapping[head].val, mapping[head].next, mapping[head].random)
+
+            head = head.next
+
+        return dummy_node.next
