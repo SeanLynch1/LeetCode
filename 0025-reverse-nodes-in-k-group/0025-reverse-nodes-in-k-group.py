@@ -19,12 +19,10 @@ class Solution:
             n += 1
             curr = curr.next
 
-        print(n)
         curr = head
 
         while curr:
             if n - k > 0:
-                print("hello")
                 start = prev
                 fast = curr.next
 
@@ -42,9 +40,7 @@ class Solution:
                 temp.next = curr
                 start.next = prev
                 prev = temp
-                print(f"n = {n}")
             else:
                 break
 
-        print(dummy_node)
         return dummy_node.next
