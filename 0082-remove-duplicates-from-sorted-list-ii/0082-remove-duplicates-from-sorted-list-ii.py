@@ -25,6 +25,4 @@ class Solution:
                 prev = curr
                 curr = curr.next
 
-
-
         return dummy_node.next
