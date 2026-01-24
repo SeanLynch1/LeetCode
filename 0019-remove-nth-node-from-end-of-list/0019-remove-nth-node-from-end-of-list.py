@@ -20,8 +20,6 @@ class Solution:
             curr = curr.next
         
         n = len(mapping) - n - 1
-        print(f"n = {n}")
-        print(f"mapping = {mapping}")
         mapping[n-1].next = mapping[n].next
 
         return dummy_node.next
