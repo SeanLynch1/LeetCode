@@ -27,7 +27,11 @@ class Solution:
 
                     while right > left and nums[right] == nums[right - 1]:
                         right -= 1
-
+                
+                if target + two_sum >= 0:
+                    right -= 1
+                else:
+                    left += 1
 
                 
 
