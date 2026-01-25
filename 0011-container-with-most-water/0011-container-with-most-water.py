@@ -1,25 +1,23 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
+        max_water = 0
+
         left = 0
         right = len(height) - 1
-        max_area = 0
-        heighest_pillar = 0
 
+        while left < right:
 
-        while left < right: 
-            lower_value = min(height[left], height[right])
+            left_height = height[left]
+            right_height = height[right]
 
-            if lower_value > heighest_pillar:
-                current_area = lower_value * (right - left)
+            difference = right - left
+            lower_height = min(left_height, right_height)
 
-                if current_area > max_area:
-                    max_area = current_area
+            max_water = max(max_water, lower_height * difference)
 
-                heighest_pillar = lower_value
-
-            if height[left] < height[right]:
+            if left_height < right_height:
                 left += 1
             else:
                 right -= 1
 
-        return max_area
+        return max_water
