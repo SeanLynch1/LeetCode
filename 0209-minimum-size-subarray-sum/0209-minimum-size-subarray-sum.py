@@ -11,7 +11,6 @@ class Solution:
         temp = deque([nums[left]])
             
         while right < len(nums):
-            
             if curr >= target:
                 min_int = min(min_int, len(temp))
                 curr -= nums[left]
