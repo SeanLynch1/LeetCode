@@ -1,21 +1,30 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         
-        output = 0
+        # less than or equal to target bring right forward one
+
+        min_int = float('inf')
         left = 0
-        summation = 0
-
-        for right in range(len(nums)):
-            summation += nums[right]
-
-            while summation >= target:
-                
-                if right - left < output or output == 0:
-                    output = right - left + 1
-
-                summation -= nums[left]
-                left += 1
+        right = 0
         
-        return output
+        curr = nums[left]
+        temp = deque([nums[left]])
+            
+        while right < len(nums):
+            
+            if curr >= target:
+                min_int = min(min_int, len(temp))
+                print(f"temp = {temp}")
+                print(f"curr = {curr}")
+                curr -= nums[left]
+                temp.popleft()
+                left += 1
+            else:
+                right += 1
+                if right < len(nums):
+                    curr += nums[right]
+                    temp.append(nums[right])
 
+        return min_int if min_int != float('inf') else 0
 
+            
