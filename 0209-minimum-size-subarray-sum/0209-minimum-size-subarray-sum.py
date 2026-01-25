@@ -14,8 +14,6 @@ class Solution:
             
             if curr >= target:
                 min_int = min(min_int, len(temp))
-                print(f"temp = {temp}")
-                print(f"curr = {curr}")
                 curr -= nums[left]
                 temp.popleft()
                 left += 1
