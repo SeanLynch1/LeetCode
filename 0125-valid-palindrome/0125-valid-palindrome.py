@@ -1,11 +1,7 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         
-        letters = "abcdefghijklmnopqrstuvwxyz0123456789"
-        mapping = set()
-
-        for c in letters:
-            mapping.add(c)
+        mapping = set("abcdefghijklmnopqrstuvwxyz0123456789")
 
         left = 0
         right = len(s) - 1
