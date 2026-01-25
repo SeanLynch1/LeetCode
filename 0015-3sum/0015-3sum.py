@@ -21,8 +21,13 @@ class Solution:
 
                 if target + two_sum == 0:
                     output.append([target, curr_left, curr_right])
-                
 
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+
+                    while right > left and nums[right] == nums[right - 1]:
+                        right -= 1
+                
                 if target + two_sum >= 0:
                     right -= 1
                 else:
