@@ -1,8 +1,5 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        
-        mapping = set("abcdefghijklmnopqrstuvwxyz0123456789")
-
         left = 0
         right = len(s) - 1
  
@@ -10,11 +7,11 @@ class Solution:
             left_char = s[left].lower()
             right_char = s[right].lower()
 
-            if left_char not in mapping:
+            if not left_char.isalnum():
                 left += 1
                 continue
 
-            if right_char not in mapping:
+            if not right_char.isalnum():
                 right -= 1
                 continue
 
