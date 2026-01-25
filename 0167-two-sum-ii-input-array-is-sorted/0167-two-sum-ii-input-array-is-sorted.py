@@ -4,7 +4,7 @@ class Solution:
         left = 0
         right = len(numbers) - 1
 
-        while left < right:
+        while True:
 
             left_num = numbers[left]
             right_num = numbers[right]
