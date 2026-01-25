@@ -7,13 +7,18 @@ class Solution:
         right = len(s) - 1
  
         while left < right:
-            while left < right and s[left].lower() not in mapping:
+            left_char = s[left].lower()
+            right_char = s[right].lower()
+
+            if left_char not in mapping:
                 left += 1
+                continue
 
-            while right > left and s[right].lower() not in mapping:
+            if right_char not in mapping:
                 right -= 1
+                continue
 
-            if s[left].lower() != s[right].lower():
+            if left_char != right_char:
                 return False
 
             left += 1
