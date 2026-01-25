@@ -1,21 +1,19 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        
+        mapping = set("abcdefghijklmnopqrstuvwxyz0123456789")
+
         left = 0
         right = len(s) - 1
  
         while left < right:
-            left_char = s[left].lower()
-            right_char = s[right].lower()
-
-            if not left_char.isalnum():
+            while left < right and s[left].lower() not in mapping:
                 left += 1
-                continue
 
-            if not right_char.isalnum():
+            while right > left and s[right].lower() not in mapping:
                 right -= 1
-                continue
 
-            if left_char != right_char:
+            if s[left].lower() != s[right].lower():
                 return False
 
             left += 1
