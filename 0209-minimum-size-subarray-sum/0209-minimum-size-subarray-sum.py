@@ -8,20 +8,17 @@ class Solution:
         right = 0
         
         curr = nums[left]
-        temp = deque([nums[left]])
             
         while right < len(nums):
             
             if curr >= target:
-                min_int = min(min_int, len(temp))
+                min_int = min(min_int, right - left + 1)
                 curr -= nums[left]
-                temp.popleft()
                 left += 1
             else:
                 right += 1
                 if right < len(nums):
                     curr += nums[right]
-                    temp.append(nums[right])
 
         return min_int if min_int != float('inf') else 0
 
