@@ -2,12 +2,11 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         
         letters = "abcdefghijklmnopqrstuvwxyz0123456789"
-        mapping = set(str())
+        mapping = set()
 
         for c in letters:
             mapping.add(c)
 
-        
         left = 0
         right = len(s) - 1
  
