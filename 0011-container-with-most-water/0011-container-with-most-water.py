@@ -10,10 +10,7 @@ class Solution:
             left_height = height[left]
             right_height = height[right]
 
-            difference = right - left
-            lower_height = min(left_height, right_height)
-
-            max_water = max(max_water, lower_height * difference)
+            max_water = max(max_water, min(left_height, right_height) * (right - left))
 
             if left_height < right_height:
                 left += 1
