@@ -29,8 +29,9 @@ class Solution:
                         right -= 1
                 
                 if target + two_sum < 0:
-                else:
                     left += 1
+                else:
+                    right -= 1
 
                 
 
