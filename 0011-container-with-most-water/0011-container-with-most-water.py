@@ -12,9 +12,7 @@ class Solution:
 
             max_water = max(max_water, min(left_height, right_height) * (right - left))
 
-            if left_height < right_height:
-                left += 1
-            else:
-                right -= 1
+            left += (left_height < right_height)
+            right -= (left_height >= right_height)
 
         return max_water
