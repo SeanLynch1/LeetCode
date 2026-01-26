@@ -7,7 +7,6 @@ class Solution:
         found = set()
         left = 0
         
-
         for right in range(len(s)):
 
             curr = s[right]
@@ -18,7 +17,6 @@ class Solution:
                 max_substring = max(max_substring, right - left)
 
                 while curr in found:
-                    print(found)
                     found.remove(s[left])
                     left += 1
 
