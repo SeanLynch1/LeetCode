@@ -1,22 +1,30 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        max_substring = set()
+        if not s:
+            return 0
 
-        left, max_len = 0, 0
+        max_substring = 0
+        found = set()
+        left = 0
         
 
         for right in range(len(s)):
-            
-            if s[right] not in max_substring:
-                max_substring.add(s[right])
 
-                max_len = max(max_len, len(max_substring))
+            curr = s[right]
+
+            if curr not in found:
+                found.add(curr)
             else:
-                while s[right] in max_substring:
-                    max_substring.remove(s[left])
-                    left += 1
-                
-                max_substring.add(s[right])
+                max_substring = max(max_substring, right - 1 - left + 1)
 
-        
-        return max_len
+                while curr in found:
+                    print(found)
+                    found.remove(s[left])
+                    left += 1
+
+                found.add(curr)
+
+
+        max_substring = max(max_substring, right - left + 1)
+
+        return max_substring
