@@ -1,56 +1,41 @@
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
         
-        word_length = len(words[0])
-        word_count = len(words)
-        words_dict = defaultdict(int)
+        word_tracker = Counter(words)
 
-        for w in words:
-            words_dict[w] += 1
+        res = []
 
-        output = []
+        word_len = len(words[0])
 
-        for left in range(word_length):
+        for i in range(0, word_len):
+            count = 0
+            left = i
+            word_window = defaultdict(int)
 
-            # start at idx 0, 1, 2 for word_length of 3
-            seen = defaultdict(int)
-            found = 0
-            # right always moves forwards
-            for right in range(left, len(s), word_length):
-                
-                curr_joined = s[right: right + word_length]
+            for j in range(i,len(s),word_len):
+                curr_word = s[j:j+word_len]
 
-                if curr_joined in words_dict:   
-                    if seen[curr_joined] < words_dict[curr_joined]:
-                        
-                        seen[curr_joined] += 1
-                        found += 1
+                if curr_word not in word_tracker:
+                    # reset everything
+                    count = 0
+                    left = j + word_len
+                    word_window = defaultdict(int)
+                    continue
 
-                        if found == word_count:
-                            output.append(left)
-                            left_word = s[left: left + word_length]
-                            seen[left_word] -= 1
-                            found -= 1
-                            left += word_length
-                    else:
-                        seen[curr_joined] += 1
-                        found += 1
+                # update word_window with current_word
+                word_window[curr_word] += 1
+                count += 1
 
-                        while seen[curr_joined] > words_dict[curr_joined]:
-                            left_word = s[left: left + word_length]
-                            seen[left_word] -= 1
+                # check if the curr_word count exceeds its allowed count
+                while word_window[curr_word] > word_tracker[curr_word]:
+                    left_word = s[left:left+word_len]
+                    word_window[left_word] -= 1
+                    count -= 1
 
-                            left += word_length
-                            found -= 1
+                    left += word_len
 
-                else:
-                    seen = defaultdict(int)
-                    left = right + word_length
-                    found = 0
-
-        
-        return output
+                if count == len(words):
+                    res.append(left)
 
 
-                    
-
+        return res
