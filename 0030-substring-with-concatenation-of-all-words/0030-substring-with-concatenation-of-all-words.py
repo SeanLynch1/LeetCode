@@ -1,56 +1,29 @@
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        
-        word_length = len(words[0])
+        if not s or not words:
+            return []
+
+        word_len = len(words[0])
         word_count = len(words)
-        words_dict = defaultdict(int)
-
-        for w in words:
-            words_dict[w] += 1
-
+        total_len = word_len * word_count
+        words_dict = Counter(words)
         output = []
 
-        for left in range(word_length):
-
-            # start at idx 0, 1, 2 for word_length of 3
+        for offset in range(word_len):
+            left = offset
             seen = defaultdict(int)
-            found = 0
-            # right always moves forwards
-            for right in range(left, len(s), word_length):
-                
-                curr_joined = s[right: right + word_length]
-
-                if curr_joined in words_dict:   
-                    if seen[curr_joined] < words_dict[curr_joined]:
-                        
-                        seen[curr_joined] += 1
-                        found += 1
-
-                        if found == word_count:
-                            output.append(left)
-                            left_word = s[left: left + word_length]
-                            seen[left_word] -= 1
-                            found -= 1
-                            left += word_length
-                    else:
-                        seen[curr_joined] += 1
-                        found += 1
-
-                        while seen[curr_joined] > words_dict[curr_joined]:
-                            left_word = s[left: left + word_length]
-                            seen[left_word] -= 1
-
-                            left += word_length
-                            found -= 1
-
+            for right in range(offset, len(s) - word_len + 1, word_len):
+                word = s[right:right+word_len]
+                if word in words_dict:
+                    seen[word] += 1
+                    while seen[word] > words_dict[word]:
+                        left_word = s[left:left+word_len]
+                        seen[left_word] -= 1
+                        left += word_len
+                    if right - left + word_len == total_len:
+                        output.append(left)
                 else:
-                    seen = defaultdict(int)
-                    left = right + word_length
-                    found = 0
+                    seen.clear()
+                    left = right + word_len
 
-        
         return output
-
-
-                    
-
