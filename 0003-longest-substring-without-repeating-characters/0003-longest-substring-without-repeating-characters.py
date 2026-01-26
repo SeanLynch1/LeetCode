@@ -24,7 +24,6 @@ class Solution:
 
                 found.add(curr)
 
-
         max_substring = max(max_substring, right - left + 1)
 
         return max_substring
