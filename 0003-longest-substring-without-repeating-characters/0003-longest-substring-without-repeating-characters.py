@@ -15,7 +15,7 @@ class Solution:
             if curr not in found:
                 found.add(curr)
             else:
-                max_substring = max(max_substring, right - 1 - left + 1)
+                max_substring = max(max_substring, right - left)
 
                 while curr in found:
                     print(found)
