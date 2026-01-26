@@ -1,44 +1,73 @@
-from collections import Counter, defaultdict
-
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         
-        if not t or len(t) > len(s):
-            return ""
+        chars_dict = defaultdict(int)
 
-        t_tracker = Counter(t)
+        for c in t:
+            chars_dict[c] += 1
 
-        missing = len(t)
-        left, start, end = 0, 0, 0
+        char_count = len(t)
 
-        for right, char in enumerate(s, 1):
-            
-            if t_tracker[char] > 0:
-                missing -= 1
-            
-            t_tracker[char] -= 1
+        left = 0
+        seen = defaultdict(int)
+        found = 0
+        output = ""
+        print(f"chars_dict = {chars_dict}")
+        for right in range(len(s)):
 
-            if missing == 0:
-                print(f"right = {right}, left = {left}")
-                print(f"s[left] = {s[left]}")
-                print(t_tracker)
-                while t_tracker[s[left]] < 0:
-                    t_tracker[s[left]] += 1
-                    left += 1
+            curr = s[right]
+            print(f"curr = {curr}")
 
-                if t_tracker[s[left]] == 0:
-                    t_tracker[s[left]] += 1
-                    missing += 1
-
-                if right - left < end - start or end == 0:
-                    start, end = left, right
-                    print("updating word to ", s[start:end])
+            if curr in chars_dict:
                 
-                left += 1
+                seen[curr] += 1
 
-                print(t_tracker, "missing = ", missing, "left = ", left)
-                print("\n")
+                print(f"seen = {seen}, left = {s[left]}")
 
-        return s[start:end]
-            
+                if found == 0:
+                    left = right
+                    print(f"initializing left, left = {s[left]}")
 
+
+                if seen[curr] <= chars_dict[curr]:
+                    
+                    found += 1
+
+                    if found == char_count:
+                        print("substring found!")
+                        
+
+                        left_char = s[left]
+
+                        # handle duplicates
+                        while left < right and s[left] == left_char and seen[left_char] > chars_dict[left_char]:
+                            print(f"left = {s[left]}")
+                            seen[left_char] -= 1
+                            left += 1
+
+                        while left < right and s[left] not in chars_dict:
+                            left += 1
+                        
+                        print("removed duplicates, seen looks like -> ")
+                        print(f"seen = {seen}, left = {s[left]}")
+
+
+                        temp = s[left: right + 1]
+                        print(f"word = {temp}")
+
+                        output = temp if len(temp) < len(output) or output == "" else output
+                        seen[s[left]] -= 1
+                        print(f"After adding new word, seen looks like -> :{seen}")
+                        left += 1
+                        found -= 1
+
+                        while left < right and s[left] not in chars_dict:
+                            left += 1
+                        
+                        if left < right:
+                            print(f"left = {s[left]}")
+
+                        print(f"string = {s}")
+                        print("\n")
+
+        return output
