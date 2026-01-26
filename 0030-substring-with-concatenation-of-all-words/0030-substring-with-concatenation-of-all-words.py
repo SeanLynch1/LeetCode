@@ -38,12 +38,19 @@ class Solution:
                             left += word_length
                             print(f"seen = {seen}, found = {found} \n")
                     else:
-                        left = right
-                        seen = defaultdict(int)
-                        seen[curr_joined] = 1
-                        found = 1
-
                         print(f"{curr_joined}, already in seen :/")
+                        seen[curr_joined] += 1
+                        found += 1
+
+                        while seen[curr_joined] > words[curr_joined]:
+                            left_word = s[left: left + word_length]
+                            print(f"left_word = {left_word}")
+                            seen[left_word] -= 1
+
+                            left += word_length
+                            found -= 1
+
+                        print(f"left now = {left}")
                         print(f"seen = {seen}, found = {found} \n")
                 else:
                     seen = defaultdict(int)
