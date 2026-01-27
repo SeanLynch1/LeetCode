@@ -3,8 +3,7 @@ class Solution:
         
         prefixes = [1]
         for i in range(1, len(nums)):
-            prev_nums = nums[i - 1]
-            prefixes.append(prev_nums * prefixes[-1])
+            prefixes.append(nums[i - 1] * prefixes[-1])
 
         last = 1
         for j in range(len(prefixes)-1,-1,-1):
