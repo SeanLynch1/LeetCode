@@ -6,9 +6,8 @@ class Solution:
             prev_nums = nums[i - 1]
             prefixes.append(prev_nums * prefixes[-1])
 
-        last = 1
-        for j in range(len(prefixes)-1,-1,-1):
-            prefixes[j] *= last
-            last *= nums[j]
+        for j in range(len(prefixes)-1,0,-1):
+            prefixes[j - 1] *= nums[j]
+            nums[j - 1] *= nums[j]
 
         return prefixes
