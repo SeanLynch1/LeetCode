@@ -7,4 +7,4 @@ class Solution:
         for i in range(1, len(nums2) + 1):
             nums1[n-i] = nums2[i-1]
 
-        print(nums1.sort())
+        nums1.sort()
