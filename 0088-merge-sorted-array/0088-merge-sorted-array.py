@@ -27,8 +27,6 @@ class Solution:
                     return
 
             i -= 1
-            print("Hi")
-            print(nums1)
 
 
 
