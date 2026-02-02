@@ -3,6 +3,8 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
+        if not nums1 or not nums2:
+            return 
 
         i = len(nums1) - 1
         m -= 1
