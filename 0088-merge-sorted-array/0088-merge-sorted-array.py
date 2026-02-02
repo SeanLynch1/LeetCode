@@ -3,25 +3,32 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        # [1,2,5,7,10,15,20,0,0,0] - > 2, 5, 6
-        # [1,2,3,0,0,0] -> [2,5,6]
+        if not nums1 or not nums2:
+            return 
 
-        if not nums2:
-            return
-        
-        i = m - 1      # end of nums1’s valid section
-        j = n - 1      # end of nums2
-        k = m + n - 1  # end of nums1
+        i = len(nums1) - 1
+        m -= 1
+        n -= 1
 
-        while j >= 0:
-            if i >= 0 and nums1[i] > nums2[j]:
-                nums1[k] = nums1[i]
-                i -= 1
+        while i >= 0:
+
+            var_1 = nums1[m]
+            var_2 = nums2[n]
+
+            if m >= 0 and var_1 > var_2:
+                nums1[i] = var_1
+                m -= 1
+
             else:
-                nums1[k] = nums2[j]
-                j -= 1
-            k -= 1
+                nums1[i] = var_2
+                n -= 1
 
-    
-        print(nums1)
-        
+                if n < 0:
+                    return
+
+            i -= 1
+            print("Hi")
+            print(nums1)
+
+
+
