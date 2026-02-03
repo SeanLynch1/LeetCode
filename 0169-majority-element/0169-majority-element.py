@@ -13,10 +13,7 @@ class Solution:
                 if temp > max_sequence:
                     n = nums[i]
                     max_sequence = temp
-
             else:
                 temp = 1
-
-            
 
         return n
