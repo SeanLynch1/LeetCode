@@ -14,8 +14,6 @@ class Solution:
                 x += 1
                 y -= 1
 
-            print(nums)
-
         ref(0, n - 1)
         ref(0,k - 1)
         ref(k, n - 1)
