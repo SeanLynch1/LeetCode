@@ -6,17 +6,16 @@ class Solution:
         n = len(nums)
         k = k % n
 
-        left = k
-        right = n - k - 1
+        def ref(x, y):
 
-        slic = nums[right + 1:]
+            while x < y:
+                nums[y], nums[x] = nums[x], nums[y]
 
-        while right >= 0:
+                x += 1
+                y -= 1
 
-            nums[right + k] = nums[right]
-            right -= 1
+            print(nums)
 
-        for i in range(k):
-            nums[i] = slic[i]
-
-
+        ref(0, n - 1)
+        ref(0,k - 1)
+        ref(k, n - 1)
