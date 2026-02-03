@@ -10,10 +10,13 @@ class Solution:
             if nums[i] == nums[i - 1]:
                 temp += 1
             else:
+                if temp > max_sequence:
+                    n = nums[i - 1]
+                    max_sequence = temp
+
                 temp = 1
 
-            if temp > max_sequence:
-                n = nums[i]
-                max_sequence = temp
+        if temp > max_sequence:
+            n = nums[-1]
 
         return n
