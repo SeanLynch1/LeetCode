@@ -3,23 +3,28 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        
-
         n = len(nums)
 
-        if n == 0:
-            return
-            
-        k = k % n
+        def gcd(a, b) -> int:
 
-        def ref(x, y):
+            if b == 0:
+                return a
 
-            while x < y:
-                nums[y], nums[x] = nums[x], nums[y]
+            return gcd(b, a % b)
 
-                x += 1
-                y -= 1
+        cycles = gcd(n, k)
 
-        ref(0, n - 1)
-        ref(0,k - 1)
-        ref(k, n - 1)
+        for c in range(cycles):
+            last = nums[c]
+            jump = c
+
+            while True:
+                jump += k
+                jump %= n
+
+                curr = nums[jump]
+                nums[jump] = last
+                last = curr
+                
+                if jump == c:
+                    break
