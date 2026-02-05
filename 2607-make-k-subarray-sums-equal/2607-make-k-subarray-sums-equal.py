@@ -16,7 +16,7 @@ class Solution:
 
         for c in range(cycles):
             jump = (c + k) % n
-            temp = [arr[c % n]]
+            temp = [arr[c]]
 
             while jump != c:
                 temp.append(arr[jump])
@@ -30,7 +30,7 @@ class Solution:
         
         for c in range(cycles):
             jump = (c + k) % n
-            output += abs(medians[c] - arr[c % n])
+            output += abs(medians[c] - arr[c])
 
             while jump != c:
                 output += abs(medians[c] - arr[jump])
