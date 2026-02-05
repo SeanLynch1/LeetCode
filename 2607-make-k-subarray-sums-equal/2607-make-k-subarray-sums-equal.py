@@ -1,32 +1,23 @@
+from typing import List
+import math
+
 class Solution:
     def makeSubKSumEqual(self, arr: List[int], k: int) -> int:
-        
         n = len(arr)
+        cycles = math.gcd(n, k)
         output = 0
 
-        def gcd(a:int, b:int):
-            
-            if b == 0:
-                return a
-            
-            return gcd(b, a%b)
-
-        cycles = gcd(len(arr), k)
-
         for c in range(cycles):
-            jump = (c + k) % n
-            temp = [arr[c]]
-
-            while jump != c:
-                temp.append(arr[jump])
-
-                jump += k
-                jump %= n
+            temp = []
+            j = c
+            while True:
+                temp.append(arr[j])
+                j = (j + k) % n
+                if j == c:
+                    break
 
             temp.sort()
-            median = temp[int(len(temp) / 2)]
-            
-            for j in range(len(temp)):
-                output += abs(median - temp[j])
+            median = temp[len(temp) // 2]
+            output += sum(abs(x - median) for x in temp)
 
         return output
