@@ -2,7 +2,6 @@ class Solution:
     def makeSubKSumEqual(self, arr: List[int], k: int) -> int:
         
         n = len(arr)
-        medians = []
         output = 0
 
         def gcd(a:int, b:int):
@@ -25,17 +24,9 @@ class Solution:
                 jump %= n
 
             temp.sort()
-            median_temp = temp[int(len(temp) / 2)]
-            medians.append(median_temp)
-        
-        for c in range(cycles):
-            jump = (c + k) % n
-            output += abs(medians[c] - arr[c])
-
-            while jump != c:
-                output += abs(medians[c] - arr[jump])
-
-                jump += k
-                jump %= n
+            median = temp[int(len(temp) / 2)]
             
+            for j in range(len(temp)):
+                output += abs(median - temp[j])
+
         return output
