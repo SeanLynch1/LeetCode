@@ -39,6 +39,5 @@ class Solution:
 
                 jump += k
                 jump %= n
-
             
         return output
