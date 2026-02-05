@@ -15,7 +15,6 @@ class Solution:
         cycles = gcd(len(arr), k)
 
         for c in range(cycles):
-            original = c
             jump = (c + k) % n
             temp = [arr[c % n]]
 
@@ -30,7 +29,6 @@ class Solution:
             medians.append(median_temp)
         
         for c in range(cycles):
-            original = c
             jump = (c + k) % n
             output += abs(medians[c] - arr[c % n])
 
