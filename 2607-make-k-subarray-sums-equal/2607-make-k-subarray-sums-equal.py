@@ -4,20 +4,20 @@ import math
 class Solution:
     def makeSubKSumEqual(self, arr: List[int], k: int) -> int:
         n = len(arr)
-        cycles = math.gcd(n, k)
-        output = 0
+        g = math.gcd(n, k)
+        ans = 0
 
-        for c in range(cycles):
-            temp = []
-            j = c
+        for start in range(g):
+            cycle = []
+            j = start
             while True:
-                temp.append(arr[j])
+                cycle.append(arr[j])
                 j = (j + k) % n
-                if j == c:
+                if j == start:
                     break
 
-            temp.sort()
-            median = temp[len(temp) // 2]
-            output += sum(abs(x - median) for x in temp)
+            cycle.sort()
+            med = cycle[len(cycle) // 2]
+            ans += sum(abs(x - med) for x in cycle)
 
-        return output
+        return ans
