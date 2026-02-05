@@ -3,7 +3,8 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        n = len(nums)
+        # gcd implementation
+        '''n = len(nums)
 
         def gcd(a, b) -> int:
 
@@ -27,4 +28,31 @@ class Solution:
                 last = curr
                 
                 if jump == c:
-                    break
+                    break'''
+
+        
+        # reverse implementation
+        n = len(nums)
+        left = 0
+        right = n-1
+
+        k = k % n
+
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left+=1
+            right -=1
+
+        left = 0
+        right = k-1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left+=1
+            right -=1
+
+        left = k
+        right = n-1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left+=1
+            right -=1
