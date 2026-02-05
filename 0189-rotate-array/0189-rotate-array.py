@@ -36,8 +36,12 @@ class Solution:
         left = 0
         right = n-1
 
-        k = k % n
+        k %= n
 
+        if n <= 1 or k == 0:
+            return
+
+        
         while left < right:
             nums[left], nums[right] = nums[right], nums[left]
             left+=1
