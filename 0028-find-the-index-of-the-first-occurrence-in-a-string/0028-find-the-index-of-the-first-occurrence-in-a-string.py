@@ -7,9 +7,7 @@ class Solution:
         letter = 0
 
         while right < h:
-            target = needle[letter]
-
-            if haystack[right] == target:
+            if haystack[right] == needle[letter]:
                 letter += 1
                 right += 1
 
@@ -19,7 +17,5 @@ class Solution:
                 letter = 0
                 left += 1
                 right = left
-
-
 
         return -1
