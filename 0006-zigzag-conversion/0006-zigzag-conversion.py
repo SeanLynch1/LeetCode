@@ -1,23 +1,28 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        
-        if numRows <= 1:
+        if numRows == 1:
             return s
 
-        grid = [[] for _ in range(numRows)]
+        n = len(s)
 
-        d = 1
-        index = 0
+        s_grid = [[] for _ in range(numRows)]
+        letter = 0
+        numRows -= 1
+        output = []
 
-        for letter in s:
+        row = 0
+        d = -1
+
+        for i in range(n):
             
-            if index == 0:
-                d = 1
-            elif index == numRows - 1:
-                d = -1
+            if row == 0:
+                d *= -1
+            elif row == numRows:
+                d *= -1
+            s_grid[row].append(s[i])
+            row += d
             
-            grid[index].append(letter)
+        for j in s_grid:
+            output.append("".join(j))
 
-            index += d
-
-        return ''.join([''.join(g) for g in grid])
+        return "".join(output)  
