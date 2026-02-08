@@ -4,9 +4,7 @@ class Solution:
             return s
 
         n = len(s)
-
         s_grid = [[] for _ in range(numRows)]
-        letter = 0
         numRows -= 1
         output = []
 
