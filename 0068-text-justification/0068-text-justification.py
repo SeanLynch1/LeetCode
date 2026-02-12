@@ -43,12 +43,15 @@ class Solution:
 
         print(f"temp = {temp}")
         for i in range(len(temp)):
-            temp[i] += " "
-            spaces_needed -= 1
-            if i == len(temp) - 1:
-                temp[i] += " " * spaces_needed
-
             print(f"t = {temp[i]}")
+            
+            if i == len(temp) - 1:
+                print(f"spaces_needed = {spaces_needed}")
+                temp[i] += " " * spaces_needed
+            else:
+                temp[i] += " "
+                spaces_needed -= 1
+
             
             
         line = "".join(temp)
