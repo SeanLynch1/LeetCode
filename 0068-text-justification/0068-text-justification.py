@@ -1,35 +1,61 @@
 class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
-        line, res = [], []
-        characters = 0
+        
+        gap_slots = 0
+        line_length = 0
+        output = []
+        temp = []
 
         for word in words:
 
-            if characters + len(word) + len(line) <= maxWidth:
-                line.append(word)
-                characters += len(word)
+            if line_length + gap_slots + len(word) <= maxWidth:
+                temp.append(word)
+                line_length += len(word)
+                gap_slots += 1
             else:
-                spaces = maxWidth - characters
-                idx = 0
-                for i in range(spaces):
-                    line[idx % max(1, len(line) - 1)] += " "
-                    idx += 1
+                gap_slots -= 1
+                spaces_needed = maxWidth - line_length
 
-                res.append(''.join(line))
-                line = [word]
-                characters = len(word)
+                if gap_slots > 0:
+                    spaces_per_gap = spaces_needed // gap_slots
+                    remaining_spaces = spaces_needed % gap_slots
 
-        spaces = maxWidth - characters
-        for i in range(len(line)):
-            if i == len(line) - 1:
-                line[i] += " " * spaces
-            else:
-                line[i] += " "
-                spaces -= 1
+                    print(f"temp = {temp}")
+                    for i in range(gap_slots):
+                        temp[i] += " " * spaces_per_gap
+                        if remaining_spaces > 0:
+                            temp[i] += " "
+                            remaining_spaces -= 1
+
+                        print(f"t = {temp[i]}")
+                else:
+                    temp[-1] += " " * spaces_needed
+                    
+                line = "".join(temp)
+                output.append(line)
+                temp = [word]
+                line_length = len(word)
+                gap_slots = 1
+                print("")
+
+        # handling last line
+        spaces_needed = maxWidth - line_length
+
+        print(f"temp = {temp}")
+        for i in range(len(temp)):
+            temp[i] += " "
+            spaces_needed -= 1
+            if i == len(temp) - 1:
+                temp[i] += " " * spaces_needed
+
+            print(f"t = {temp[i]}")
             
-        res.append(''.join(line))
+            
+        line = "".join(temp)
+        output.append(line)
 
-        return res
+        for line in output:
+            print(line)
 
         
-                
+        return output
