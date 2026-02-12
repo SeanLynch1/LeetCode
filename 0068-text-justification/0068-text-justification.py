@@ -8,12 +8,11 @@ class Solution:
 
         for word in words:
 
-            if line_length + gap_slots + len(word) <= maxWidth:
+            if line_length + len(temp) + len(word) <= maxWidth:
                 temp.append(word)
                 line_length += len(word)
-                gap_slots += 1
             else:
-                gap_slots -= 1
+                gap_slots = len(temp) -1
                 spaces_needed = maxWidth - line_length
 
                 if gap_slots > 0:
