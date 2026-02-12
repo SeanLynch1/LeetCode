@@ -19,10 +19,10 @@ class Solution:
                 if letter in available:
                     arr = available[letter]
 
-                    if last_idx >= arr[-1]:
-                        break
-
                     target = bisect_right(arr, last_idx)
+
+                    if target == len(arr):
+                        break
                     last_idx = arr[target]
                     if i == len(word) -1:
                         total += 1
