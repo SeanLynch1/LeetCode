@@ -8,10 +8,7 @@ class Solution:
 
         # Seed buckets by the first character each word is waiting for
         for w in words:
-            if not w:
-                matched += 1  # (usually not needed for LC792, but safe)
-            else:
-                waiting[w[0]].append((w, 0))  # (word, index_of_next_char_to_match)
+            waiting[w[0]].append((w, 0))  # (word, index_of_next_char_to_match)
 
         # Stream through s and advance all words waiting on each character
         for ch in s:
