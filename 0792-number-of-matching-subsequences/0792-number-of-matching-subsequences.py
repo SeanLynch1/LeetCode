@@ -7,11 +7,6 @@ class Solution:
 
             waiting[w[0]].append((w,0))
 
-
-        for key, value in waiting.items():
-            print(f"{key} : {value}")
-
-
         for ch in s:
             
             bucket = waiting[ch]
