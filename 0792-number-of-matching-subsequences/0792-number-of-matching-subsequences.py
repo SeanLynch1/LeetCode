@@ -1,30 +1,30 @@
-from bisect import bisect_right
-from collections import defaultdict, Counter
+from collections import defaultdict, deque
 from typing import List
 
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
-        pos = defaultdict(list)
-        for i, ch in enumerate(s):
-            pos[ch].append(i)
+        waiting = defaultdict(deque)
+        matched = 0
 
-        total = 0
-        freq = Counter(words)
+        # Seed buckets by the first character each word is waiting for
+        for w in words:
+            if not w:
+                matched += 1  # (usually not needed for LC792, but safe)
+            else:
+                waiting[w[0]].append((w, 0))  # (word, index_of_next_char_to_match)
 
-        for w, count in freq.items():
-            last = -1
-            ok = True
-            for ch in w:
-                arr = pos.get(ch)
-                if not arr:
-                    ok = False
-                    break
-                j = bisect_right(arr, last)
-                if j == len(arr):
-                    ok = False
-                    break
-                last = arr[j]
-            if ok:
-                total += count
+        # Stream through s and advance all words waiting on each character
+        for ch in s:
+            bucket = waiting[ch]
+            waiting[ch] = deque()  # clear this bucket; we'll refill as we advance states
 
-        return total
+            while bucket:
+                w, i = bucket.popleft()
+                i += 1  # we matched w[i] == ch, so move to next needed character
+
+                if i == len(w):
+                    matched += 1
+                else:
+                    waiting[w[i]].append((w, i))
+
+        return matched
