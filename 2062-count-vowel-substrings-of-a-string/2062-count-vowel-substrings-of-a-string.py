@@ -9,8 +9,7 @@ class Solution:
 
         while left < len(word) - 3:
             
-            if left > right:
-                right = left
+            
             print(f"left = {left} - {word[left]}")
             print(f"right = {right} - {word[right]}")
             print(f"left to right = {word[left:right + 1]}")
@@ -34,9 +33,8 @@ class Solution:
                     del found[word[left]]
 
                 left += 1
-                
                 if left > right:
-                    continue
+                    right = left
 
                 print(f"left = {left} - {word[left]}")
                 print(f"right = {right} - {word[right]}")
