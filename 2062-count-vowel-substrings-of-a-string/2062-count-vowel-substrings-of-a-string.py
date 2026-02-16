@@ -1,16 +1,37 @@
 class Solution:
     def countVowelSubstrings(self, word: str) -> int:
-        idx = {'a':0,'e':1,'i':2,'o':3,'u':4}
-        total = 0
-        n = len(word)
+        
+        vowels = set("aeiou")
 
-        for i in range(n):
-            mask = 0
-            right = i
-            while right < n and word[right] in idx:
-                mask |= 1 << idx[word[right]]
-                if mask == 0b11111:
-                    total += 1
-                right += 1
+        def atMost(k : int) -> int:
+            
+            found = defaultdict(int)
+            total = 0
+            left = 0
 
-        return total
+            for right in range(len(word)):
+
+                letter = word[right]
+                if letter not in vowels:
+                    
+                    found.clear()
+                    left = right + 1
+                    continue
+
+                found[letter] += 1
+
+                while len(found) > k:
+                    l = word[left]
+                    found[l] -= 1
+
+                    if found[l] <= 0:
+                        del found[l]
+
+                    left += 1
+
+
+                total += right - left + 1
+
+            return total
+
+        return atMost(5) - atMost(4)
