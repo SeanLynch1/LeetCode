@@ -35,6 +35,7 @@ class Solution:
                 left += 1
                 if left > right:
                     right = left
+                    continue
 
                 print(f"left = {left} - {word[left]}")
                 print(f"right = {right} - {word[right]}")
