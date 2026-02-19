@@ -8,7 +8,7 @@ class Solution:
             idx_positions[i].append(l)
 
         for word in words:
-            last_idx = 0
+            last_idx = -1
 
             for i in range(len(word)):
                 letter = word[i]
@@ -16,11 +16,12 @@ class Solution:
                 if letter not in idx_positions:
                     break
 
-                nxt_idx = bisect_left(idx_positions[letter], last_idx)
-                if nxt_idx == len(idx_positions[letter]) :
+                idx_list = idx_positions[letter]
+                nxt_idx = bisect_right(idx_list, last_idx)
+                if nxt_idx == len(idx_list):
                     break
                 
-                last_idx = idx_positions[letter][nxt_idx] + 1
+                last_idx = idx_list[nxt_idx]
 
                 if i == len(word) - 1:
                     total += 1
