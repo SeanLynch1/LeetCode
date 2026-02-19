@@ -1,37 +1,40 @@
 class Solution:
     def countVowelSubstrings(self, word: str) -> int:
         
-        vowels = set("aeiou")
+        vowels = set("aieou")
 
-        def atMost(k : int) -> int:
+        def sumOfCombinations(k : int) -> int:
             
-            found = defaultdict(int)
-            total = 0
+            distinct = defaultdict(int)
             left = 0
+            total = 0
 
-            for right in range(len(word)):
+            for i in range(len(word)):
 
-                letter = word[right]
+                letter = word[i]
+
                 if letter not in vowels:
-                    
-                    found.clear()
-                    left = right + 1
+                    distinct.clear()
+                    left = i + 1
                     continue
 
-                found[letter] += 1
+                distinct[letter] += 1
 
-                while len(found) > k:
-                    l = word[left]
-                    found[l] -= 1
+                while len(distinct) > k:
+                    distinct[word[left]] -= 1
 
-                    if found[l] <= 0:
-                        del found[l]
+                    if distinct[word[left]] == 0:
+                        del distinct[word[left]]
 
                     left += 1
 
-
-                total += right - left + 1
+                print(word[left: i + 1])
+                total += i - left + 1
 
             return total
 
-        return atMost(5) - atMost(4)
+
+        # finds the number of combinations from word that includes all 5 vowels or less
+        # find the number of combinations from word that includes max of 4 vowels or less
+        # the diffence is the number of 5 vowel substrings
+        return sumOfCombinations(5) - sumOfCombinations(4)
