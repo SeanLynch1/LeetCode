@@ -2,7 +2,7 @@ class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
         
 
-        waiting_list = defaultdict(deque)
+        waiting_list = defaultdict(list)
         total = 0
     
         for word in words:
@@ -14,15 +14,15 @@ class Solution:
                 continue
 
             idx_list = waiting_list[letter]
-
+            waiting_list[letter] = []
+            
             for j in range(len(idx_list)):
-                word, idx = idx_list.popleft()
+                word, idx = idx_list[j][0], idx_list[j][1]
                 idx += 1
 
                 if idx >= len(word):
                     total += 1
                 else:
                     waiting_list[word[idx]].append((word,idx))
-
 
         return total
