@@ -5,7 +5,6 @@ class Solution:
         idx_positions = defaultdict(list)
 
         for l, i in enumerate(s):
-
             idx_positions[i].append(l)
 
         for word in words:
@@ -18,7 +17,7 @@ class Solution:
                     break
 
                 nxt_idx = bisect_left(idx_positions[letter], last_idx)
-                if nxt_idx >= len(idx_positions[letter]) :
+                if nxt_idx == len(idx_positions[letter]) :
                     break
                 
                 last_idx = idx_positions[letter][nxt_idx] + 1
