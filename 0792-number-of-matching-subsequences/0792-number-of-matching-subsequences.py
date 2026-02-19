@@ -1,26 +1,29 @@
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
         
-        waiting = defaultdict(deque)
         total = 0
-        for w in words:
+        idx_positions = defaultdict(list)
 
-            waiting[w[0]].append((w,0))
+        for l, i in enumerate(s):
 
-        for ch in s:
-            
-            bucket = waiting[ch]
-            # clear waiting, we may add to this key later
-            waiting[ch] = deque()
+            idx_positions[i].append(l)
 
-            for word, idx in bucket:
+        for word in words:
+            last_idx = 0
+
+            for i in range(len(word)):
+                letter = word[i]
+
+                if letter not in idx_positions:
+                    break
+
+                nxt_idx = bisect_left(idx_positions[letter], last_idx)
+                if nxt_idx >= len(idx_positions[letter]) :
+                    break
                 
-                idx += 1
+                last_idx = idx_positions[letter][nxt_idx] + 1
 
-                if idx == len(word):
+                if i == len(word) - 1:
                     total += 1
-                else:
-                    waiting[word[idx]].append((word, idx))
 
         return total
-
