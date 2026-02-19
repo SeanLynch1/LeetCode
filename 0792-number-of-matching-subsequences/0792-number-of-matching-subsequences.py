@@ -15,9 +15,8 @@ class Solution:
 
             idx_list = waiting_list[letter]
             waiting_list[letter] = []
-            
-            for j in range(len(idx_list)):
-                word, idx = idx_list[j][0], idx_list[j][1]
+
+            for word, idx in idx_list:
                 idx += 1
 
                 if idx >= len(word):
