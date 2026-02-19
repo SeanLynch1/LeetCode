@@ -7,7 +7,6 @@ class Solution:
     
         for word in words:
             waiting_list[word[0]].append((word, 0))
-
         
         for i, letter in enumerate(s):
 
@@ -22,9 +21,8 @@ class Solution:
 
                 if idx >= len(word):
                     total += 1
-                    continue
-
-                waiting_list[word[idx]].append((word,idx))
+                else:
+                    waiting_list[word[idx]].append((word,idx))
 
 
         return total
