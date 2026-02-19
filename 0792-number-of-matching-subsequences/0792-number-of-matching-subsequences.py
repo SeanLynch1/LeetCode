@@ -26,10 +26,5 @@ class Solution:
 
                 waiting_list[word[idx]].append((word,idx))
 
-                
-
-
-                
-
 
         return total
