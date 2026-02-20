@@ -3,7 +3,7 @@ class Solution:
         
         longest = 0
 
-        for i, ch in enumerate(nums):
+        for i range(len(nums)):
             
 
             count = 1
