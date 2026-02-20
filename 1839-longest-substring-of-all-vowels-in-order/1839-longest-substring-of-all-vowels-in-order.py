@@ -1,27 +1,25 @@
 class Solution:
     def longestBeautifulSubstring(self, word: str) -> int:
-        
-        vowels = ["a","e","i","o","u"]
+        vowels = "aeiou"
+        longest = 0
+        curr_len = 0
+        curr_vowels = 0
 
-        left = 0
-        total = 0
+        for i, ch in enumerate(word):
+            if i > 0 and ch < word[i - 1]:
+                curr_len = 0
+                curr_vowels = 0
 
-        while left < len(word):
-            target = 0
-            right = left
-            while right < len(word) and word[right] == vowels[target]:
-                
-                if target < len(vowels) - 1 and right < len(word) - 1 and word[right + 1] != word[right]:
-                    target += 1
-                
-                if word[right] == vowels[-1]:
-                    total = max(total, right - left + 1)
-
-                right += 1
-
-            if right > left:
-                left = right
+            if curr_len == 0:  # starting new substring
+                if ch == 'a':
+                    curr_vowels = 1
+                    curr_len = 1
             else:
-                left += 1   
+                curr_len += 1
+                if ch != word[i - 1]:
+                    curr_vowels += 1
 
-        return total
+            if curr_vowels == 5:
+                longest = max(longest, curr_len)
+
+        return longest
