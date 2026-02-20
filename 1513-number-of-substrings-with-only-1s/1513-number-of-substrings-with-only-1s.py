@@ -9,9 +9,7 @@ class Solution:
             while right < len(s) and s[right] == "1":
                 total += right - left + 1
                 right += 1
-            else:
-                right += 1
-
+            right += 1
             left = right
 
         return total % ((10**9) + 7)
