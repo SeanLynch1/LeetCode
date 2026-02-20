@@ -1,7 +1,7 @@
 class Solution:
     def longestNiceSubarray(self, nums: List[int]) -> int:
         
-        longest = 0
+        longest = 1
         count = 1
         left = 0
         bit_start = nums[0]
@@ -18,6 +18,5 @@ class Solution:
 
             count += 1
             longest = max(count, longest)
-
 
         return longest
