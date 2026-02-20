@@ -5,7 +5,7 @@ class Solution:
         left = 0
         right = 0
 
-        while right < len(s):
+        while left < len(s):
             while right < len(s) and s[right] == "1":
                 total += right - left + 1
                 right += 1
