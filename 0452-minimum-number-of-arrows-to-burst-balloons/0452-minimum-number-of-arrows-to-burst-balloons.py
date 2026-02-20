@@ -1,21 +1,24 @@
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        if not points:
-            return 0
+        
+        darts = 1
 
-        arrows = 1
-        points.sort(key= lambda x : x[0])
-        aligned = [points[0]]
+        points.sort(key=lambda x:x[0])
+        last = points[0][1]
 
         print(points)
 
+
         for i in range(1, len(points)):
-            max_int = aligned[-1][1]
+            
+            l, r = points[i][0], points[i][1]
 
-            if max_int >= points[i][0]:
-                aligned[-1][1] = min(max_int, points[i][1])
-            else:
-                aligned = [points[i]]
-                arrows += 1
+            if l > last:
+                darts += 1
+                last = r
 
-        return arrows
+            if r < last:
+                last = r
+
+                
+        return darts
