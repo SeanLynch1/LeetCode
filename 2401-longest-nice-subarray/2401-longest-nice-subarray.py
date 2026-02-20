@@ -1,19 +1,23 @@
 class Solution:
     def longestNiceSubarray(self, nums: List[int]) -> int:
-        bitmask = 0
-        left = 0
+        
         longest = 0
+        count = 1
+        left = 0
+        bit_start = nums[0]
 
-        for right in range(len(nums)):
+        for right in range(1, len(nums)):
+            
+            while nums[right] & bit_start != 0:
 
-            # If there is overlap, contract from the left
-            while bitmask & nums[right] != 0:
-                bitmask ^= nums[left]  # remove left number's bits
+                bit_start ^= nums[left]
+
                 left += 1
+                count -= 1
+            bit_start |= nums[right]
 
-            # Add this number to the window
-            bitmask |= nums[right]
+            count += 1
+            longest = max(count, longest)
 
-            longest = max(longest, right - left + 1)
 
         return longest
