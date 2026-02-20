@@ -2,7 +2,9 @@ class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
         
         darts = 1
-        points.sort(key=lambda x:x[0])
+        points.sort(key=lambda x:x[1])
+
+        print(points)
         last = points[0][1]
 
         for i in range(1, len(points)):
