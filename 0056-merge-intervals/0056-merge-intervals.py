@@ -3,7 +3,6 @@ class Solution:
         
         output = []
         intervals.sort(key= lambda x : x[0])
-        print(intervals)
 
         start = intervals[0][0]
         last = intervals[0][1]
