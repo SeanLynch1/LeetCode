@@ -1,10 +1,10 @@
 class Solution:
     def countOfSubstrings(self, word: str, k: int) -> int:
         
-        vowel_set = set("aieou")
+        vowel_set = set("aeiou")
         n = 5 + k
 
-        def countSubstrings(nk: int) -> nk:
+        def countSubstrings(nk: int) -> int:
 
             vowels = defaultdict(int)
             consonants = 0
