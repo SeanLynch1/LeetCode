@@ -8,7 +8,6 @@ class Solution:
         l = newInterval[0]
         r = newInterval[1]
 
-        inserted = False
         for i in range(len(intervals)):
 
             start, end = intervals[i][0], intervals[i][1]
