@@ -7,7 +7,6 @@ class Solution:
 
         while right < len(s):
             while right < len(s) and s[right] == "1":
-                print(s[left:right+1])
                 total += right - left + 1
                 right += 1
             else:
