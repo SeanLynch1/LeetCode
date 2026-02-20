@@ -2,7 +2,7 @@ class Solution:
     def countOfSubstrings(self, word: str, k: int) -> int:
         
         vowel_set = set("aieou")
-        n = len(vowel_set) + k
+        n = 5 + k
 
         def countSubstrings(nk: int) -> int:
             
