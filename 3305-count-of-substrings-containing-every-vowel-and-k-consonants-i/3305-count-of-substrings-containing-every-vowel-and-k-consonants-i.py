@@ -2,41 +2,30 @@ class Solution:
     def countOfSubstrings(self, word: str, k: int) -> int:
         
         vowel_set = set("aeiou")
+        total = 0
         n = 5 + k
 
-        def countSubstrings(nk: int) -> int:
+        for i in range(len(word)):
 
-            vowels = defaultdict(int)
+            vowels = set()
             consonants = 0
-            total = 0
-            left = 0
-            right = 0
-
+            right = i
             while right < len(word):
-                letter = word[right]
+                
+                nxt_letter = word[right]
 
-                if letter not in vowel_set:
-                    consonants += 1
+                if nxt_letter in vowel_set:
+                    vowels.add(nxt_letter)
                 else:
-                    vowels[letter] += 1
+                    consonants += 1
 
-                while len(vowels) + consonants > nk or consonants > k:
-                    letter_left = word[left]
+                if consonants > k:
+                    break
 
-                    if letter_left in vowel_set:
-                        vowels[letter_left] -= 1
+                if len(vowels) + consonants == n:
+                    total += 1
 
-                        if vowels[letter_left] == 0:
-                            del vowels[letter_left]
-
-                    else:
-                        consonants -= 1
-
-                    left += 1
-
-                total += right - left + 1
                 right += 1
 
-            return total
-                
-        return countSubstrings(n) - countSubstrings(n - 1)
+
+        return total
