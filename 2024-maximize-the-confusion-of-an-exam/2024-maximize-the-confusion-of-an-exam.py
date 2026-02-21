@@ -1,7 +1,5 @@
 class Solution:
     def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
-        
-
         def findSubstringOfChar(char: str) -> int:
             
             longest = 1
