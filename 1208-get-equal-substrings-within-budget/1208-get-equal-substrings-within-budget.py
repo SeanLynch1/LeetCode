@@ -22,7 +22,6 @@ class Solution:
                 
             right += 1
 
-            print(f"{s[left:right]}")
             longest = max(longest, right -1 - left)
 
             curr_cost -= abs(ord(s[left]) - ord(t[left]))
