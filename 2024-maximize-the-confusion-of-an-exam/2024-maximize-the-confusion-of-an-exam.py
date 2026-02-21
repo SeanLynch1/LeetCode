@@ -1,25 +1,23 @@
 class Solution:
     def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
-        def findSubstringOfChar(char: str) -> int:
-            
-            longest = 1
-            left = 0
-            bank = k
+        
 
-            for right in range(len(answerKey)):
+        longest = 0
+        counts = defaultdict(int)
+        max_frequency = 0
+        left = 0
 
-                if answerKey[right] != char:
-                    bank -= 1
+        for right in range(len(answerKey)):
 
-                    while bank < 0:
-                        if answerKey[left] != char:
-                            bank += 1
+            counts[answerKey[right]] += 1
+            max_frequency = max(max_frequency, counts[answerKey[right]])
 
-                        left += 1
-                    
-                longest = max(longest, (right + 1) - (left))
-                right += 1
+            while (right + 1 - left) - max_frequency > k:
+                counts[answerKey[left]] -= 1
+                left += 1
 
-            return longest
 
-        return max(findSubstringOfChar('T'), findSubstringOfChar('F'))
+            longest = max(longest, right + 1 - left)
+
+
+        return longest
