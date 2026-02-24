@@ -1,14 +1,13 @@
-from collections import defaultdict
-
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        seen = {}
+        mapping = defaultdict(int)
 
-        for i, num in enumerate(nums):
-            needed = target - num
+        for i in range(len(nums)):
+            mapping[nums[i]] = i
 
-            if needed in seen:
-                return [seen[needed], i]
+        for j in range(len(nums)):
+            needed = target - nums[j]
 
-            seen[num] = i
+            if needed in mapping and j != mapping[needed]:
+                return [j, mapping[needed]]
