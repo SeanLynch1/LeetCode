@@ -3,7 +3,6 @@ class Solution:
         
         output = [words[0]]
         prev_arr = [0] * 26
-        arr = []
 
         for ch in words[0]:
             prev_arr[ord(ch) - ord('a')] += 1
