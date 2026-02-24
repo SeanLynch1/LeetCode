@@ -1,25 +1,27 @@
 class Solution:
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        
-        output = []
+    def insert(self, intervals: List[List[int]], new: List[int]) -> List[List[int]]:
+        l, r = new
+        placed = False
+        res = []
 
-        l = newInterval[0] # 2
-        r = newInterval[1] # 5
+        for start, end in intervals:
+            # Case 1: interval is completely before new
+            if end < l:
+                res.append([start, end])
+            
+            # Case 2: interval is completely after new
+            elif start > r:
+                if not placed:
+                    res.append([l, r])
+                    placed = True
+                res.append([start, end])
 
-        for i in range(len(intervals)):
-            start = intervals[i][0] # 6
-            end = intervals[i][1] # 9
-
-            # 9 >= 1, 6 <= 5
-            if end >= l and start <= r:
-                l = min(l, start) # 1
-                r = max(r, end) # 5
+            # Case 3: overlap
             else:
-                output.append([min(l, start), min(r, end)]) # 3, 10
+                l = min(l, start)
+                r = max(r, end)
 
-                l = max(start, l) # 12
-                r = max(r, intervals[i][1]) # 16
+        if not placed:
+            res.append([l, r])
 
-        output.append([l, r])
-
-        return output
+        return res
