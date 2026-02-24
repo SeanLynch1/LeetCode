@@ -15,7 +15,8 @@ class Solution:
             right = n - 1
             
             while right > left:
-                if nums[left] + nums[right] + target == 0:
+                s = nums[left] + nums[right] + target
+                if s == 0:
                     output.append([target,  nums[left], nums[right]])
                     left += 1
                     right -=1
@@ -23,8 +24,7 @@ class Solution:
                     while left < right and nums[left] == nums[left - 1]:
                         left += 1
 
-
-                elif nums[left] + nums[right] + target >= 0:
+                elif s >= 0:
                     right -= 1
                 else:
                     left += 1
