@@ -1,7 +1,6 @@
 class Solution:
     def insert(self, intervals: List[List[int]], new: List[int]) -> List[List[int]]:
         l, r = new
-        placed = False
         res = []
 
         for start, end in intervals:
@@ -11,17 +10,14 @@ class Solution:
             
             # Case 2: interval is completely after new
             elif start > r:
-                if not placed:
-                    res.append([l, r])
-                    placed = True
-                res.append([start, end])
-
-            # Case 3: overlap
+                res.append([l, r])
+                l = max(l, start)
+                r = max(r, end)
             else:
+                # Case 3: overlap
                 l = min(l, start)
                 r = max(r, end)
 
-        if not placed:
-            res.append([l, r])
+        res.append([l, r])
 
         return res
