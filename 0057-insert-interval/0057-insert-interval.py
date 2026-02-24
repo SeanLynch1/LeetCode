@@ -1,26 +1,25 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        i = 0
+        n = len(intervals)
+
+        # 1. Append all intervals ending before newInterval starts
+        while i < n and intervals[i][1] < newInterval[0]:
+            res.append(intervals[i])
+            i += 1
+
+        # 2. Merge overlapping intervals
+        while i < n and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
+            i += 1
         
-        output = []
+        res.append(newInterval)
 
-        l = newInterval[0] # 2
-        r = newInterval[1] # 5
+        # 3. Append the remaining intervals
+        while i < n:
+            res.append(intervals[i])
+            i += 1
 
-        for i in range(len(intervals)):
-            start = intervals[i][0] # 6
-            end = intervals[i][1] # 9
-
-            # 9 >= 1, 6 <= 5
-            if end >= l and start <= r:
-                l = min(l, start) # 1
-                r = max(r, end) # 5
-                
-            else:
-                output.append([min(l, start), min(r, end)]) # 3, 10
-
-                l = max(start, l) # 12
-                r = max(r, intervals[i][1]) # 16
-
-        output.append([l, r])
-
-        return output
+        return res
