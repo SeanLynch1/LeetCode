@@ -1,34 +1,28 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        
-        output = []
         nums.sort()
         n = len(nums)
-        
-        for start in range(n):
-            
-            # skip duplicate first elements
-            if start > 0 and nums[start] == nums[start - 1]:
+        res = []
+
+        for i in range(n):
+            # Skip duplicate pivot
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
-            target = nums[start]
-            left = start + 1
-            right = n - 1
-            
+            left, right = i + 1, n - 1
+
             while left < right:
-                
-                s = nums[left] + nums[right] + target
+                s = nums[i] + nums[left] + nums[right]
 
                 if s == 0:
-                    output.append([target, nums[left], nums[right]])
+                    res.append([nums[i], nums[left], nums[right]])
                     left += 1
                     right -= 1
 
-                    # skip duplicate lefts
+                    # Skip duplicates on left
                     while left < right and nums[left] == nums[left - 1]:
                         left += 1
-
-                    # skip duplicate rights  <-- FIXED
+                    # Skip duplicates on right
                     while left < right and nums[right] == nums[right + 1]:
                         right -= 1
 
@@ -37,4 +31,4 @@ class Solution:
                 else:
                     right -= 1
 
-        return output
+        return res
