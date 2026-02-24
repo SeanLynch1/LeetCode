@@ -3,7 +3,6 @@ class Solution:
         
         output = []
         nums.sort()
-        print(nums)
         n = len(nums)
         for start in range(n):
             
