@@ -4,10 +4,9 @@ class Solution:
         output = []
         nums.sort()
         n = len(nums)
+        
         for start in range(n):
             
-
-
             if start > 0 and nums[start] == nums[start - 1]:
                 continue
 
@@ -16,11 +15,8 @@ class Solution:
             right = n - 1
             
             while right > left:
-                
                 if nums[left] + nums[right] + target == 0:
-                    res = [target,  nums[left], nums[right]]
-
-                    output.append(res)
+                    output.append([target,  nums[left], nums[right]])
                     left += 1
                     right -=1
 
