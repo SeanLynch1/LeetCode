@@ -15,13 +15,12 @@ class Solution:
                 l = min(l, start) # 1
                 r = max(r, end) # 5
                 
-                print("yes")
             else:
                 output.append([min(l, start), min(r, end)]) # 3, 10
 
                 l = max(start, l) # 12
                 r = max(r, intervals[i][1]) # 16
-                
+
         output.append([l, r])
 
         return output
