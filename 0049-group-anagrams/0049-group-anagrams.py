@@ -13,7 +13,4 @@ class Solution:
                 mapping[key] = len(mapping)
                 output.append([word])
 
-        print(mapping)
-        print(output)
-
         return output 
