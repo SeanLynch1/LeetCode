@@ -3,39 +3,38 @@ class Solution:
         
         output = []
         nums.sort()
-
-        for i in range(len(nums)):
-
-            target = nums[i] 
-            left = i + 1
-            right = len(nums) - 1
+        print(nums)
+        n = len(nums)
+        for start in range(n):
             
-            if i > 0 and target == nums[i - 1]:
+
+
+            if start > 0 and nums[start] == nums[start - 1]:
                 continue
 
-            while left < right:
+            target = nums[start]
+            left = start + 1
+            right = n - 1
+            
+            while right > left:
                 
-                curr_left = nums[left]
-                curr_right = nums[right]
-                two_sum = curr_right + curr_left
+                if nums[left] + nums[right] + target == 0:
+                    res = [target,  nums[left], nums[right]]
 
-                if target + two_sum == 0:
-                    output.append([target, curr_left, curr_right])
-
+                    output.append(res)
                     left += 1
-                    right -= 1
+                    right -=1
 
                     while left < right and nums[left] == nums[left - 1]:
                         left += 1
 
-                    while right > left and nums[right] == nums[right + 1]:
+                    while left < right and nums[right] == nums[right] + 1:
                         right -= 1
-                
-                elif target + two_sum < 0:
-                    left += 1
-                else:
-                    right -= 1
 
-                
+                elif nums[left] + nums[right] + target >= 0:
+                    right -= 1
+                else:
+                    left += 1
+            
 
         return output
