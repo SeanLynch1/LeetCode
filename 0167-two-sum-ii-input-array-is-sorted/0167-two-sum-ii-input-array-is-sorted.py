@@ -4,17 +4,14 @@ class Solution:
         left = 0
         right = len(numbers) - 1
 
-        while True:
-            left_num = numbers[left]
-            right_num = numbers[right]
+        while left < right:
 
-            if left_num + right_num == target:
-                return [left + 1, right + 1]
+            summation = numbers[right] + numbers[left]
 
-            elif left_num + right_num > target:
+            if summation == target:
+                return[left + 1, right + 1]
+
+            if summation > target:
                 right -=1
-
-            elif left_num + right_num < target:
+            else:
                 left += 1
-
-        
