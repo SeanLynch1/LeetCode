@@ -1,13 +1,16 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums) <= 2:
+            return 2
+        count = 1
         left = 1
-        count = 1  # count occurrences of current number
 
         for right in range(1, len(nums)):
-            if nums[right] == nums[right - 1]:
-                count += 1
-            else:
+            
+            if nums[right] != nums[right - 1]:
                 count = 1
+            else:
+                count += 1
 
             if count <= 2:
                 nums[left] = nums[right]
