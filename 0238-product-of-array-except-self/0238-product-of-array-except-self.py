@@ -6,10 +6,7 @@ class Solution:
         for i in range(1, len(nums)):
             prefixes.append(prefixes[-1] * (nums[i-1]))
 
-        print(prefixes)
-
         last = 1
-
         for j in range(len(nums)-1,-1,-1):
             prefixes[j] *= last
             last *= nums[j]
