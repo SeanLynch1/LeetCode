@@ -1,7 +1,5 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        if len(nums) <= 2:
-            return 2
         count = 1
         left = 1
 
