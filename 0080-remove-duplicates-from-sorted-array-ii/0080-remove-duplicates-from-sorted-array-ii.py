@@ -1,15 +1,16 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        # if two before me does not equal me, change me
+        left = 1
+        count = 1  # count occurrences of current number
 
-        write = 2
-
-        for read in range(2, len(nums), 1):
-
-            if nums[read] == nums[write - 2]:
-                continue
+        for right in range(1, len(nums)):
+            if nums[right] == nums[right - 1]:
+                count += 1
             else:
-                nums[write] = nums[read]
-                write += 1
+                count = 1
 
-        return write
+            if count <= 2:
+                nums[left] = nums[right]
+                left += 1
+
+        return left
