@@ -1,20 +1,20 @@
 class Solution:
-    def numberOfWeakCharacters(self, properties: List[List[int]]) -> int:
-        
+    def numberOfWeakCharacters(self, properties):
+        # Step 1: Sort by attack ASC, defense DESC
+        properties.sort(key=lambda x: (x[0], -x[1]))
 
-        properties.sort(key=lambda x: (-x[0], x[1]))
-        total = 0
+        stack = []
+        weak = 0
 
-        print(properties)
-        max_def = properties[0][1]
-        
-        for i in range(1, len(properties)):
+        # Step 2: Build a monotonic decreasing stack (on defense)
+        for atk, df in properties:
+            # If the current character has strictly higher attack AND defense
+            # than the top of the stack, then the top is weak.
+            while stack and stack[-1][0] < atk and stack[-1][1] < df:
+                stack.pop()
+                weak += 1
 
-            defence = properties[i][1]
-            
-            if defence < max_def:
-                total += 1
+            # Push current character onto the stack
+            stack.append((atk, df))
 
-            max_def = max(max_def, defence)
-
-        return total
+        return weak
