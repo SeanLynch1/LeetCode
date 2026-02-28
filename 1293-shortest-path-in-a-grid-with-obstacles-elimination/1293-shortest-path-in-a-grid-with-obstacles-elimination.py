@@ -14,11 +14,10 @@ class Solution:
             for i in range(len(queue)):
                 x, y, bombs, total = queue.popleft()
                 
-                if x < 0 or x == rows:
+                if (x, y, bombs) in visited:
                     continue
 
-                if y < 0 or y == cols:
-                    continue
+                visited.add((x, y, bombs))
 
                 if grid[x][y] == 1:
                     bombs -= 1
@@ -26,24 +25,23 @@ class Solution:
                     if bombs < 0:
                         continue
 
-                if (x, y, bombs) in visited:
-                    continue
-
-                visited.add((x, y, bombs))
-
                 if x == rows - 1 and y == cols -1:
                     return total 
                 
                 # down
-                queue.append([x + 1, y, bombs, total + 1])
+                if x + 1 < rows:
+                    queue.append([x + 1, y, bombs, total + 1])
                 
                 # right
-                queue.append([x, y + 1, bombs, total + 1])
+                if y + 1 < cols:
+                    queue.append([x, y + 1, bombs, total + 1])
 
                 # left
-                queue.append([x, y - 1, bombs, total + 1])
+                if y - 1 >= 0:
+                    queue.append([x, y - 1, bombs, total + 1])
 
                 # up
-                queue.append([x - 1, y, bombs, total + 1])
+                if x - 1 >= 0:
+                    queue.append([x - 1, y, bombs, total + 1])
 
         return -1
