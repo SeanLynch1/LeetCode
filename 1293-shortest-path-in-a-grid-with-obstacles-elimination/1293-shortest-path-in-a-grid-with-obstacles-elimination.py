@@ -33,6 +33,5 @@ class Solution:
                 for v, h in dirs:
                     if x + v >= 0 and x + v < rows and y + h >= 0 and y + h < cols:
                         queue.append([x + v, y + h, bombs, total + 1])
-                    
 
         return -1
