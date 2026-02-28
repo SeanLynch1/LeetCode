@@ -19,18 +19,14 @@ class Solution:
                     continue
                 visited[(x, y)] = bombs
 
-                if grid[x][y] == 1:
-                    bombs -= 1
-
-                    if bombs < 0:
-                        continue
-
                 if x == rows - 1 and y == cols -1:
                     return total 
                 
                 # down, right, left, up
                 for v, h in dirs:
-                    if x + v >= 0 and x + v < rows and y + h >= 0 and y + h < cols:
-                        queue.append([x + v, y + h, bombs, total + 1])
+                    new_bombs = bombs - grid[x][y]
+                    if new_bombs >= 0:
+                        if x + v >= 0 and x + v < rows and y + h >= 0 and y + h < cols:
+                            queue.append([x + v, y + h, new_bombs, total + 1])
 
         return -1
