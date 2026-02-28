@@ -9,8 +9,9 @@ class Solution:
         visited = set()
         total = 0
 
-        while queue:
+        dirs = [(1,0),(0,1),(0,-1), (-1,0)]
 
+        while queue:
             for i in range(len(queue)):
                 x, y, bombs, total = queue.popleft()
                 
@@ -28,24 +29,10 @@ class Solution:
                 if x == rows - 1 and y == cols -1:
                     return total 
                 
-                # down
-                if x + 1 < rows:
-                    if (x + 1, y, bombs) not in visited:
-                        queue.append([x + 1, y, bombs, total + 1])
-                
-                # right
-                if y + 1 < cols:
-                    if (x, y + 1, bombs) not in visited:
-                        queue.append([x, y + 1, bombs, total + 1])
-
-                # left
-                if y - 1 >= 0:
-                    if (x, y - 1, bombs) not in visited:
-                        queue.append([x, y - 1, bombs, total + 1])
-
-                # up
-                if x - 1 >= 0:
-                    if (x - 1, y, bombs) not in visited:
-                        queue.append([x - 1, y, bombs, total + 1])
+                # down, right, left, up
+                for v, h in dirs:
+                    if x + v >= 0 and x + v < rows and y + h >= 0 and y + h < cols:
+                        queue.append([x + v, y + h, bombs, total + 1])
+                    
 
         return -1
