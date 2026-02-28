@@ -30,18 +30,22 @@ class Solution:
                 
                 # down
                 if x + 1 < rows:
-                    queue.append([x + 1, y, bombs, total + 1])
+                    if (x + 1, y, bombs) not in visited:
+                        queue.append([x + 1, y, bombs, total + 1])
                 
                 # right
                 if y + 1 < cols:
-                    queue.append([x, y + 1, bombs, total + 1])
+                    if (x, y + 1, bombs) not in visited:
+                        queue.append([x, y + 1, bombs, total + 1])
 
                 # left
                 if y - 1 >= 0:
-                    queue.append([x, y - 1, bombs, total + 1])
+                    if (x, y - 1, bombs) not in visited:
+                        queue.append([x, y - 1, bombs, total + 1])
 
                 # up
                 if x - 1 >= 0:
-                    queue.append([x - 1, y, bombs, total + 1])
+                    if (x - 1, y, bombs) not in visited:
+                        queue.append([x - 1, y, bombs, total + 1])
 
         return -1
