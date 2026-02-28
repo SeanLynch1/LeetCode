@@ -19,17 +19,17 @@ class Solution:
 
                 if y < 0 or y == cols:
                     continue
-                    
-                if (x, y, bombs) in visited:
-                    continue
-
-                visited.add((x, y, bombs))
 
                 if grid[x][y] == 1:
                     bombs -= 1
 
                     if bombs < 0:
                         continue
+
+                if (x, y, bombs) in visited:
+                    continue
+
+                visited.add((x, y, bombs))
 
                 if x == rows - 1 and y == cols -1:
                     return total 
