@@ -6,7 +6,7 @@ class Solution:
         cols = len(grid[0])
 
         queue = deque([[0, 0, k, 0]])
-        visited = set()
+        visited = defaultdict(int)
         total = 0
 
         dirs = [(1,0),(0,1),(0,-1), (-1,0)]
@@ -15,10 +15,9 @@ class Solution:
             for i in range(len(queue)):
                 x, y, bombs, total = queue.popleft()
                 
-                if (x, y, bombs) in visited:
+                if (x, y) in visited and bombs <= visited[(x,y)]:
                     continue
-
-                visited.add((x, y, bombs))
+                visited[(x, y)] = bombs
 
                 if grid[x][y] == 1:
                     bombs -= 1
