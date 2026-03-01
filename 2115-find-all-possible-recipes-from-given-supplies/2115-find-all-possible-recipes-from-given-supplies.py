@@ -1,44 +1,48 @@
+from collections import defaultdict
+
 class Solution:
-    def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
-        
-        output = []
-        self.mapping = defaultdict(list)
-        self.visited = defaultdict(int)
+    def findAllRecipes(self, recipes, ingredients, supplies):
 
-        for supply in supplies:
-            self.mapping[supply] = []
-        
-        for i in range(len(recipes)):
-            for ingredient in ingredients[i]:
-                self.mapping[recipes[i]].append(ingredient)
+        graph = defaultdict(list)
 
-        def traverse_recipes(item: str) -> bool:
-            
-            if item not in self.mapping:
-                return False
+        # Create the graph
+        for r, ing_list in zip(recipes, ingredients):
+            graph[r] = ing_list
 
-            if self.visited[item] == 1:
-                return False
+        # Supplies are base solvable nodes
+        supply_set = set(supplies)
 
-            if not self.mapping[item]:
-                self.visited[item] = 2
+        visited = {}  # 0 = unvisited, 1 = visiting, 2 = solved
+
+        def dfs(item):
+            # If supply, already solvable
+            if item in supply_set:
                 return True
 
-            self.visited[item] = 1
+            # If it's not a recipe and not a supply → cannot be made
+            if item not in graph:
+                return False
 
-            for ingredient in self.mapping[item]:
+            # Cycle detected
+            if visited.get(item, 0) == 1:
+                return False
 
-                if traverse_recipes(ingredient):
-                    self.visited[ingredient] = 2
-                else:
+            # Already solved
+            if visited.get(item, 0) == 2:
+                return True
+
+            visited[item] = 1
+
+            for ing in graph[item]:
+                if not dfs(ing):
                     return False
 
-            self.visited[item] = 2
-
+            visited[item] = 2
             return True
-            
-        for recipe in recipes:
-            if self.visited[recipe] == 2 or traverse_recipes(recipe):
-                output.append(recipe)
 
-        return output
+        result = []
+        for r in recipes:
+            if dfs(r):
+                result.append(r)
+
+        return result
