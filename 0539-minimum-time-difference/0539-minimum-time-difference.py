@@ -9,7 +9,6 @@ class Solution:
         minutes.sort()
         last_mins = minutes[-1] - (24 * 60)
 
-        print(last_mins)
         min_diff = float('inf')
 
         for m in minutes:
