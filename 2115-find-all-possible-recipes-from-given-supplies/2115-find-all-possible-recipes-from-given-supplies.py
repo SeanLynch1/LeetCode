@@ -38,7 +38,7 @@ class Solution:
             return True
             
         for recipe in recipes:
-            if traverse_recipes(recipe):
+            if self.visited[recipe] == 2 or traverse_recipes(recipe):
                 output.append(recipe)
 
         return output
