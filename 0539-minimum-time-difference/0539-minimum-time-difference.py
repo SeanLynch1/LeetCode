@@ -4,8 +4,6 @@ class Solution:
         timePoints = [[int(x) for x in _.split(":")] for _ in timePoints]
         timePoints.sort()
 
-        print(timePoints)
-
         last_hours = timePoints[-1][0]
         last_mins = timePoints[-1][1]
 
