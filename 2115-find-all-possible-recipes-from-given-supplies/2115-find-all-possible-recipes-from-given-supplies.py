@@ -2,13 +2,13 @@ class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
         
         output = []
-        self.mapping = defaultdict(list)
-        self.visited = defaultdict(int)
+        mapping = defaultdict(list)
+        visited = defaultdict(int)
         supplies = set(supplies)
 
         for i in range(len(recipes)):
             for ingredient in ingredients[i]:
-                self.mapping[recipes[i]].append(ingredient)
+                mapping[recipes[i]].append(ingredient)
 
             
         def traverse_recipes(item: str) -> bool:
@@ -16,31 +16,31 @@ class Solution:
             if item in supplies:
                 return True
 
-            if item not in self.mapping:
+            if item not in mapping:
                 return False
 
-            if self.visited[item] == 1:
+            if visited[item] == 1:
                 return False
 
-            if not self.mapping[item] or self.visited[item] == 2:
-                self.visited[item] = 2
+            if not mapping[item] or visited[item] == 2:
+                visited[item] = 2
                 return True
 
-            self.visited[item] = 1
+            visited[item] = 1
 
-            for ingredient in self.mapping[item]:
+            for ingredient in mapping[item]:
 
                 if traverse_recipes(ingredient):
-                    self.visited[ingredient] = 2
+                    visited[ingredient] = 2
                 else:
                     return False
 
-            self.visited[item] = 2
+            visited[item] = 2
 
             return True
             
         for recipe in recipes:
-            if self.visited[recipe] == 2 or traverse_recipes(recipe):
+            if visited[recipe] == 2 or traverse_recipes(recipe):
                 output.append(recipe)
 
         return output
