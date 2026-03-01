@@ -2,7 +2,6 @@ class Solution:
     def findMinDifference(self, timePoints: List[str]) -> int:
         
         timePoints = [[int(x) for x in _.split(":")] for _ in timePoints]
-
         timePoints.sort()
 
         last_hours = timePoints[0][0]
@@ -15,9 +14,7 @@ class Solution:
             hours = timePoints[i][0]
             mins = timePoints[i][1]
 
-            diff = ((hours - last_hours) * 60) - last_mins + mins
-
-            min_diff = min(min_diff, diff)
+            min_diff = min(min_diff, (hours - last_hours) * 60 - last_mins + mins)
 
             last_hours = hours
             last_mins = mins
