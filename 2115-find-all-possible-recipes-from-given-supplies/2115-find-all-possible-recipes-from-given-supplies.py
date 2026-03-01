@@ -10,14 +10,12 @@ class Solution:
             for ingredient in ingredients[i]:
                 self.mapping[recipes[i]].append(ingredient)
 
-        for key, value in self.mapping.items():
-            print(key, ": ", value)
             
         def traverse_recipes(item: str) -> bool:
             
             if item in supplies:
                 return True
-                
+
             if item not in self.mapping:
                 return False
 
