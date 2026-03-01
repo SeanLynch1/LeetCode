@@ -7,14 +7,13 @@ class Solution:
             minutes.append(h * 60 + m)
 
         minutes.sort()
-        last_mins = minutes[-1] - (24 * 60)
-
         min_diff = float('inf')
 
-        for m in minutes:
+        # Check adjacent differences
+        for i in range(1, len(minutes)):
+            min_diff = min(min_diff, minutes[i] - minutes[i - 1])
 
-            min_diff = min(min_diff, m - last_mins )
-
-            last_mins = m
+        # Wrap-around: last → first across midnight
+        min_diff = min(min_diff, 1440 - (minutes[-1] - minutes[0]))
 
         return min_diff
