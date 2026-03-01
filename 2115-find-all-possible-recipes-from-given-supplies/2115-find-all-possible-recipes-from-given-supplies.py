@@ -10,7 +10,6 @@ class Solution:
             for ingredient in ingredients[i]:
                 mapping[recipes[i]].append(ingredient)
 
-            
         def traverse_recipes(item: str) -> bool:
             
             if item in supplies:
