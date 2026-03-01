@@ -9,8 +9,6 @@ class Solution:
         last_mins = timePoints[0][1]
 
         min_diff = ((timePoints[0][0] + 24 - timePoints[-1][0]) * 60) - timePoints[-1][1] + timePoints[0][1]
-        print(min_diff)
-        print(timePoints)
 
         for i in range(1, len(timePoints)):
 
@@ -19,7 +17,6 @@ class Solution:
 
             diff = ((hours - last_hours) * 60) - last_mins + mins
 
-            print(i, diff)
             min_diff = min(min_diff, diff)
 
             last_hours = hours
