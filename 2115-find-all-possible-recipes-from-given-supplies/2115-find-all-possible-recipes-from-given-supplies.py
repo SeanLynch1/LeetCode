@@ -20,8 +20,7 @@ class Solution:
             if visited[item] == 1:
                 return False
 
-            if not mapping[item] or visited[item] == 2:
-                visited[item] = 2
+            if visited[item] == 2:
                 return True
 
             visited[item] = 1
