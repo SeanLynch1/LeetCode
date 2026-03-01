@@ -20,7 +20,7 @@ class Solution:
             if self.visited[item] == 1:
                 return False
 
-            if not self.mapping[item] or self.visited[item] == 2:
+            if not self.mapping[item]:
                 self.visited[item] = 2
                 return True
 
