@@ -6,9 +6,8 @@ class Solution:
         visited = defaultdict(int)
         supplies = set(supplies)
 
-        for i in range(len(recipes)):
-            for ingredient in ingredients[i]:
-                mapping[recipes[i]].append(ingredient)
+        for r, ing_list in zip(recipes, ingredients):
+            mapping[r] = ing_list
 
         def traverse_recipes(item: str) -> bool:
             
