@@ -27,9 +27,7 @@ class Solution:
 
             for ingredient in mapping[item]:
 
-                if traverse_recipes(ingredient):
-                    visited[ingredient] = 2
-                else:
+                if not traverse_recipes(ingredient):
                     return False
 
             visited[item] = 2
