@@ -16,9 +16,6 @@ class Solution:
                 self.visited[supply] = 0
 
         
-        for key, value in self.mapping.items():
-            print(key, ": ", value)
-        
         def traverse_recipes(item: str) -> bool:
             
             if item not in self.mapping:
