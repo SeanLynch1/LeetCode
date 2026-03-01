@@ -7,12 +7,10 @@ class Solution:
 
         for supply in supplies:
             self.mapping[supply] = []
-            self.visited[supply] = 0
         
         for i in range(len(recipes)):
             for ingredient in ingredients[i]:
                 self.mapping[recipes[i]].append(ingredient)
-                self.visited[supply] = 0
 
         def traverse_recipes(item: str) -> bool:
             
