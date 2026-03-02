@@ -5,9 +5,9 @@ class Solution:
             
         output = []
         total = 0
-        mid_point = finalSum // 2 + 2
+        mid_point = finalSum // 2 + 4
 
-        for i in range(2, mid_point + 2, 2):
+        for i in range(2, mid_point, 2):
             total += i
             if total > finalSum:
                 
