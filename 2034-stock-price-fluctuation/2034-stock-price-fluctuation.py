@@ -9,8 +9,6 @@ class StockPrice:
         self.max_timestamp = 0
 
     def update(self, timestamp: int, price: int) -> None:
-        if price == self.stocks[timestamp]:
-            return
 
         self.stocks[timestamp] = price
         self.max_timestamp = max(timestamp, self.max_timestamp)
