@@ -1,4 +1,5 @@
 import heapq
+from collections import defaultdict
 
 class StockPrice:
 
@@ -9,38 +10,32 @@ class StockPrice:
         self.max_timestamp = 0
 
     def update(self, timestamp: int, price: int) -> None:
-        if price == self.stocks[timestamp]:
-            return
-
+        
         self.stocks[timestamp] = price
-        self.max_timestamp = max(timestamp, self.max_timestamp)
+        self.max_timestamp = max(self.max_timestamp, timestamp)
 
-        # min prices
+        # push into both heaps
         heapq.heappush(self.min_prices, (price, timestamp))
-
-        # max prices
         heapq.heappush(self.max_prices, (-price, timestamp))
 
     def current(self) -> int:
         return self.stocks[self.max_timestamp]
 
     def maximum(self) -> int:
-        
-        max_val = -(self.max_prices[0][0])
 
-        while max_val != self.stocks[self.max_prices[0][1]]:
-
+        # lazy delete stale max entries
+        while True:
+            neg_price, ts = self.max_prices[0]
+            price = -neg_price
+            if self.stocks[ts] == price:
+                return price
             heapq.heappop(self.max_prices)
-            max_val = -(self.max_prices[0][0])
-        
-        return max_val
+
     def minimum(self) -> int:
-        
-        min_val = self.min_prices[0][0]
 
-        while min_val != self.stocks[self.min_prices[0][1]]:
-
+        # lazy delete stale min entries
+        while True:
+            price, ts = self.min_prices[0]
+            if self.stocks[ts] == price:
+                return price
             heapq.heappop(self.min_prices)
-            min_val = self.min_prices[0][0]
-        
-        return min_val
