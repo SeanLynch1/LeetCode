@@ -26,21 +26,13 @@ class Solution:
         self.curr = start
 
         s = self.curr
-        while s:
-            print(f"start = {s.start} , end = {s.end} ,idx = {s.idx}")
-            s = s.next
-
-        print("\n")
 
     def pickIndex(self) -> int:
-        print("")
         curr = self.curr
         random_no = random.randrange(1,self.sum + 1)
-        print(f"random_no = {random_no}")
         while curr:
             
             if curr.start <= random_no and curr.end >= random_no:
-                print(f"{curr.start} <= {random_no} and {curr.end} >= {random_no}")
                 return curr.idx
 
             curr = curr.next
