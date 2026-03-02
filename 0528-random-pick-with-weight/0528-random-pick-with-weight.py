@@ -15,10 +15,6 @@ class Solution:
 
         idx = bisect_right(self.prefixes, random_no)
         return idx - 1
-        
-
-
-
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(w)
