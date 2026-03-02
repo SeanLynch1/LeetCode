@@ -3,20 +3,15 @@ class Solution:
         if finalSum % 2 == 1:
             return []
             
-        output = []
-        total = 0
-        mid_point = finalSum // 2 + 4
+        ans = []
+        cur = 2
 
-        for i in range(2, mid_point, 2):
-            total += i
-            if total > finalSum:
-                
-                output[-1] += i - (total - finalSum)
-                return output
-            
-            output.append(i)
+        while finalSum >= cur:
+            ans.append(cur)
+            finalSum -= cur
+            cur += 2
 
-            if total == finalSum:
-                return output
+        # leftover always gets added to last
+        ans[-1] += finalSum
 
-        return output
+        return ans
