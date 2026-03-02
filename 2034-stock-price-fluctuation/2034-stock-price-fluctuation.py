@@ -30,7 +30,7 @@ class StockPrice:
 
         while max_val != self.stocks[self.max_prices[0][1]]:
 
-            heapq.heappop(self.max_prices)[0]
+            heapq.heappop(self.max_prices)
             max_val = abs(self.max_prices[0][0])
         
         return max_val
@@ -40,7 +40,7 @@ class StockPrice:
 
         while min_val != self.stocks[self.min_prices[0][1]]:
 
-            heapq.heappop(self.min_prices)[0]
+            heapq.heappop(self.min_prices)
             min_val = self.min_prices[0][0]
         
         return min_val
