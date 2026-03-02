@@ -1,41 +1,26 @@
-class Node:
-
-    def __init__(self, start, end, idx):
-        self.start = start
-        self.end = end
-        self.idx = idx
-        self.next = None
-
 class Solution:
 
     def __init__(self, w: List[int]):
-        self.curr = Node(1, w[0], 0)
-        start = self.curr
+        
+        self.prefixes = [0]
+        self.sum = 0
 
-        self.sum = w[0]
+        for val in w:
+            self.prefixes.append(self.sum + val)
+            self.sum += val
 
-        for i in range(1, len(w)):
-            interval = w[i]
-            s = self.sum + 1
-            e = self.sum + interval
-            self.sum += interval
-            
-            self.curr.next = Node(s, e, i)
-            self.curr = self.curr.next
-
-        self.curr = start
-
-        s = self.curr
+        print(self.prefixes)
+        print(self.sum)
 
     def pickIndex(self) -> int:
-        curr = self.curr
-        random_no = random.randrange(1,self.sum + 1)
-        while curr:
-            
-            if curr.start <= random_no and curr.end >= random_no:
-                return curr.idx
 
-            curr = curr.next
+        random_no = random.randrange(0, self.sum)
+
+        print(f"random_no = {random_no}")
+        idx = bisect_right(self.prefixes, random_no)
+        print(f"idx = {idx}")
+        return idx - 1
+        
 
 
 
