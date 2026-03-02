@@ -1,19 +1,20 @@
+import bisect
+
 class MyCalendar:
 
     def __init__(self):
-        self.calendar = []
+        self.events = []   # sorted by start
 
-    def book(self, startTime: int, endTime: int) -> bool:
+    def book(self, start: int, end: int) -> bool:
+        i = bisect.bisect_left(self.events, (start, end))
+
+        # Check previous
+        if i > 0 and self.events[i-1][1] > start:
+            return False
         
-        for s, e in self.calendar:
-            if max(startTime, s) < min(endTime, e):
-                return False
+        # Check next
+        if i < len(self.events) and self.events[i][0] < end:
+            return False
 
-        self.calendar.append([startTime, endTime])
-
+        self.events.insert(i, (start, end))
         return True
-
-
-# Your MyCalendar object will be instantiated and called as such:
-# obj = MyCalendar()
-# param_1 = obj.book(startTime,endTime)
