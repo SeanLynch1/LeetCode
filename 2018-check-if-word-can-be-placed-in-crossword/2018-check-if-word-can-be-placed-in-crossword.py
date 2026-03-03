@@ -5,12 +5,6 @@ class Solution:
         cols = len(board[0])
 
         word_len = len(word)
-        for r in range(rows):
-            print("|",end=" ")
-            for c in range(cols):
-                print(board[r][c], end = " | ")
-            print("")
-
         # check down each column
         for y in range(cols):
             found = 0
@@ -26,7 +20,6 @@ class Solution:
                     found = 0
                 elif board[x][y] != ' ' and board[x][y] != word[found]:
                     needs_reset = True
-
 
                 if not needs_reset:
                     if board[x][y] == ' ' or board[x][y] == word[found]:
@@ -73,27 +66,20 @@ class Solution:
             found = 0
             needs_reset = False
             for y in range(cols):
-                print(x,y)
                 if board[x][y] == "#":
                     needs_reset = False
                     if found != word_len:
-                        print(f"resetting found")
                         found = 0
                     else:
-                        print(f"found here!")
                         return True
                 elif found >= word_len:
                     found = 0
 
                 elif board[x][y] != ' ' and board[x][y] != word[found]:
-                    print(f"setting found")
-
                     needs_reset = True
                     
                 if not needs_reset:
-                    print("hi")
                     if board[x][y] == ' ' or board[x][y] == word[found]:
-                        print(word[found])
                         found += 1
                     else:
                         found = 0
@@ -132,8 +118,6 @@ class Solution:
                         needs_reset = True
                     
             if found == word_len:
-                print(f"found down here!")
-
                 return True
 
         return False
