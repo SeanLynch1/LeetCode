@@ -19,8 +19,7 @@ class Solution:
         def back_track(start:int, curr: list) -> None:
             
 
-            if len(curr) < k:
-                curr.append(start)
+            curr.append(start)
 
             if len(curr) == k:
                 output.append(curr)
