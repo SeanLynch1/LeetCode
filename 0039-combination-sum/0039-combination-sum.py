@@ -13,17 +13,16 @@ class Solution:
             if total > target:
                 return
 
-            curr = total
             for i in range(start, len(candidates)):
 
-                if curr + candidates[i] <= target:
-                    curr += candidates[i]
+                if total + candidates[i] <= target:
+                    total += candidates[i]
                     path.append(candidates[i])
 
-                    back_track(path, curr, i)
+                    back_track(path, total, i)
 
                     path.pop()
-                    curr -= candidates[i]
+                    total -= candidates[i]
                     
         back_track([],0, 0)
 
