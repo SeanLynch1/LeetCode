@@ -10,9 +10,6 @@ class Solution:
                 output.append(path.copy())
                 return
             
-            if total > target:
-                return
-
             for i in range(start, len(candidates)):
 
                 if total + candidates[i] <= target:
