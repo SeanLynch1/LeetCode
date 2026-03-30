@@ -18,16 +18,16 @@ class Solution:
                     for c in range(col, len(markings[i])):
                         markings[i][c] += 1
                     
-                    r = i
-                    c = col
+                    r = i + 1
+                    c = col + 1
 
                     while (r >= 0 and c >= 0) and (r < n and c < n):
                         markings[r][c] += 1
                         r += 1
                         c += 1
 
-                    r = i
-                    c = col
+                    r = i - 1
+                    c = col + 1
 
                     while (r >= 0 and c >= 0) and (r < n and c < n):
                         markings[r][c] += 1
@@ -40,16 +40,16 @@ class Solution:
                     for c in range(col, len(markings[i])):
                         markings[i][c] -= 1
 
-                    r = i
-                    c = col
+                    r = i + 1
+                    c = col + 1
 
                     while (r >= 0 and c >= 0) and (r < n and c < n):
                         markings[r][c] -= 1
                         r += 1
                         c += 1
 
-                    r = i
-                    c = col
+                    r = i - 1
+                    c = col + 1
 
                     while (r >= 0 and c >= 0) and (r < n and c < n):
                         markings[r][c] -= 1
