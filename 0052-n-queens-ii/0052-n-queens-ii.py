@@ -1,18 +1,61 @@
 class Solution:
     def totalNQueens(self, n: int) -> int:
-        if n == 1:
-            return 1
-        if n == 2 or n == 3:
-            return 0
-        if n == 4:
-            return 2
-        if n == 5:
-            return 10
-        if n == 6:
-            return 4
-        if n == 7:
-            return 40
-        if n == 8:
-            return 92
-        if n == 9:
-            return 352
+        
+        self.output = 0
+        markings = [[0 for _ in range(n)] for _ in range(n)]
+
+        def back_track(col) -> None:
+
+            if col == n:
+                self.output += 1
+                # reset the column
+                return
+
+            for i in range(n):
+                
+                if markings[i][col] == 0:
+                    # update the row
+                    for c in range(col, len(markings[i])):
+                        markings[i][c] += 1
+                    
+                    r = i
+                    c = col
+
+                    while (r >= 0 and c >= 0) and (r < n and c < n):
+                        markings[r][c] += 1
+                        r += 1
+                        c += 1
+
+                    r = i
+                    c = col
+
+                    while (r >= 0 and c >= 0) and (r < n and c < n):
+                        markings[r][c] += 1
+                        r -= 1
+                        c += 1
+                    
+                    back_track(col + 1)
+
+                    # update the row
+                    for c in range(col, len(markings[i])):
+                        markings[i][c] -= 1
+
+                    r = i
+                    c = col
+
+                    while (r >= 0 and c >= 0) and (r < n and c < n):
+                        markings[r][c] -= 1
+                        r += 1
+                        c += 1
+
+                    r = i
+                    c = col
+
+                    while (r >= 0 and c >= 0) and (r < n and c < n):
+                        markings[r][c] -= 1
+                        r -= 1
+                        c += 1
+
+        back_track(0)
+
+        return self.output
