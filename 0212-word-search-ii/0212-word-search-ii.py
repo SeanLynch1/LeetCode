@@ -21,22 +21,21 @@ class Solution:
             if x < 0 or y < 0 or x == rows or y == cols:
                 return
 
-            if board[x][y] == '#':
+            if board[x][y] == "#":
                 return
 
             if board[x][y] not in curr:
                 return
                 
             temp = board[x][y]
-            curr = curr[temp]
+            curr = curr[board[x][y]]
 
             if '$' in curr:
                 output.append(curr['$'])
                 del curr['$']
-            
-            # mark as visited
-            board[x][y] = '!'
 
+            board[x][y] = '#'
+            
             dirs = [(0,1),(1,0),(0,-1),(-1,0)]
 
             for h, v in dirs:
