@@ -1,35 +1,26 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         
-        self.opn = n
-        self.closed = n
         self.output = []
 
-        def back_track(path: List) -> None:
+        def back_track(path: List, opn, closed) -> None:
             
-            if self.opn == 0 and self.closed == 0:
+            if opn == 0 and closed == 0:
                 print(path)
                 self.output.append("".join(path.copy()))
                 return
 
-            if self.opn > 0:
+            if opn > 0:
                 path.append("(")
-                self.opn -= 1
-                back_track(path)
+                back_track(path, opn - 1, closed)
                 path.pop()
-                self.opn += 1
 
-            if self.closed > self.opn:
+            if closed > opn:
                 path.append(")")
-                self.closed -= 1
-                back_track(path)
+                back_track(path, opn, closed - 1)
                 path.pop()
 
-                self.closed += 1
 
-            return
-
-
-        back_track([])
+        back_track([],n,n)
 
         return self.output
