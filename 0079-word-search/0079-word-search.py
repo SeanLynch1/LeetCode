@@ -15,10 +15,10 @@ class Solution:
             if board[x][y] != word[idx]:
                 return False
             
-            if (x, y) in self.visited:
+            if (x, y) in visited:
                 return False
 
-            self.visited.add((x,y))
+            visited.add((x,y))
 
             # right
             if search(x, y + 1, idx + 1):
@@ -36,11 +36,11 @@ class Solution:
             if search(x - 1, y, idx + 1):
                 return True
 
-            self.visited.remove((x,y))
+            visited.remove((x,y))
 
         for r in range(rows):
             for c in range(cols):
-                self.visited = set()
+                visited = set()
                 if search(r, c, 0):
                     return True
         
