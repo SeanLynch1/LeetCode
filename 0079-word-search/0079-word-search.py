@@ -3,8 +3,8 @@ class Solution:
         
         self.output = False
 
-        self.rows = len(board)
-        self.cols = len(board[0])
+        rows = len(board)
+        cols = len(board[0])
 
         def search(x, y, idx, visited):
             
@@ -12,7 +12,7 @@ class Solution:
                 self.output = True
                 return
 
-            if x < 0 or y < 0 or x >= self.rows or y >= self.cols:
+            if x < 0 or y < 0 or x >= rows or y >= cols:
                 return
 
             if board[x][y] != word[idx]:
@@ -38,8 +38,8 @@ class Solution:
             visited.remove((x,y))
 
 
-        for r in range(self.rows):
-            for c in range(self.cols):
+        for r in range(rows):
+            for c in range(cols):
                 search(r, c, 0, set())
                 
                 if self.output:
