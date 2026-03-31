@@ -35,7 +35,7 @@ class Solution:
                 del curr['$']
             
             # mark as visited
-            board[x][y] = '#'
+            board[x][y] = '!'
 
             dirs = [(0,1),(1,0),(0,-1),(-1,0)]
 
