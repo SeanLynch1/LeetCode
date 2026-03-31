@@ -4,7 +4,7 @@ class Solution:
         rows = len(board)
         cols = len(board[0])
 
-        def search(x, y, idx) -> bool:
+        def search(x, y, idx,visited) -> bool:
             
             if idx == len(word):
                 return True
@@ -21,27 +21,26 @@ class Solution:
             visited.add((x,y))
 
             # right
-            if search(x, y + 1, idx + 1):
+            if search(x, y + 1, idx + 1,visited):
                 return True
 
             # down
-            if search(x + 1, y, idx + 1):
+            if search(x + 1, y, idx + 1,visited):
                 return True
 
             # left
-            if search(x, y - 1, idx + 1):
+            if search(x, y - 1, idx + 1,visited):
                 return True
 
             # up
-            if search(x - 1, y, idx + 1):
+            if search(x - 1, y, idx + 1, visited):
                 return True
 
             visited.remove((x,y))
 
         for r in range(rows):
             for c in range(cols):
-                visited = set()
-                if search(r, c, 0):
+                if search(r, c, 0, set()):
                     return True
         
         return False
