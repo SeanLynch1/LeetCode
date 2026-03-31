@@ -12,7 +12,6 @@ class Solution:
                 l = word[i]
                 if l not in curr:
                     curr[l] = {}
-
                 curr = curr[l]
             curr['$'] = word
 
@@ -32,7 +31,7 @@ class Solution:
 
             if '$' in curr:
                 output.append(curr['$'])
-                del curr['$']
+                curr.pop('$')
 
             board[x][y] = '#'
             
