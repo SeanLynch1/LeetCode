@@ -19,22 +19,12 @@ class Solution:
                 return False
 
             visited.add((x,y))
-
-            # right
-            if search(x, y + 1, idx + 1,visited):
-                return True
-
-            # down
-            if search(x + 1, y, idx + 1,visited):
-                return True
-
-            # left
-            if search(x, y - 1, idx + 1,visited):
-                return True
-
-            # up
-            if search(x - 1, y, idx + 1, visited):
-                return True
+            
+            # check all directions
+            directions = [(0,1),(1,0),(0,-1),(-1,0)]
+            for l,r in directions:
+                if search(x + l, y + r, idx + 1,visited):
+                    return True
 
             visited.remove((x,y))
 
