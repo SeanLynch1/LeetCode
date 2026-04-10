@@ -3,6 +3,8 @@ class Solution:
         
         nums.sort()
         self.output = []
+        used = [False for _ in range(len(nums))]
+        print(used)
 
         def back_track(path: List) -> None:
 
@@ -11,24 +13,25 @@ class Solution:
                 return
 
             i = 0
-            while i < len(nums):
-                if nums[i] != '#':
+            for i in range(len(nums)):
+
+                if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+                    continue
+
+                if not used[i]:
                     last = nums[i]
 
                     path.append(nums[i])
 
-                    original = nums[i]
-                    nums[i] = '#'
+                    used[i] = True
                     
                     back_track(path)
                     
-                    nums[i] = original
-                    path.pop()
-                
-                i += 1
 
-                while i < len(nums) and nums[i] == nums[i - 1]:
-                    i += 1
+                    path.pop()
+                    used[i] = False
+                
+                
 
             return
 
