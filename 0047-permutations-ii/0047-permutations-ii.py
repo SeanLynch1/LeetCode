@@ -2,9 +2,7 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
         nums.sort()
-        print(nums)
         self.output = []
-        last = nums[0]
 
         def back_track(path: List) -> None:
 
@@ -28,7 +26,7 @@ class Solution:
                     path.pop()
                 
                 i += 1
-                
+
                 while i < len(nums) and nums[i] == nums[i - 1]:
                     i += 1
 
