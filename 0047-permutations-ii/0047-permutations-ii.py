@@ -4,7 +4,6 @@ class Solution:
         nums.sort()
         self.output = []
         used = [False for _ in range(len(nums))]
-        print(used)
 
         def back_track(path: List) -> None:
 
@@ -31,11 +30,7 @@ class Solution:
                     path.pop()
                     used[i] = False
                 
-                
-
             return
-
-
 
         back_track([])
 
