@@ -1,9 +1,8 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
-        nums.sort()
         self.output = []
-        used = [False for _ in range(len(nums))]
+        counter = Counter(nums)
 
         def back_track(path: List) -> None:
 
@@ -11,23 +10,18 @@ class Solution:
                 self.output.append(path.copy())
                 return
 
-            for i in range(len(nums)):
+            for num in counter:
 
-                if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+                if counter[num] == 0:
                     continue
 
-                if not used[i]:
-                    last = nums[i]
+                counter[num] -= 1
+                path.append(num)
 
-                    path.append(nums[i])
+                back_track(path)
 
-                    used[i] = True
-                    
-                    back_track(path)
-                    
-
-                    path.pop()
-                    used[i] = False
+                counter[num] += 1
+                path.pop()
                 
             return
 
