@@ -21,6 +21,12 @@ class Solution:
             if len(path) > 4:
                 return
 
+            remaining_chars = len(s) - start
+            remaining_slots = 4 - len(path)
+
+            if remaining_chars < remaining_slots or remaining_chars > remaining_slots * 3:
+                return
+
             for i in range(start, min(len(s), start + 3)):
                 curr = s[start:i + 1]
                 if validate(curr):
