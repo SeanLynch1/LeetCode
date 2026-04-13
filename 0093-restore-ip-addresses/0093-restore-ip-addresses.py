@@ -7,12 +7,10 @@ class Solution:
 
             # rule 2: >= 0 AND <= 255
 
-            num = int(val)
-
             if len(val) > 1 and val[0] == "0":
                 return False
 
-            if not (num >= 0 and num <= 255):
+            if int(val) > 255:
                 return False
 
             return True
