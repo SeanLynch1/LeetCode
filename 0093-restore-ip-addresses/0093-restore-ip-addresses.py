@@ -7,15 +7,10 @@ class Solution:
 
             # rule 2: >= 0 AND <= 255
 
-            if len(val) > 1 and val[0] == "0":
-                return False
-
-            if int(val) > 255:
+            if len(val) > 1 and val[0] == "0" or int(val) > 255:
                 return False
 
             return True
-
-
 
         def dfs(path: List, start: int) -> None:
             
