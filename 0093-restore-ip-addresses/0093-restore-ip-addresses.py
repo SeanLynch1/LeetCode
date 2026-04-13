@@ -18,10 +18,9 @@ class Solution:
                 res.append(".".join(path.copy()))
                 return
 
-            for i in range(start, min(len(s), start + 3)):
+            for i in range(start, len(s)):
                 curr = s[start:i + 1]
                 if validate(curr):
-
                     path.append(curr)
                     dfs(path, i + 1)
                     path.pop()
