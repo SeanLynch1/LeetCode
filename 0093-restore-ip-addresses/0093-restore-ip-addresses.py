@@ -15,7 +15,7 @@ class Solution:
         def dfs(path: List, start: int) -> None:
             
             if len(path) == 4 and start == len(s):
-                res.append(".".join(path.copy()))
+                res.append(".".join(path))
                 return
 
             if len(path) > 4:
