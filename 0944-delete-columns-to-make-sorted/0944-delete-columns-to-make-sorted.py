@@ -4,11 +4,6 @@ class Solution:
         rows = len(strs)
         cols = len(strs[0])
         total = 0
-        grid = [[] for _ in strs]
-
-        for i in range(len(strs)):
-            for j in range(len(strs[i])):
-                grid[i].append(strs[i][j])
 
         for c in range(cols):
             # search down the col
@@ -27,6 +22,5 @@ class Solution:
 
             if not outcome:
                 total += 1
-
 
         return total
