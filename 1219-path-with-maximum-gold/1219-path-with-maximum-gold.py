@@ -12,7 +12,7 @@ class Solution:
             if (row, col) in visited:
                 return 0
 
-            if (row == rows or row < 0) or (col == cols or col < 0):
+            if row < 0 or row >= rows or col < 0 or col >= cols:
                 return 0
 
             if grid[row][col] == 0:
