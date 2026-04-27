@@ -1,41 +1,20 @@
 class Solution:
     def getMaximumGold(self, grid: List[List[int]]) -> int:
         
-        rows = len(grid)
-        cols = len(grid[0])
-        visited = set()
+        rows, cols = len(grid), len(grid[0])
 
-        gold = 0
-
-        def dfs(row: int, col: int) -> int:
-            
-            if (row, col) in visited:
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == 0:
                 return 0
 
-            if row < 0 or row >= rows or col < 0 or col >= cols:
-                return 0
+            val = grid[r][c]
+            grid[r][c] = 0  # mark visited
 
-            if grid[row][col] == 0:
-                return 0
-
-            visited.add((row, col))
-
-            val = grid[row][col]
             best = 0
+            for dr, dc in [(0,1),(1,0),(-1,0),(0,-1)]:
+                best = max(best, dfs(r + dr, c + dc))
 
-            dir = ((0,1),(1,0), (-1,0), (0,-1))
-            
-            for r, c in dir:
-                best = max(dfs(row + r, col + c), best)
-            
-            val += best
-            visited.remove((row, col))
-            
-            return val
+            grid[r][c] = val  # backtrack
+            return val + best
 
-        for r in range(rows):
-            for c in range(cols):
-                # start points
-                gold = max(gold, dfs(r, c))
-
-        return gold
+        return max(dfs(r, c) for r in range(rows) for c in range(cols))
