@@ -2,6 +2,7 @@ class Solution:
     def minDeletionSize(self, strs: List[str]) -> int:
         
         rows = len(strs)
+        cols = len(strs[0])
         total = 0
         grid = [[] for _ in strs]
 
@@ -9,21 +10,23 @@ class Solution:
             for j in range(len(strs[i])):
                 grid[i].append(strs[i][j])
 
-        def dfs(row: int, col: int, last: str) -> bool:
-            if row >= rows:
-                return True
-
-            if grid[row][col] < last:
-                return False
-
-            if dfs(row + 1, col, grid[row][col]):
-                return True
-            
-            return False
-
-        for i in range(len(strs[0])):
+        for c in range(cols):
             # search down the col
-            if not dfs(1, i, strs[0][i]):
+            last = strs[0][c]
+            outcome = True
+
+            for r in range(1, rows):    
+
+                curr = strs[r][c]
+
+                if curr < last:
+                    outcome = False
+                    break
+                
+                last = curr
+
+            if not outcome:
                 total += 1
+
 
         return total
