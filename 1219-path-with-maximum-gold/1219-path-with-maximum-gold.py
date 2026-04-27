@@ -37,6 +37,5 @@ class Solution:
             for c in range(cols):
                 # start points
                 gold = max(gold, dfs(r, c))
-                visited = set()
 
         return gold
