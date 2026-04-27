@@ -6,7 +6,6 @@
 #         self.right = right
 class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
-        
 
         def dfs(start: int, end: int) -> List[Optional[TreeNode]]:
 
@@ -29,5 +28,5 @@ class Solution:
                         trees.append(root)
 
             return trees
-            
+
         return dfs(1, n)
