@@ -29,4 +29,5 @@ class Solution:
                         trees.append(root)
 
             return trees
+            
         return dfs(1, n)
