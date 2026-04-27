@@ -8,19 +8,19 @@ class Solution:
         for c in range(cols):
             # search down the col
             last = strs[0][c]
-            outcome = True
+            outcome = False
 
             for r in range(1, rows):    
 
                 curr = strs[r][c]
 
                 if curr < last:
-                    outcome = False
+                    outcome = True
                     break
                 
                 last = curr
 
-            if not outcome:
+            if outcome:
                 total += 1
 
         return total
