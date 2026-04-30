@@ -11,9 +11,10 @@ class Solution:
         for r in range(9):
             for c in range(9):
                 if board[r][c] != ".":
-                    row_sets[r].add(board[r][c])
-                    col_sets[c].add(board[r][c])
-                    box_sets[(r // 3) * 3 + (c // 3)].add(board[r][c])
+                    val = board[r][c]
+                    row_sets[r].add(val)
+                    col_sets[c].add(val)
+                    box_sets[(r // 3) * 3 + (c // 3)].add(val)
         
         def dfs(r, c) -> bool:
             if r == 9:
