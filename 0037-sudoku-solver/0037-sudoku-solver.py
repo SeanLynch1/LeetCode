@@ -3,32 +3,18 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        rows = len(board)
-        cols = len(board[0])
-
         row_sets = [set() for _ in range(9)]
         col_sets = [set() for _ in range(9)]
         box_sets = [set() for _ in range(9)]
 
-        for r in range(rows):
-            print(board[r])   
-
         # begin by initializing sets
-        for r in range(rows):
-            for c in range(cols):
+        for r in range(9):
+            for c in range(9):
                 if board[r][c] != ".":
                     row_sets[r].add(board[r][c])
                     col_sets[c].add(board[r][c])
-
                     box_sets[(r // 3) * 3 + (c // 3)].add(board[r][c])
         
-        for r in range(len(row_sets)):
-            print(f"row {r}: {row_sets[r]}")
-
-        for c in range(len(col_sets)):
-            print(f"col {c}: {col_sets[c]}")
-
-
         def dfs(r, c) -> bool:
             
             if r == 9:
@@ -63,9 +49,6 @@ class Solution:
             return False
 
         dfs(0,0)
-
-        for r in range(rows):
-            print(board[r]) 
 
 
                 
