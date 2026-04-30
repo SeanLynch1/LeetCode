@@ -16,7 +16,6 @@ class Solution:
                     box_sets[(r // 3) * 3 + (c // 3)].add(board[r][c])
         
         def dfs(r, c) -> bool:
-            
             if r == 9:
                 return True
 
