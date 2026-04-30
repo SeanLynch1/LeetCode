@@ -23,9 +23,7 @@ class Solution:
             if c == 9:
                 return dfs(r + 1, 0)
             
-            val = board[r][c]
-
-            if val == ".":
+            if board[r][c] == ".":
                 for i in range(1, 10):
                     s = str(i)  
                     curr_box = (r // 3) * 3 + (c // 3)
