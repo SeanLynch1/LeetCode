@@ -12,7 +12,6 @@ class Solution:
         def dfs(root: TreeNode, currSum: int) -> List[List[int]]:
             if not root:
                 return []
-            print(f"root val = {root.val}, currSum = {currSum}")
 
             if not root.left and not root.right:
                 if currSum + root.val == n:
@@ -22,8 +21,6 @@ class Solution:
                 
 
             paths = []
-            print(f"currSum + root.val = {currSum + root.val}")
-            print("")
             # left  
             left_output = dfs(root.left, currSum + root.val)
 
@@ -31,23 +28,15 @@ class Solution:
             right_output = dfs(root.right, currSum + root.val)
 
             for arr in left_output:
-                print(f"left arr = {arr}")
-                print(f"root val = {root.val}")
                 curr = [root.val]
                 curr.extend(arr)
                 paths.append(curr)
-                print("")
 
             for arr in right_output:
-                print(f"right arr = {arr}")
-                print(f"root val = {root.val}")
                 curr = [root.val]
                 curr.extend(arr)
                 paths.append(curr)
-                print("")
-
-            print(f"paths = {paths}")
-            print("")
+                
             return paths
 
         return dfs(root, 0)
