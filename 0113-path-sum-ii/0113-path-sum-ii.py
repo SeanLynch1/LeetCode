@@ -19,7 +19,6 @@ class Solution:
                 if (n < 0 and currSum < n) or (n > 0 and currSum > n):
                     return []
                 
-
             paths = []
             # left  
             left_output = dfs(root.left, currSum + root.val)
@@ -36,7 +35,7 @@ class Solution:
                 curr = [root.val]
                 curr.extend(arr)
                 paths.append(curr)
-                
+
             return paths
 
         return dfs(root, 0)
