@@ -9,7 +9,7 @@ class Solution:
         
         res = []
 
-        def dfs(node: TreeNode, path: []) -> None:
+        def dfs(node: TreeNode, path: List[str]) -> None:
             path.append(str(node.val))
 
             if not node.left and not node.right:
@@ -27,7 +27,6 @@ class Solution:
 
             path.pop()
 
-            return
 
         dfs(root, [])
         return res
