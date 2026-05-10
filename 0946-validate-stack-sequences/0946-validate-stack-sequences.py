@@ -7,7 +7,6 @@ class Solution:
         right = 0
 
         while left < n:
-                
             while left < n and pushed[left] != popped[right]:
                 stack.append(pushed[left])
                 left += 1
