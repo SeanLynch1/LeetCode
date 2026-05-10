@@ -9,11 +9,13 @@ class Solution:
 
         while left < n:
                 
-            while pushed[left] != popped[right]:
+            while left < n and pushed[left] != popped[right]:
                 print(f"left = {pushed[left]}, right = {popped[right]}")
                 stack.append(pushed[left])
                 left += 1
 
+            if left >= n:
+                break
             print(f"stack = {stack}")
 
             stack.append(pushed[left])
@@ -27,8 +29,8 @@ class Solution:
             left += 1
             if left < n and right < n:
                 print(f"left = {pushed[left]}, right = {popped[right]}")
-            else:
-                print(f"left idx = {left}, right idx = {right}")
+            
+            print(f"left idx = {left}, right idx = {right}")
 
             print("")
 
