@@ -28,25 +28,26 @@ class Solution:
             cols[y].append((x,y))
 
         visited = set()
-        self.total = 0
-        def dfs(x, y, moves):
+        def dfs(x, y):
             
             if (x,y) in visited:
-                self.total += 1
                 return
 
             visited.add((x, y))
             # check rows
             for r, c in rows[x]:
                 if (r, c) not in visited:
-                    dfs(r, c, moves + 1)
+                    dfs(r, c)
 
             # check cols
             for r, c in cols[y]:
                 if (r, c) not in visited:
-                    dfs(r, c, moves + 1)
+                    dfs(r, c)
 
+        output = 0
         for x, y in stones:
-            dfs(x, y,0)
+            if (x,y) not in visited:
+                dfs(x, y)
+                output += 1
 
-        return self.total
+        return len(stones) - output
