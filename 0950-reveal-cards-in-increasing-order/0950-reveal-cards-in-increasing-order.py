@@ -19,8 +19,7 @@ class Solution:
 
         for val in deck:
             
-            size = len(output)
-            for i in range(size - 1):
+            for i in range(len(output) - 1):
                 num = output.popleft()
                 output.append(num)
             
