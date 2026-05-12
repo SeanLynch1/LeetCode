@@ -16,8 +16,8 @@ class Solution:
         output = deque([])
 
         for val in deck:
-            for i in range(len(output) - 1):
-                output.append(output.popleft())
+            if output:
+                output.appendleft(output.pop())
             
             output.appendleft(val)
 
