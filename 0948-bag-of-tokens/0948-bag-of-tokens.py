@@ -18,7 +18,6 @@ class Solution:
         max_score = 0
         score = 0
         tokens.sort()
-        print(tokens)
 
         left = 0
         right = len(tokens) - 1
@@ -26,27 +25,17 @@ class Solution:
         while left <= right:
             
             cost = tokens[left]
-            print(f"token = {cost}")
 
             if power >= cost:
-                print(f"power: {power} >= {cost}")
                 power -= cost
                 left += 1
                 score += 1
                 max_score = max(score, max_score)
-                print(f"power = {power}")
-                print(f"score = {score}")
             elif score >= 1:
-                print(f"power: {power} < {cost}")
-
                 power += tokens[right]
                 right -= 1
                 score -= 1
-                print(f"power = {power}")
-                print(f"score = {score}")
             else:
                 break
-
-            print("")
 
         return max_score
