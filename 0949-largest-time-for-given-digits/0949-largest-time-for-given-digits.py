@@ -17,7 +17,6 @@ class Solution:
         def dfs(idx:int) -> None:
             
             if idx == 4:
-                print(f"new time found: {self.time}")
                 if self.time > self.best_time:
                     self.best_time = self.time
 
@@ -39,8 +38,6 @@ class Solution:
                     if idx == 0:
                         if original_num <= 2:
                             self.time = original_num
-                            print(f"idx = {idx}, time = {self.time}")
-
                             arr[i] = "#"
                             dfs(idx + 1)
 
@@ -48,16 +45,12 @@ class Solution:
                         if self.time < 2:
                             self.time *= 10
                             self.time += original_num
-                            print(f"idx = {idx}, time = {self.time}")
-
                             arr[i] = "#"
                             dfs(idx + 1)
                         elif self.time == 2:
                             if original_num >= 0 and original_num <= 3:
                                 self.time *= 10
                                 self.time += original_num
-                                print(f"idx = {idx}, time = {self.time}")
-
                                 arr[i] = "#"
                                 dfs(idx + 1)
 
@@ -65,25 +58,17 @@ class Solution:
                         if original_num >= 0 and original_num <= 5:
                             self.time *= 10
                             self.time += original_num
-                            print(f"idx = {idx}, time = {self.time}")
-
                             arr[i] = "#"
                             dfs(idx + 1)
                     elif idx == 3:
                         self.time *= 10
                         self.time += original_num
-                        print(f"idx = {idx}, time = {self.time}")
-
                         arr[i] = "#"
                         dfs(idx + 1)
 
                     # reset
-                    print("")
                     arr[i] = original_num
                     self.time = original_time
 
         dfs(0)
-        
-
         return self.res
-        
