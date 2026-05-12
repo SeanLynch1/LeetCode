@@ -30,8 +30,6 @@ class Solution:
         visited = set()
         def dfs(x, y):
             
-            if (x,y) in visited:
-                return
 
             visited.add((x, y))
             # check rows
