@@ -1,7 +1,5 @@
 class Solution:
     def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
-        
-
         #[2,3,5,7,11,13,17,19]
         
         #[]   -> [2,11,3,17,5,13,7,19]
