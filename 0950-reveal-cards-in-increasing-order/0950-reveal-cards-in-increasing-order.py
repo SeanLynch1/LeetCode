@@ -18,10 +18,8 @@ class Solution:
         output = deque([])
 
         for val in deck:
-            
             for i in range(len(output) - 1):
-                num = output.popleft()
-                output.append(num)
+                output.append(output.popleft())
             
             output.appendleft(val)
 
