@@ -1,39 +1,69 @@
-from collections import defaultdict
-
 class Solution:
-    def removeStones(self, stones):
-        n = len(stones)
+    def removeStones(self, stones: List[List[int]]) -> int:
+        # (0,0),(0,1),
+        # (1,0),
+        #      ,(2,1),(2,2)
 
-        row_map = defaultdict(list)
-        col_map = defaultdict(list)
+        # (0,0) : (1,0)
+        # (1,0) : (0,0)
+        # (2,1) : (2,2)
+        # (2,2) : (2,1)
 
-        # build mappings
-        for i, (r, c) in enumerate(stones):
-            row_map[r].append(i)
-            col_map[c].append(i)
+        # rows:
+        # 0 : (0,0), (0,1)
+        # 1 : (1,0)
+        # 2 : (2,1), (2,2)
+
+        # cols:
+        # 0: (0,0), (1,0)
+        # 1: (0,1), (2,1)
+        # 2: (2,2)
+
+        rows = defaultdict(list)
+        cols = defaultdict(list)
+        output = 0
+
+        # set up rows and cols
+        for x, y in stones:
+            rows[x].append((x,y))
+            cols[y].append((x,y))
+
+        print(f"row map:")
+        for key, val in rows.items():
+            print(f"{key} : {val}")
+
+        print("")
+        print(f"col map:")
+        for key, val in cols.items():
+            print(f"{key} : {val}")
 
         visited = set()
+        self.total = 0
+        def dfs(x, y, moves):
+            
+            if (x,y) in visited:
+                self.total += 1
+                return moves
 
-        def dfs(i):
-            visited.add(i)
-            r, c = stones[i]
+            visited.add((x, y))
+            # check rows
+            for r, c in rows[x]:
+                if (r, c) not in visited:
+                    print(f"checking rows, r = {r}, c = {c} ")
+                    moves += dfs(r, c, moves + 1)
 
-            # visit all stones in same row
-            for nei in row_map[r]:
-                if nei not in visited:
-                    dfs(nei)
+            # check cols
+            for r, c in cols[y]:
+                if (r, c) not in visited:
+                    print(f"checking cols, r = {r}, c = {c} ")
+                    moves += dfs(r, c, moves + 1)
 
-            # visit all stones in same column
-            for nei in col_map[c]:
-                if nei not in visited:
-                    dfs(nei)
+            return moves
 
-        components = 0
+        for x, y in stones:
+            moves = dfs(x, y,0)
+            print(f"moves found = {moves}")
+            output += moves - 1
 
-        # count connected components
-        for i in range(n):
-            if i not in visited:
-                dfs(i)
-                components += 1
-
-        return n - components
+        print(self.total)
+        return self.total
