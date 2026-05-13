@@ -1,57 +1,46 @@
-from collections import defaultdict, deque
-from math import sqrt
-
 class Solution:
-    def largestComponentSize(self, nums):
-        # Map: prime factor -> list of numbers
-        factor_map = defaultdict(list)
-
-        def get_factors(x):
-            factors = set()
-            d = 2
-            while d * d <= x:
-                if x % d == 0:
-                    factors.add(d)
-                    while x % d == 0:
-                        x //= d
-                d += 1
-            if x > 1:
-                factors.add(x)
-            return factors
-
-        # Build factor graph
-        num_to_factors = {}
+    def largestComponentSize(self, nums: List[int]) -> int:
+        
+        num_set = set(nums)
+        trie = defaultdict(set)
+        
         for num in nums:
-            f = get_factors(num)
-            num_to_factors[num] = f
-            for fac in f:
-                factor_map[fac].append(num)
+            sqr_root = int(num ** 0.5)
+
+            for i in range(2, sqr_root + 1):
+                if num % i == 0:
+                    val = int(num/i)
+
+                    trie[num].add(i)
+                    trie[num].add(val)
+                    
+                    trie[val].add(num)
+                    trie[i].add(num)
+
+        for key, val in trie.items():
+            print(key, val)
 
         visited = set()
+        self.temp_size = 0
+        size = 0
 
-        def bfs(start):
-            q = deque([start])
-            visited.add(start)
-            size = 0
+        def dfs(val: int) -> None:
 
-            while q:
-                node = q.popleft()
-                size += 1
+            if val in visited:
+                return
+            
+            visited.add(val)
+            if val in num_set:
+                self.temp_size += 1
 
-                for fac in num_to_factors[node]:
-                    for nei in factor_map[fac]:
-                        if nei not in visited:
-                            visited.add(nei)
-                            q.append(nei)
+            for item in trie[val]:
+                dfs(item)
 
-                    # optional optimization: clear to avoid re-processing
-                    factor_map[fac] = []
+        for n in nums:
+            self.temp_size = 0
 
-            return size
+            if n not in visited:
+                dfs(n)
+                size = max(size, self.temp_size)
 
-        best = 0
-        for num in nums:
-            if num not in visited:
-                best = max(best, bfs(num))
-
-        return best
+        return size
