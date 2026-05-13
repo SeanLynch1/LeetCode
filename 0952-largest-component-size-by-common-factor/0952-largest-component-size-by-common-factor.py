@@ -1,7 +1,5 @@
 class Solution:
     def largestComponentSize(self, nums: List[int]) -> int:
-        
-        links = 0
         num_set = set(nums)
         trie = defaultdict(set)
         
@@ -17,10 +15,6 @@ class Solution:
                     
                     trie[val].add(num)
                     trie[i].add(num)
-
-        
-        for key, val in trie.items():
-            print(key, val)
 
         visited = set()
         self.temp_size = 0
