@@ -6,18 +6,17 @@ class Solution:
         for i in range(len(order)):
             alphabet[order[i]] = i
 
-        print(alphabet)
-
-
         for i in range(1, len(words)):
             
             left = words[i - 1]
             curr = words[i]
 
             idx = 0
-            print(f"left = {left}, curr = {curr}")
+
+            if curr == left[:len(curr)] and len(left) > len(curr):
+                return False
+
             while idx < len(left) and idx < len(curr):
-                print(f"idx = {idx}")
                 left_letter = left[idx]
                 curr_letter = curr[idx]
 
@@ -27,8 +26,7 @@ class Solution:
                     break
                 idx += 1
             
-            if curr == left[:len(curr)] and len(left) > len(curr):
-                return False
+            
 
 
         return True
