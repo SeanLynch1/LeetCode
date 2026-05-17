@@ -21,7 +21,6 @@ class Solution:
 
         # 2, 2, 4, 4, 4, 8
 
-        # sliding window?
         counts = Counter(arr)
         counts = dict(sorted(counts.items(), reverse=True, key=lambda x: abs(x[0])))
         print(counts)
