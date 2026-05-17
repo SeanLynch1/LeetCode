@@ -23,7 +23,6 @@ class Solution:
 
         counts = Counter(arr)
         counts = dict(sorted(counts.items(), reverse=True, key=lambda x: abs(x[0])))
-        print(counts)
 
         for key, value in counts.items():
             if value > 0:
