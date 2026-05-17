@@ -27,13 +27,16 @@ class Solution:
         counts = Counter(arr)
 
         for key in arr:
-            needed = key / 2
+            if counts[key] > 0:
+                needed = key / 2
 
-            while counts[key] > 0: 
-                counts[needed] -= 1
-                counts[key] -= 1
-            
-            if counts[needed] < 0:
-                return False
+                if needed in counts:
+                    if counts[needed] >= counts[key]:
+                        counts[needed] -= counts[key]
+                        counts[key] = 0
+                    else:
+                        return False
+                else:
+                    return False            
 
         return True
