@@ -22,21 +22,21 @@ class Solution:
         # 2, 2, 4, 4, 4, 8
 
         # sliding window?
-        arr.sort(reverse = True, key = lambda x: abs(x))
-
         counts = Counter(arr)
+        counts = dict(sorted(counts.items(), reverse=True, key=lambda x: abs(x[0])))
+        print(counts)
 
-        for key in arr:
-            if counts[key] > 0:
+        for key, value in counts.items():
+            if value > 0:
                 needed = key / 2
 
                 if needed in counts:
-                    if counts[needed] >= counts[key]:
-                        counts[needed] -= counts[key]
+                    if counts[needed] >= value:
+                        counts[needed] -= value
                         counts[key] = 0
                     else:
                         return False
                 else:
-                    return False            
+                    return False
 
         return True
