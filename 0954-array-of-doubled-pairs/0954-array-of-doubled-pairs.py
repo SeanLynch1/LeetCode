@@ -23,18 +23,12 @@ class Solution:
 
         # sliding window?
         arr.sort(reverse = True, key = lambda x: abs(x))
-        print(arr)
 
-        mid = int(len(arr) / 2)
         counts = Counter(arr)
 
-        print(counts)
-
         for key in arr:
-            print(f"key = {key}")
             needed = key / 2
 
-            print(f"needed = {needed}")
             while counts[key] > 0: 
                 counts[needed] -= 1
                 counts[key] -= 1
