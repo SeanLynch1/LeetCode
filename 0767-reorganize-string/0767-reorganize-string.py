@@ -9,8 +9,6 @@ class Solution:
 
             heappush(heap, [-val, key])
 
-        print(heap)
-
         while heap:
 
             node_1 = heappop(heap)
@@ -30,7 +28,4 @@ class Solution:
                 if node_1[0] < 0:
                     heappush(heap, node_1)
 
-            
-
-        print(f"heap = {heap}")
         return "".join(word) if len(word) == len(s) else ""
