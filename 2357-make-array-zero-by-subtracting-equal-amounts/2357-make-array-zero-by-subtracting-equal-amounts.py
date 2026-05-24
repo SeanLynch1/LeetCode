@@ -3,7 +3,6 @@ class Solution:
         
         ops = 0
         
-        
         while True:
 
             positives = [num for num in nums if num > 0]
