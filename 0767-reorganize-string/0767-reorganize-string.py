@@ -5,6 +5,9 @@ class Solution:
         heap = []
         word = []
 
+        if max(mapping.values()) > (len(s) + 1) // 2:
+            return ""
+            
         for key, val in mapping.items():
 
             heappush(heap, [-val, key])
