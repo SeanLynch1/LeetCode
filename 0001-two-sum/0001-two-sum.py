@@ -22,11 +22,8 @@ class Solution:
                 left += 1
 
         output = []
-        print(f"left = {left}")
-        print(f"right = {right}")
         for idx, val in enumerate(nums):
             
-            print(f"idx = {idx}, val = {val}")
             if val == left:
                 output.append(idx)
                 if len(output) == 2:
