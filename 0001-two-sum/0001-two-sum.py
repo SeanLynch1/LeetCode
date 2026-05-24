@@ -5,7 +5,7 @@ class Solution:
 
         left = 0
         right = len(nums_copy) - 1
-        curr = -1
+        curr = 0
 
         while left < right:
 
