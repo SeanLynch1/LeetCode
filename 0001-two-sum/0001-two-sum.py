@@ -6,20 +6,12 @@ class Solution:
         for idx in range(len(nums)):
             mapped[nums[idx]].append(idx)
 
-        nums.sort()
+        for key in mapped:
+            idx = mapped[key].pop()
 
-        left = 0
-        right = len(nums) - 1
-        curr = -1
+            needed = target - key
 
-        while left < right:
-
-            curr = nums[left] + nums[right]
-
-            if curr == target:
-                return [mapped[nums[left]].pop(), mapped[nums[right]].pop()]
-
-            if curr > target:
-                right -= 1
-            elif curr < target:
-                left += 1
+            if needed in mapped:
+                needed_list = mapped[needed]
+                if needed_list != []:
+                    return [idx, needed_list.pop()]
