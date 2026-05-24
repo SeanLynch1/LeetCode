@@ -1,13 +1,40 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        mapping = defaultdict(int)
+        nums_copy = sorted(nums)
 
-        for j in range(len(nums)):
-            needed = target - nums[j]
+        left = 0
+        right = len(nums_copy) - 1
+        curr = -1
 
-            if needed in mapping and j != mapping[needed]:
-                return [j, mapping[needed]]
+        while left < right:
 
-            mapping[nums[j]] = j
+            curr = nums_copy[left] + nums_copy[right]
+
+            if curr == target:
+                left = nums_copy[left]
+                right = nums_copy[right]
+                break
+
+            if curr > target:
+                right -= 1
+            elif curr < target:
+                left += 1
+
+        output = []
+        print(f"left = {left}")
+        print(f"right = {right}")
+        for idx, val in enumerate(nums):
             
+            print(f"idx = {idx}, val = {val}")
+            if val == left:
+                output.append(idx)
+                if len(output) == 2:
+                    break
+            elif val == right:
+                output.append(idx)
+                if len(output) == 2:
+                    break
+
+
+        return output
