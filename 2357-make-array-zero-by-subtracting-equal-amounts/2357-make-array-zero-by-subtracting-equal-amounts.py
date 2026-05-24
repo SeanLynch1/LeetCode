@@ -7,7 +7,6 @@ class Solution:
             return 0
 
         lowest = min(positives)
-        print(positives)
         
         while True:
 
@@ -26,7 +25,6 @@ class Solution:
 
                 lowest = next_lowest
                 positives = [num for num in positives if num > 0]
-                print(positives)
                 ops += 1
 
             else:
