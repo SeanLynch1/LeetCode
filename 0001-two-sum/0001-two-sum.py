@@ -1,17 +1,12 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        
-        mapped = defaultdict(list)
+        mapped = {}
 
-        for idx in range(len(nums)):
-            mapped[nums[idx]].append(idx)
-
-        for key in mapped:
-            idx = mapped[key].pop()
-
-            needed = target - key
+        for idx, num in enumerate(nums):
+            needed = target - num
 
             if needed in mapped:
-                needed_list = mapped[needed]
-                if needed_list != []:
-                    return [idx, needed_list.pop()]
+                return [idx, mapped[needed]]
+
+            mapped[num] = idx
+            
