@@ -15,9 +15,6 @@ class NumMatrix:
 
                 self.prefixes[row + 1][col + 1] = total
 
-        for row in self.prefixes:
-            print(row)
-
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         
         total = 0
@@ -26,8 +23,6 @@ class NumMatrix:
         total -= self.prefixes[row2 + 1][col1]
         total -= self.prefixes[row1][col2 + 1]
         total += self.prefixes[row1][col1]
-        print(f"total = {total}")
-        print("")
         return total
 
 # Your NumMatrix object will be instantiated and called as such:
