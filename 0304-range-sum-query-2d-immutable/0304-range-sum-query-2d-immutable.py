@@ -7,11 +7,7 @@ class NumMatrix:
 
         for row in range(rows):
             for col in range(cols):
-                print(matrix[row][col])
                 self.prefixes[row].append(self.prefixes[row][-1] + matrix[row][col])
-
-        for row in self.prefixes:
-            print(row)
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         total = 0
