@@ -3,8 +3,8 @@ class NumArray:
     def __init__(self, nums: List[int]):
         self.prefixes = [0]
 
-        for i in range(1, len(nums) + 1):
-            self.prefixes.append(sum(nums[:i]))
+        for num in nums:
+            self.prefixes.append(self.prefixes[-1] + num)
 
     def sumRange(self, left: int, right: int) -> int:
         return self.prefixes[right + 1] - self.prefixes[left]
