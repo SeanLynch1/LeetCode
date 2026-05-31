@@ -1,9 +1,6 @@
 class Solution:
     def numSubmatrixSumTarget(self, matrix: List[List[int]], target: int) -> int:
         
-        for row in matrix:
-            print(row)
-
         rows = len(matrix)
         cols = len(matrix[0])
 
