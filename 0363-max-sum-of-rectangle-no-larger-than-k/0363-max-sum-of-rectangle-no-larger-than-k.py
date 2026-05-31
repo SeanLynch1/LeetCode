@@ -34,6 +34,8 @@ class Solution:
                     if idx < len(prefixes):
                        idx_num = prefixes[idx]
                        max_val = max(max_val, curr - idx_num)
+                       if max_val == k:
+                            return k
 
                     insort(prefixes, curr)
 
