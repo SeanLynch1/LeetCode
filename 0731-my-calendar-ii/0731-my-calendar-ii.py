@@ -8,7 +8,6 @@ class MyCalendarTwo:
         self.overlaps = []
 
     def book(self, startTime: int, endTime: int) -> bool:
-        print(f"{startTime}, {endTime}")
         
         for slot in self.overlaps:
             if startTime >= slot[0] and startTime < slot[1]:
