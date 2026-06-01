@@ -20,17 +20,11 @@ class Solution:
 
             zeroes.append(zeros_count)
             ones.append(ones_count)
-
-        print(f"zers: {zeroes}")
-        print(f"ones: {ones}")
         n = len(s)
         for i in range(1, n):
             
             ones_count = ones[n] - ones[i]
             zero_count = zeroes[i]
-            print(f"i = {i}")
-            print(f"zero_count = {zero_count}")
-            print(f"ones_count = {ones_count}")
             ans = max(ans, zero_count + ones_count)
 
         return ans
