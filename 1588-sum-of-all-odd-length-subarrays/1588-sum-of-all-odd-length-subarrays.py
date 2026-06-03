@@ -6,9 +6,12 @@ class Solution:
             length = 0
             curr = 0
             while i + length < len(arr):
-                curr += sum(arr[i:i + length + 1])
-                length += 2
+                curr += arr[i + length]
+
+                if (len(arr) - (length)) % 2 != 0:
+                    output += curr
+
+                length += 1
             
-            output += curr
 
         return output
