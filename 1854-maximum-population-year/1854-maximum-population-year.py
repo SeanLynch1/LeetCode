@@ -13,7 +13,6 @@ class Solution:
         max_curr = 1
         curr = 0
 
-        print(years)
         for slot in years:
             curr += slot[1]
             if curr > max_curr:
