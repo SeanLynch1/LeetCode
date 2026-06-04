@@ -9,8 +9,6 @@ class Solution:
         for num in nums:
             prefixes.append(prefixes[-1] + num)
 
-        print(prefixes)
-
         suffix = 0
         ans = 0
 
