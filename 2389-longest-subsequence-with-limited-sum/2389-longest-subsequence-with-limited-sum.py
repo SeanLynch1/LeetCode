@@ -4,12 +4,11 @@ class Solution:
         total = 0
         prefixes = []
         ans = []
-        print(nums)
+        
         for i, n in enumerate(nums):
             total += n
             prefixes.append(total)
 
-        print(prefixes)
         for q in queries:
             ans.append(bisect_right(prefixes, q))
 
