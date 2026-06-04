@@ -1,18 +1,16 @@
 class Solution:
     def answerQueries(self, nums: List[int], queries: List[int]) -> List[int]:
         nums.sort()
+        total = 0
+        prefixes = []
         ans = []
-        for q in queries:
-            curr = 0 
-            count = 0
-            for n in nums:
-                if curr == q:
-                    break
+        print(nums)
+        for i, n in enumerate(nums):
+            total += n
+            prefixes.append(total)
 
-                if curr + n <= q:
-                    curr += n
-                    count += 1
-            
-            ans.append(count)
+        print(prefixes)
+        for q in queries:
+            ans.append(bisect_right(prefixes, q))
 
         return ans
