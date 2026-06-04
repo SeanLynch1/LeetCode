@@ -7,7 +7,6 @@ class Solution:
             ranges_set[x] += 1
             ranges_set[y + 1] -= 1
 
-        print(ranges_set)
         coverage = 0
         for i in range(right + 1):
             coverage += ranges_set[i]
