@@ -7,7 +7,6 @@ class Solution:
         for num in nums:
             prefixes.append(prefixes[-1] + num)
 
-        print(prefixes)
         suffix = 0
         for i in range(len(nums)-1,-1,-1):
             ans[i] = abs(prefixes[i] - suffix)
