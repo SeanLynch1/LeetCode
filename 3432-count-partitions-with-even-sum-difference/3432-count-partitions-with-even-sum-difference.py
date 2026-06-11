@@ -18,11 +18,7 @@ class Solution:
         for i in range(len(nums)-1):
             left_sum = prefixes[i + 1]
             right_sum = prefixes[len(nums)] - prefixes[i+1]
-                
-            print(f"{left_sum} - {right_sum} = {left_sum - right_sum}")
 
             if (left_sum - right_sum) % 2 == 0:
-                print(f"{(left_sum - right_sum) % 2 }")
                 ans += 1
-            print("")
         return ans
