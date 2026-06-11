@@ -14,7 +14,6 @@ class Solution:
 
         start = 0
         for i in range(len(prefixes) - (l - 1)):
-        
             for j in range(i, min(i + r, len(prefixes))):
                 total = prefixes[j] - start
                 if j - i >= (l - 1) and total > 0:
