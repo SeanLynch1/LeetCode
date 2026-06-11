@@ -15,7 +15,7 @@ class Solution:
         print(prefixes)
 
         start = 0
-        for i in range(len(prefixes)):
+        for i in range(len(prefixes) - (l - 1)):
         
             for j in range(i, min(i + r, len(prefixes))):
                 total = prefixes[j] - start
