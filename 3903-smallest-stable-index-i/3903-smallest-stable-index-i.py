@@ -15,8 +15,6 @@ class Solution:
             prefixes.append(val)
             curr = val
 
-        print(prefixes)
-
         suffixes = [0] * len(nums)
         curr = float('inf')
         
@@ -25,15 +23,11 @@ class Solution:
             suffixes[i] = val
             curr = val
 
-        print(suffixes)
-
         for i in range(len(nums)):
             left = prefixes[i]
             right = suffixes[i]
 
-            print(f"{left} - {right}")
             if left - right <= k:
                 return i
 
-            print("")
         return -1
