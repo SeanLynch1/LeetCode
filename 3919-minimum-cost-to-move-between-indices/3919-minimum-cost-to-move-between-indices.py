@@ -22,9 +22,6 @@ class Solution:
             if i + 1 < n:
                 right[i] = abs(nums[i] - nums[i+1])
             
-        print(f"left  = {left}")
-        print(f"right = {right}")
-
         prefixes = [0]
 
         for i in range(0, n-1):
@@ -35,8 +32,6 @@ class Solution:
             else:
                 prefixes.append(prefixes[-1] + right[i])
 
-        print(prefixes)
-        
         suffixes = [0] * n
 
         for i in range(n-1,0,-1):
@@ -46,8 +41,6 @@ class Solution:
                 suffixes[i-1] = suffixes[i] + 1
             else:
                 suffixes[i-1] = suffixes[i] + left[i]
-
-        print(suffixes)
 
         for l, r in queries:
             total = 0
