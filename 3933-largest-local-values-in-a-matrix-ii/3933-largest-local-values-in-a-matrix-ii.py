@@ -46,7 +46,6 @@ class Solution:
                 val = matrix[row][col]
                 if val > 0:
                     grid = prefixes[val]
-                    total = 0
 
                     bottom_right = grid[min(len(grid)-1,row + val + 1)][min(len(grid[0])-1,col + val + 1)]
 
