@@ -3,8 +3,7 @@ class Solution:
         mapping = {(0, 0): 0}
         xor_val = odds = max_len = 0
 
-        for i in range(len(nums)):
-            num = nums[i]
+        for i, num in enumerate(nums):
             odds += 1 if num & 1 else -1
 
             xor_val ^= num
