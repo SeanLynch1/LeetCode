@@ -2,7 +2,6 @@ class Solution:
     def maxBalancedSubarray(self, nums: List[int]) -> int:
         max_len = 0
         mapping = {(0, 0): 0}
-
         odds = 0
         xor_val = 0
 
@@ -13,7 +12,7 @@ class Solution:
             else:
                 odds -= 1
 
-            xor_val = xor_val ^ num
+            xor_val ^= num
             state = (xor_val, odds)
             if state in mapping:
                 idx = mapping[state]
