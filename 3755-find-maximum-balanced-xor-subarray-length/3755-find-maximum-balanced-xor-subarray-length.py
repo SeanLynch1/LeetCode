@@ -22,7 +22,5 @@ class Solution:
 
             if xor_val not in mapping[odds]:
                 mapping[odds][xor_val] = i + 1
-            
-            
 
         return max_len
