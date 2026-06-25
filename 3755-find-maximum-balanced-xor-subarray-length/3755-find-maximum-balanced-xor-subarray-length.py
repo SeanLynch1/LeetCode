@@ -1,7 +1,6 @@
 class Solution:
     def maxBalancedSubarray(self, nums: List[int]) -> int:
         max_len = 0
-
         mapping = defaultdict(dict)
         mapping[0][0] = 0
 
