@@ -14,6 +14,7 @@ class Solution:
 
             xor_val ^= num
             state = (xor_val, odds)
+            
             if state in mapping:
                 idx = mapping[state]
                 max_len = max(max_len, i + 1 - idx)
