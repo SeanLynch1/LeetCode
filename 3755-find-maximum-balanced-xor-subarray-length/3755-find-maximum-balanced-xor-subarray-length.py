@@ -16,12 +16,12 @@ class Solution:
 
             xor_val = xor_val ^ num
 
-            if xor_val not in mapping[odds]:
-                mapping[odds][xor_val] = i + 1
-                
             if xor_val in mapping[odds]:
                 idx = mapping[odds][xor_val]
                 max_len = max(max_len, i + 1 - idx)
+
+            if xor_val not in mapping[odds]:
+                mapping[odds][xor_val] = i + 1
             
             
 
