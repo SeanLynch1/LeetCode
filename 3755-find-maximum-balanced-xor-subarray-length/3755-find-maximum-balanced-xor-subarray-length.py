@@ -7,10 +7,7 @@ class Solution:
 
         for i in range(len(nums)):
             num = nums[i]
-            if num % 2 == 1:
-                odds += 1
-            else:
-                odds -= 1
+            odds += 1 if num & 1 else -1
 
             xor_val ^= num
             state = (xor_val, odds)
