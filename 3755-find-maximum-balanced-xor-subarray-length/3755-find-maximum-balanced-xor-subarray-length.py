@@ -1,9 +1,7 @@
 class Solution:
     def maxBalancedSubarray(self, nums: List[int]) -> int:
-        max_len = 0
         mapping = {(0, 0): 0}
-        odds = 0
-        xor_val = 0
+        xor_val = odds = max_len = 0
 
         for i in range(len(nums)):
             num = nums[i]
