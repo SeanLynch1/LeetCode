@@ -1,19 +1,5 @@
 class Solution:
     def findTheLongestSubstring(self, s: str) -> int:
-        
-        # exclusive OR
-        # if one is true, return true, else false
-        # 1 and 1 = false
-
-        # 0010
-        # 0010
-        # 0000
-
-        # 0010
-        # 0010
-        # 0000
-
-        # 0010
 
         max_len = 0
         
