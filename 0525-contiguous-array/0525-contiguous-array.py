@@ -6,8 +6,9 @@ class Solution:
         max_len = 0
         balance = [0]
 
-        for idx, num in enumerate(nums):
-            
+        for idx in range(len(nums)):
+            num = nums[idx]
+
             val = balance[-1] + (1 if num == 1 else -1)
             balance.append(val)
 
