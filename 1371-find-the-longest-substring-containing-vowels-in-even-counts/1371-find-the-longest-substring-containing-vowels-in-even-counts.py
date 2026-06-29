@@ -41,8 +41,5 @@ class Solution:
             if val in mapping:
                 max_len = max(max_len, i - mapping[val] + 1)
 
-        print(xors)
-        print(mapping)
-
         return max_len
 
