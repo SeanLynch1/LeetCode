@@ -6,9 +6,7 @@ class Solution:
         balance = [0]
 
         for idx in range(len(nums)):
-            num = nums[idx]
-
-            val = balance[-1] + (1 if num == 1 else -1)
+            val = balance[-1] + (1 if nums[idx] == 1 else -1)
             balance.append(val)
 
             if val not in mapping:
