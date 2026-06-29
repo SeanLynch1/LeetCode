@@ -2,7 +2,6 @@ class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         
         mapping = {0:0}
-
         max_len = 0
         balance = [0]
 
