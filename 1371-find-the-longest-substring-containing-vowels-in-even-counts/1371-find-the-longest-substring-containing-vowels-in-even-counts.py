@@ -18,28 +18,20 @@ class Solution:
         # 0001 and 1
         # 0011 makes 3
 
-        mapping = {0: 0}
+        mapping = {0: -1}
         vowels = {'a':1,'i':2,'e':3,'o':4,'u':5}
+        val = 0
 
-        n = len(s)
-        xors = [0] * (n + 1)
-
-        for i in range(n):
+        for i in range(len(s)):
             
             letter = s[i]
-            val = xors[i]
 
             if letter in vowels:
                 val ^= 1 << vowels[letter]
-                xors[i + 1] = val
 
-                if val not in mapping:
-                    mapping[val] = i + 1
+            if val not in mapping:
+                mapping[val] = i
             else:
-                xors[i + 1] = xors[i]
-
-            if val in mapping:
-                max_len = max(max_len, i - mapping[val] + 1)
+                max_len = max(max_len, i - mapping[val])
 
         return max_len
-
