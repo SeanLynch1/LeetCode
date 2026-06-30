@@ -10,27 +10,19 @@ class Solution:
         # [0,0,1,2,3,3,4,5,5,6]
 
         count = 0
-        zeroes = [0]
-        ones = [0] 
+        left_0 = left_1 = 0
+        right_1 = s.count('1')
+        right_0 = len(s) - right_1
 
-        for num in s:
-
-            if num == "0":
-                zeroes.append(zeroes[-1] + 1)
-                ones.append(ones[-1])
-            else:
-                zeroes.append(zeroes[-1])
-                ones.append(ones[-1] + 1)
-        
         for idx, num in enumerate(s):
-
             if num == "0":
-                left = ones[idx]
-                if left > 0:
-                    count += left * (ones[-1] - left)
+                if left_1 > 0:
+                    count += left_1 * (right_1 - left_1)
+
+                left_0 += 1
             else:
-                left = zeroes[idx]
-                if left > 0:
-                    count += left * (zeroes[-1] - left)
+                if left_0 > 0:
+                    count += left_0 * (right_0 - left_0)
+                left_1 += 1
 
         return count
