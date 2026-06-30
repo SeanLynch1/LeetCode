@@ -17,15 +17,11 @@ class Solution:
         for idx, num in enumerate(s):
             if num == "0":
                 right_0 -=1
-
                 count += left_1 * right_1
-
                 left_0 += 1
             else:
                 right_1 -=1
-
                 count += left_0 * right_0
-                    
                 left_1 += 1
 
         return count
