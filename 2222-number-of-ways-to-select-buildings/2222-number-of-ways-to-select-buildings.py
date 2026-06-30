@@ -27,12 +27,10 @@ class Solution:
             if num == "0":
                 left = ones[idx]
                 if left > 0:
-                    right = ones[-1] - left
-                    count += left * right
+                    count += left * (ones[-1] - left)
             else:
                 left = zeroes[idx]
                 if left > 0:
-                    right = zeroes[-1] - left
-                    count += left * right
+                    count += left * (zeroes[-1] - left)
 
         return count
