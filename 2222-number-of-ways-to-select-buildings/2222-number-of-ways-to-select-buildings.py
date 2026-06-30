@@ -12,7 +12,7 @@ class Solution:
         count = 0
         left_0 = left_1 = 0
         right_1 = s.count('1')
-        right_0 = len(s) - right_1
+        right_0 = s.count('0')
 
         for idx, num in enumerate(s):
             if num == "0":
