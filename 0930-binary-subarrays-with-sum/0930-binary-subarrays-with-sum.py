@@ -1,22 +1,23 @@
 class Solution:
-    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
-        
-        #  1 0 1 0 1
-        # [0 1 1 2 2 3]
+    def numSubarraysWithSum(self, nums: List[int], goal: int):
 
-        total = 0
-        mapping = defaultdict(int)
-        mapping[0] = 1
-        prefix = [0]
+        def atMost(k):
+            if k < 0:
+                return 0
 
-        for num in nums:
-            val = prefix[-1] + num
-            prefix.append(val)
-            needed = val - goal
+            left = 0
+            curr = 0
+            total = 0
 
-            if needed in mapping:
-                total += mapping[needed]
+            for right in range(len(nums)):
+                curr += nums[right]
 
-            mapping[val] += 1
+                while curr > k:
+                    curr -= nums[left]
+                    left += 1
 
-        return total
+                total += right - left + 1
+
+            return total
+
+        return atMost(goal) - atMost(goal - 1)
