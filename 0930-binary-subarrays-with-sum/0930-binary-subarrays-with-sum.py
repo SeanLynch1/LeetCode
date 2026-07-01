@@ -28,14 +28,11 @@ class Solution:
 
             for right in range(len(nums)):
                 curr += nums[right]
-                print(f"curr = {curr}, k = {k}")
                 while curr > k:
                     curr -= nums[left]
                     left += 1
-                    print(f"left = {left}")
 
                 total += right - left + 1
-                print("")
             return total
 
         return atMost(goal) - atMost (goal - 1)
