@@ -7,11 +7,9 @@ class Solution:
         total = 0
         mapping = defaultdict(int)
         mapping[0] = 1
-
         prefix = [0]
 
         for num in nums:
-
             val = prefix[-1] + num
             prefix.append(val)
             needed = val - goal
