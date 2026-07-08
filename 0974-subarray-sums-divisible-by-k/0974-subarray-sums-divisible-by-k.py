@@ -21,8 +21,7 @@ class Solution:
 
             remainder = prefix % k
 
-            if remainder in mapping:
-                res += mapping[remainder]
+            res += mapping[remainder]
 
             mapping[remainder] += 1
         
