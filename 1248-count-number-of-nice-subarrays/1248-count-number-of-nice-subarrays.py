@@ -10,8 +10,7 @@ class Solution:
         res = 0
 
         for num in nums:
-            if num % 2 == 1:
-                prefix += 1
+            prefix += num % 2 
 
             needed = prefix - k
             res += counter[needed]
