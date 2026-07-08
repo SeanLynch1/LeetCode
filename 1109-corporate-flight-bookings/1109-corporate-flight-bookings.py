@@ -7,10 +7,7 @@ class Solution:
             res[first - 1] += seats
             res[last] -= seats
 
-        curr = 0
-
-        for i in range(len(res)):
-            res[i] += curr
-            curr = res[i]
+        for i in range(1, len(res)):
+            res[i] += res[i-1]
 
         return res[:-1]
