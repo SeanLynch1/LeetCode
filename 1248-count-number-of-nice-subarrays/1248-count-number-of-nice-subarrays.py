@@ -11,8 +11,7 @@ class Solution:
 
         for num in nums:
             prefix += num % 2 
-
             res += counter[prefix - k]
-            
             counter[prefix] += 1
+            
         return res
