@@ -16,7 +16,7 @@ class Solution:
         mapping = defaultdict(int)
         mapping[0] = 1
 
-        for i, num in enumerate(nums):
+        for num in nums:
             prefix += num
 
             remainder = prefix % k
