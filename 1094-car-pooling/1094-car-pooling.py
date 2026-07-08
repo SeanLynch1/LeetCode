@@ -8,7 +8,6 @@ class Solution:
 
         # space = [4,2,2,-1]
 
-        trips = sorted(trips, key=lambda x: x[0])
         spaces = [0] * 1001
         
         for passengers, start, stop in trips:
