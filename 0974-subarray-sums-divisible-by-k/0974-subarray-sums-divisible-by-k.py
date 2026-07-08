@@ -24,11 +24,8 @@ class Solution:
 
             if remainder in mapping:
                 res += mapping[remainder]
-            mapping[remainder] += 1
 
-        print(f"prefixes = {prefix}")
-        print(f"mapping = {mapping}")
-        print("")
+            mapping[remainder] += 1
 
         
         return res
