@@ -14,7 +14,7 @@ class Solution:
         res = 0
         prefix = [0]
         mapping = defaultdict(int)
-        mapping[0] += 1
+        mapping[0] = 1
 
         for i, num in enumerate(nums):
             val = prefix[-1] + num
@@ -26,6 +26,5 @@ class Solution:
                 res += mapping[remainder]
 
             mapping[remainder] += 1
-
         
         return res
