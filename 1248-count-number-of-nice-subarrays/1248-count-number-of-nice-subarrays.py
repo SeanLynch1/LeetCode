@@ -15,7 +15,7 @@ class Solution:
 
             needed = prefix - k
 
-            if prefix >= k and needed in counter:
+            if prefix >= k:
                 res += counter[needed]
             
             counter[prefix] += 1
