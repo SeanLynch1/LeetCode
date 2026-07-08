@@ -12,15 +12,14 @@ class Solution:
         # 9 - 4 = [5]
 
         res = 0
-        prefix = [0]
+        prefix = 0
         mapping = defaultdict(int)
         mapping[0] = 1
 
         for i, num in enumerate(nums):
-            val = prefix[-1] + num
-            prefix.append(val)  
+            prefix += num
 
-            remainder = val % k
+            remainder = prefix % k
 
             if remainder in mapping:
                 res += mapping[remainder]
