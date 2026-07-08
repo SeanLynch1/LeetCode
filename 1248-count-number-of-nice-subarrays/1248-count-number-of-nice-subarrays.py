@@ -14,7 +14,6 @@ class Solution:
                 prefix += 1
 
             needed = prefix - k
-
             res += counter[needed]
             
             counter[prefix] += 1
