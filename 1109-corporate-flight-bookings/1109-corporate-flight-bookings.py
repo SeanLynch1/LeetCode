@@ -1,17 +1,16 @@
 class Solution:
     def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
         
-        prefixes = defaultdict(int)
+        res = [0] * (n + 1)
 
         for first, last, seats in bookings:
-            prefixes[first] += seats
-            prefixes[last + 1] -= seats
+            res[first - 1] += seats
+            res[last] -= seats
 
-        res = [0] * n
         curr = 0
 
         for i in range(len(res)):
-            res[i] = (curr + prefixes[i + 1])
+            res[i] += curr
             curr = res[i]
 
-        return res 
+        return res[:-1]
