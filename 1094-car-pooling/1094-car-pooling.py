@@ -9,13 +9,16 @@ class Solution:
         # space = [4,2,2,-1]
 
         trips = sorted(trips, key=lambda x: x[0])
-        curr_trip = 0
-        spaces = [capacity] * 1000
-
+        spaces = [0] * 1001
+        
         for passengers, start, stop in trips:
-            for i in range(start, stop):
-                spaces[i] -= passengers
-                if spaces[i] < 0:
-                    return False
+            spaces[start] += passengers
+            spaces[stop] -= passengers
 
+        curr = 0
+        for change in spaces:
+            curr += change
+            if curr > capacity:
+                return False
+            
         return True
