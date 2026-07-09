@@ -27,21 +27,26 @@ class Solution:
         prefixes = [[0] * (cols) for _ in range(rows)]
 
         for row in range(1, rows):
-            for col in range(1, cols):
+            for col in range(1, cols): 
                 prefixes[row][col] += mat[row-1][col-1]
                 prefixes[row][col] += prefixes[row][col-1]
                 prefixes[row][col] += prefixes[row - 1][col]
                 prefixes[row][col] -= prefixes[row - 1][col-1]
 
-        for i in range(rows):
-            for row in range(i + 1, rows):
-                for col in range(1, cols):
-                    needed_col = col - (row - i)
+        min_side = min(rows, cols)
 
-                    if needed_col >= 0:
-                        total = (prefixes[row][col] - prefixes[row][needed_col]) - (prefixes[i][col] - prefixes[i][needed_col])
+        for i in range(min_side):
+            side = i + 1
+            for row in range(side, rows):
+                for col in range(side, cols):
+                    
+                    total = (prefixes[row][col]
+                            - prefixes[row][col-side]
+                            - prefixes[row - side][col]
+                            + prefixes[row - side][col - side]
+                            )
 
-                        if total <= threshold:
-                            res = max(res, row - i)
+                    if total <= threshold:
+                        res = max(res, side)
 
         return res
