@@ -1,27 +1,45 @@
 class Solution:
     def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:
-
-        n = len(security)
-
-        if time == 0:
-            return list(range(n))
-
-        # left[i] = number of consecutive non-increasing days ending at i
-        left = [0] * n
-        for i in range(1, n):
-            if security[i] <= security[i - 1]:
-                left[i] = left[i - 1] + 1
-
-        # right[i] = number of consecutive non-decreasing days starting at i
-        right = [0] * n
-        for i in range(n - 2, -1, -1):
-            if security[i] <= security[i + 1]:
-                right[i] = right[i + 1] + 1
-
+        
+        # [ 5, 7, 7, 6, 3, 2, 3, 4, 1, 4, 1] time = 2
+        # [-1, 0, 1, 2, 3, 4, 3, 2, 3, 2, 3]
         res = []
+        n = len(security) 
+        prefix = [0] * n
+        curr = 0
+        lst = security[0]
 
-        for i in range(time, n - time):
-            if left[i] >= time and right[i] >= time:
-                res.append(i)
+        for i in range(1, n):
+            num = security[i]
 
+            if num <= lst:
+                curr += 1
+            else:
+                curr = 0
+
+            prefix[i] = curr
+            lst = num
+
+        print(f"prefix = {prefix}")
+
+        curr = 0
+        suffix = [0] * n
+        lst = security[-1]
+
+        for i in range(n-1,-1,-1):
+            num = security[i]
+
+            if num <= lst:
+                curr += 1
+            else:
+                curr = 0
+
+            suffix[i] = curr
+            lst = num
+
+            if i - time >= 0 and i + time < n:
+                if prefix[i] - prefix[i - time] == time:
+                    if suffix[i] - suffix[i + time] == time:
+                        res.append(i)
+        print(f"suffix = {suffix}")
         return res
