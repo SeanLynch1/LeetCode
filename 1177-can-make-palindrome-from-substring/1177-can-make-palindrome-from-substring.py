@@ -24,12 +24,7 @@ class Solution:
         for left, right, replacements in queries:
             xor_val = xor_prefix[right + 1] ^ xor_prefix[left]
 
-            count = 0
-            while xor_val > 0:
-                count += 1 & xor_val
-                xor_val >>= 1
-
-            if replacements >= count // 2:
+            if replacements >= xor_val.bit_count() // 2:
                 res.append(True)
             else:
                 res.append(False)
