@@ -20,8 +20,6 @@ class Solution:
             prefix[i] = curr
             lst = num
 
-        print(f"prefix = {prefix}")
-
         curr = 0
         suffix = [0] * n
         lst = security[-1]
@@ -41,5 +39,4 @@ class Solution:
                 if prefix[i] - prefix[i - time] == time:
                     if suffix[i] - suffix[i + time] == time:
                         res.append(i)
-        print(f"suffix = {suffix}")
         return res
