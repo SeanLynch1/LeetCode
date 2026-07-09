@@ -36,8 +36,6 @@ class Solution:
             suffix[i] = curr
             lst = num
 
-            if i - time >= 0 and i + time < n:
-                if prefix[i] - prefix[i - time] == time:
-                    if suffix[i] - suffix[i + time] == time:
-                        res.append(i)
+            if i - time >= 0 and i + time < n and prefix[i] - prefix[i - time] == time and suffix[i] - suffix[i + time] == time:
+                res.append(i)
         return res
