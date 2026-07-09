@@ -25,7 +25,7 @@ class Solution:
         curr = 0
         lst = security[-1]
 
-        for i in range(n-1,-1,-1):
+        for i in range(n-1,time-1,-1):
             num = security[i]
 
             if num <= lst:
