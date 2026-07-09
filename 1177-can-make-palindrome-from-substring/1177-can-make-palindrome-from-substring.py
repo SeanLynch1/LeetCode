@@ -17,11 +17,9 @@ class Solution:
 
         res = []
         xor_prefix = [0]
-        c = 'a'
 
         for letter in s:
-            val = ord(letter) - ord(c)
-            xor_prefix.append(xor_prefix[-1] ^ (1 << val))
+            xor_prefix.append(xor_prefix[-1] ^ (1 << ord(letter) - ord('a')))
 
         for left, right, replacements in queries:
             xor_val = xor_prefix[right + 1] ^ xor_prefix[left]
