@@ -25,9 +25,6 @@ class Solution:
                     prefixes[row - 1][col - 1]
                 )
 
-            print(prefixes[row-1])           
-        print(prefixes[row])
-
         def can_make(side):
 
             for row in range(side, rows):
