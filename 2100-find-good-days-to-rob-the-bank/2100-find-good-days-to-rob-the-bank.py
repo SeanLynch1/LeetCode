@@ -5,9 +5,9 @@ class Solution:
         # [-1, 0, 1, 2, 3, 4, 3, 2, 3, 2, 3]
         res = []
         n = len(security) 
+
         prefix = [0] * n
         curr = 0
-        d = 0
         lst = security[0]
 
         for i in range(1, n):
@@ -21,9 +21,8 @@ class Solution:
             prefix[i] = curr
             lst = num
 
-        print(f"prefix = {prefix}")
-
         suffix = [0] * n
+        curr = 0
         lst = security[-1]
 
         for i in range(n-1,-1,-1):
@@ -41,5 +40,4 @@ class Solution:
                 if prefix[i] - prefix[i - time] == time:
                     if suffix[i] - suffix[i + time] == time:
                         res.append(i)
-        print(f"suffix = {suffix}")
         return res
