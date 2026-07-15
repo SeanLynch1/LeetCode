@@ -40,7 +40,6 @@ class Solution:
                 total *= row_suffix[row]
 
                 suffixes *= grid[row][col]
-                suffixes %= 12345
 
                 grid[row][col] = total % 12345
             
