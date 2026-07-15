@@ -34,13 +34,10 @@ class Solution:
             suffixes = 1
             for col in range(cols-1,-1,-1):
                 total = prefixes[row][col] * suffixes
-                total %= 12345
 
                 total *= row_prefix[row]
-                total %= 12345
 
                 total *= row_suffix[row]
-                total %= 12345
 
                 suffixes *= grid[row][col]
                 suffixes %= 12345
