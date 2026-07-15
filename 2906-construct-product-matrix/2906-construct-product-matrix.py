@@ -21,7 +21,6 @@ class Solution:
 
                 curr *= grid[row][col]
                 curr %= 12345
-
         
         curr = 1
         for row in range(rows-1,-1,-1):
@@ -31,12 +30,6 @@ class Solution:
             for col in range(cols):
                 curr *= grid[row][col]
                 curr %= 12345
-
-        print(f"row_prefix = {row_prefix}")
-        print(f"row_suffix = {row_suffix}")
-        print("")
-        for row in prefixes:
-            print(row)
 
         for row in range(rows):
             suffixes = 1
