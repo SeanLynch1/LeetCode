@@ -1,49 +1,62 @@
 class Solution:
     def constructProductMatrix(self, grid: List[List[int]]) -> List[List[int]]:
         
+        MOD = 12345
         rows = len(grid)
         cols = len(grid[0])
 
-        row_prefix = [1] * (rows)
-        row_suffix = [1] * (rows)
-        prefixes = [[1] * (cols) for row in range(rows)]
+        # Store product of each row
+        row_products = [1] * rows
+
+        for r in range(rows):
+            for c in range(cols):
+                row_products[r] *= grid[r][c]
+                row_products[r] %= MOD
+
+        # Prefix and suffix products of rows
+        row_prefix = [1] * rows
+        row_suffix = [1] * rows
 
         curr = 1
-        for row in range(rows):
-            row_prefix[row] = curr
+        for r in range(rows):
+            row_prefix[r] = curr
+            curr *= row_products[r]
+            curr %= MOD
 
-            pre_curr = 1
-            for col in range(cols):
-                prefixes[row][col] = pre_curr
-                pre_curr *= grid[row][col]
-                pre_curr %= 12345
-
-                curr *= grid[row][col]
-                curr %= 12345
-        
         curr = 1
-        for row in range(rows-1,-1,-1):
-            row_suffix[row] = curr
+        for r in range(rows - 1, -1, -1):
+            row_suffix[r] = curr
+            curr *= row_products[r]
+            curr %= MOD
 
-            for col in range(cols):
-                curr *= grid[row][col]
-                curr %= 12345
+        # Build result with left products
+        result = [[1] * cols for _ in range(rows)]
 
-        for row in range(rows):
-            suffixes = 1
-            for col in range(cols-1,-1,-1):
-                total = prefixes[row][col] * suffixes
-                total %= 12345
+        for r in range(rows):
+            curr = 1
+            for c in range(cols):
+                result[r][c] = curr
+                curr *= grid[r][c]
+                curr %= MOD
 
-                total *= row_prefix[row]
-                total %= 12345
+        # Multiply by right products and row products
+        for r in range(rows):
+            curr = 1
 
-                total *= row_suffix[row]
-                total %= 12345
+            # Product of all rows except current row
+            other_rows = row_prefix[r] * row_suffix[r]
+            other_rows %= MOD
 
-                suffixes *= grid[row][col]
-                suffixes %= 12345
+            for c in range(cols - 1, -1, -1):
+                # left * right
+                result[r][c] *= curr
+                result[r][c] %= MOD
 
-                grid[row][col] = total % 12345
-            
-        return grid
+                # multiply by all other rows
+                result[r][c] *= other_rows
+                result[r][c] %= MOD
+
+                curr *= grid[r][c]
+                curr %= MOD
+
+        return result
