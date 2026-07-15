@@ -24,6 +24,7 @@ class Solution:
         curr = 1
         for row in range(rows-1,-1,-1):
             row_suffix[row] = curr * row_suffix[row]
+            row_suffix[row] %= 12345
 
             for col in range(cols):
                 curr *= grid[row][col]
@@ -33,12 +34,16 @@ class Solution:
             suffixes = 1
             for col in range(cols-1,-1,-1):
                 total = prefixes[row][col] * suffixes
+                total %= 12345
 
                 total *= row_prefix[row]
+                total %= 12345
 
                 total *= row_suffix[row]
+                total %= 12345
 
                 suffixes *= grid[row][col]
+                suffixes %= 12345
 
                 grid[row][col] = total % 12345
             
