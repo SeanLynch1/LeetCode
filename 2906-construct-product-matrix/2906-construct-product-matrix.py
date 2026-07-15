@@ -24,7 +24,6 @@ class Solution:
         curr = 1
         for row in range(rows-1,-1,-1):
             row_suffix[row] = curr
-            row_suffix[row] %= 12345
 
             for col in range(cols):
                 curr *= grid[row][col]
