@@ -11,7 +11,6 @@ class Solution:
         curr = 1
         for row in range(rows):
             row_prefix[row] = curr * row_prefix[row]
-            row_prefix[row] %= 12345
 
             pre_curr = 1
             for col in range(cols):
