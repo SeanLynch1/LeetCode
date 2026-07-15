@@ -10,7 +10,7 @@ class Solution:
 
         curr = 1
         for row in range(rows):
-            row_prefix[row] = curr * row_prefix[row]
+            row_prefix[row] = curr
 
             pre_curr = 1
             for col in range(cols):
@@ -23,7 +23,7 @@ class Solution:
         
         curr = 1
         for row in range(rows-1,-1,-1):
-            row_suffix[row] = curr * row_suffix[row]
+            row_suffix[row] = curr
             row_suffix[row] %= 12345
 
             for col in range(cols):
