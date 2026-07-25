@@ -10,7 +10,6 @@ class Solution:
 
         min_len = x * 2
         
-        print(min_len)
         # k = 1, min len = 2
         # k = 2, min len = 4
         # k = 3, min len = 6
@@ -42,8 +41,5 @@ class Solution:
 
             visited[(balance, remainder)] += 1
 
-
-        for key, val in visited.items():
-            print(f"{key}, {val}")
 
         return answer  
