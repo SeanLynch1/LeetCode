@@ -1,6 +1,6 @@
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
-        target = (2 ** maximumBit) - 1
+        target = (1 << maximumBit) - 1
         prefixes = [0]
         output = []
 
@@ -11,4 +11,3 @@ class Solution:
             output.append(prefixes[i] ^ target)
 
         return output
-
