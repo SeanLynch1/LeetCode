@@ -25,8 +25,6 @@ class Solution:
             prefixes.append(last ^ nums[i])
             last = prefixes[-1]
 
-        print(prefixes)
-
         for i in range(len(prefixes)-1,-1,-1):
             output.append(prefixes[i] ^ target)
 
