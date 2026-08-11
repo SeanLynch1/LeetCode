@@ -23,7 +23,7 @@ class Solution:
             prefixes.append(prefixes[-1] ^ nums[i])
 
         for i in range(len(prefixes)-1,0,-1):
-            output.append(prefixes[i] ^ target)
+            prefixes[i] = (prefixes[i] ^ target)
 
-        return output
+        return prefixes[::-1][:-1]
 
