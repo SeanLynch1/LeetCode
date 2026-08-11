@@ -16,16 +16,13 @@ class Solution:
         # 0111
 
         target = (2 ** maximumBit) - 1
-        prefixes = []
+        prefixes = [0]
         output = []
 
-        last = 0
         for i in range(len(nums)):
+            prefixes.append(prefixes[-1] ^ nums[i])
 
-            prefixes.append(last ^ nums[i])
-            last = prefixes[-1]
-
-        for i in range(len(prefixes)-1,-1,-1):
+        for i in range(len(prefixes)-1,0,-1):
             output.append(prefixes[i] ^ target)
 
         return output
