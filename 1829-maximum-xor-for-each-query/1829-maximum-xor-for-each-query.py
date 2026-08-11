@@ -1,13 +1,14 @@
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
         target = (1 << maximumBit) - 1
-        prefixes = [0]
+        xor = 0
         output = []
 
         for i in range(len(nums)):
-            prefixes.append(prefixes[-1] ^ nums[i])
+            xor ^= nums[i]
 
-        for i in range(len(prefixes)-1,0,-1):
-            output.append(prefixes[i] ^ target)
+        for i in range(len(nums)-1,-1,-1):
+            output.append(xor ^ target)
+            xor ^= nums[i]
 
         return output
