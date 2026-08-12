@@ -13,7 +13,7 @@ class Solution:
 
         curr = 0
         # sliding window
-        for i in range(len(nums)):
+        for i in range(1,len(nums)):
             target = nums[i]
             diff = 0
             
