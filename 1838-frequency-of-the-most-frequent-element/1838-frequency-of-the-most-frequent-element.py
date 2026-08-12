@@ -1,17 +1,11 @@
 class Solution:
     def maxFrequency(self, nums: List[int], k: int) -> int:
-
-        
-
         nums.sort()
         output = 1
         prefixes = [0]
-        diff = 0
 
         for num in nums:
             prefixes.append(prefixes[-1] + num)
-
-        print(prefixes)
 
         # k = 5
         # [1, 2, 4, 5, 7]
@@ -22,11 +16,10 @@ class Solution:
         for i in range(len(nums)):
             target = nums[i]
             diff = 0
-            nxt = i
             
-            for j in range(curr, nxt):
+            for j in range(curr, i):
                 needed = (i - j + 1) * target
-                total = prefixes[nxt + 1] - prefixes[j]
+                total = prefixes[i + 1] - prefixes[j]
                 diff = needed - total
 
                 if diff <= k:
