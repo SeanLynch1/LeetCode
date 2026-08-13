@@ -4,7 +4,6 @@ class Solution:
         mapping = defaultdict(int)
         ans = [-1] * len(nums1)
         stack = []
-        curr = nums2[0]
 
         for idx, num in enumerate(nums1):
             mapping[num] = idx
@@ -16,6 +15,7 @@ class Solution:
                     continue
 
                 stack.append(curr)
+                continue
 
             nxt = nums2[i]
 
