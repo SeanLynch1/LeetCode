@@ -16,7 +16,6 @@ class Solution:
                     continue
 
                 stack.append(curr)
-                continue
 
             nxt = nums2[i]
 
