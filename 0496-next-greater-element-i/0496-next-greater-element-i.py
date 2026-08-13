@@ -13,7 +13,7 @@ class Solution:
             if first_num not in mapping:
                 continue
 
-            for j in range(i, len(nums2)):
+            for j in range(i + 1, len(nums2)):
                 second_num = nums2[j]
                 if second_num > first_num:
                     ans[mapping[first_num]] = second_num
