@@ -10,4 +10,4 @@ class Solution:
         for val in chalk:
             prefix.append(prefix[-1] + val)
 
-        return bisect_right(prefix, k % prefix[-1]) - 1
+        return bisect_left(prefix, k % prefix[-1] + 1) - 1
