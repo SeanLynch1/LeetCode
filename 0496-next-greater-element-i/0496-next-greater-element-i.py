@@ -9,15 +9,12 @@ class Solution:
             mapping[num] = idx
 
         for i in range(len(nums2)):
-            if not stack:
-                curr = nums2[i]
-                if curr not in mapping:
-                    continue
-
-                stack.append(curr)
-                continue
-
             nxt = nums2[i]
+
+            if not stack:
+                if nxt in mapping:
+                    stack.append(nxt)
+                continue
 
             if nxt <= stack[-1]:
                 stack.append(nxt)
