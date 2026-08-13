@@ -11,20 +11,12 @@ class Solution:
         for i in range(len(nums2)):
             nxt = nums2[i]
 
-            if not stack:
-                if nxt in mapping:
-                    stack.append(nxt)
-                continue
-
-            if nxt <= stack[-1]:
+            while stack and nxt > stack[-1]:
+                element = stack.pop()
+                idx = mapping[element]
+                ans[idx] = nxt
+            
+            if nxt in mapping:
                 stack.append(nxt)
-            else:
-                while stack and nxt > stack[-1]:
-                    element = stack.pop()
-                    idx = mapping[element]
-                    ans[idx] = nxt
-                
-                if nxt in mapping:
-                    stack.append(nxt)
             
         return ans
