@@ -3,20 +3,32 @@ class Solution:
         
         mapping = defaultdict(int)
         ans = [-1] * len(nums1)
+        stack = []
+        curr = nums2[0]
 
         for idx, num in enumerate(nums1):
             mapping[num] = idx
 
         for i in range(len(nums2)):
-            first_num = nums2[i]
+            if not stack:
+                curr = nums2[i]
+                if curr not in mapping:
+                    continue
 
-            if first_num not in mapping:
+                stack.append(curr)
                 continue
 
-            for j in range(i + 1, len(nums2)):
-                second_num = nums2[j]
-                if second_num > first_num:
-                    ans[mapping[first_num]] = second_num
-                    break
+            nxt = nums2[i]
 
+            if nxt <= stack[-1]:
+                stack.append(nxt)
+            else:
+                while stack and nxt > stack[-1]:
+                    element = stack.pop()
+                    idx = mapping[element]
+                    ans[idx] = nxt
+                
+                if nxt in mapping:
+                    stack.append(nxt)
+            
         return ans
