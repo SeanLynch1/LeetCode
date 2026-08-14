@@ -2,9 +2,8 @@ class Solution:
     def subArrayRanges(self, nums: List[int]) -> int:
         
         # [1, 2, 4, 3, 5, 1]
-
         # [1, 2, 4]
-
+        
         output = 0
         for i in range(len(nums)):
             
