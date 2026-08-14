@@ -19,11 +19,8 @@ class Solution:
         for i in range(len(stack)):
             
             j, num = stack[i]
-
             left = j - stack[i-1][0] if i > 0 else j + 1
-
             right = len(arr) - j
-
             output = (output + num * left * right) % (10 ** 9 + 7)
 
         return output 
