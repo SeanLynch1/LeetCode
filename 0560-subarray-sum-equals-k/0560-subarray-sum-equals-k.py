@@ -14,7 +14,6 @@ class Solution:
             val = prefixes[-1] + nums[i]
             prefixes.append(val)
 
-            needed = val - k
             output += mapping[val - k]
             mapping[val] += 1
 
