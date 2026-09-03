@@ -16,5 +16,4 @@ class Solution:
             output += mapping[prefixes - k]
             mapping[prefixes] += 1
 
-
         return output
