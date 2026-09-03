@@ -7,13 +7,14 @@ class Solution:
 
         mapping = defaultdict(int)
         mapping[0] = 1
-        prefixes = [0]
+        prefixes = [0] * (len(nums) + 1)
         output = 0
-
+        last = 0
         for i in range(len(nums)):
-            val = prefixes[-1] + nums[i]
-            prefixes.append(val)
-
+            val = last + nums[i]
+            prefixes[i + 1] = val
+            last = val
+            
             output += mapping[val - k]
             mapping[val] += 1
 
