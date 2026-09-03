@@ -15,11 +15,8 @@ class Solution:
             prefixes.append(val)
 
             needed = val - k
-            print(f"needed = {needed}")
             output += mapping[val - k]
             mapping[val] += 1
 
-
-        print(mapping)
 
         return output
