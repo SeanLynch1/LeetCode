@@ -1,20 +1,28 @@
 class Solution:
     def countTriplets(self, arr: List[int]) -> int:
         
-        # [2,3,1,6,7,3]
-        # [0,2,1,0,6,1,2]
-        # [0,3,2,4,3,0]
-        # [0,1,7,0,3]
+        # [2,3,1,6,7,3,2]
+        # [0,2,1,0,6,1,2,0]
+
+        counts = defaultdict(list)
+        counts[0] = [0]
+        prefixes = [0]
 
         output = 0
 
-        for i in range(len(arr)):
-            xor = 0
+        for i, num in enumerate(arr):
+            val = prefixes[-1] ^ num
+            prefixes.append(val)
 
-            for j in range(i, len(arr)):
-                xor ^= arr[j]
+            if val in counts:
+                for j in counts[val]:
+                    output += i - j 
 
-                if xor == 0:
-                    output += j - i 
+            counts[val].append(i + 1)
+
+
+        for key, val in counts.items():
+            print(f"{key} : {val}")
+
 
         return output
