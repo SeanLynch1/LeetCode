@@ -9,9 +9,9 @@ class Solution:
         output = 0
 
         for i in range(len(arr)):
-            xor = 0
+            xor = arr[i]
 
-            for j in range(i, len(arr)):
+            for j in range(i + 1, len(arr)):
                 xor ^= arr[j]
 
                 if xor == 0:
