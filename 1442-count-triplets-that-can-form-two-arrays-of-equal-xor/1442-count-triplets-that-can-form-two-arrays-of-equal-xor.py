@@ -12,8 +12,7 @@ class Solution:
             xor = 0
 
             for j in range(i, len(arr)):
-                num = arr[j]
-                xor ^= num
+                xor ^= arr[j]
 
                 if xor == 0:
                     output += j - i 
