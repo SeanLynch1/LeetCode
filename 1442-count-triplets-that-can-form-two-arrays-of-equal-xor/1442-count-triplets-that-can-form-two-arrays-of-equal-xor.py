@@ -21,8 +21,4 @@ class Solution:
             counts[val].append(i + 1)
 
 
-        for key, val in counts.items():
-            print(f"{key} : {val}")
-
-
         return output
