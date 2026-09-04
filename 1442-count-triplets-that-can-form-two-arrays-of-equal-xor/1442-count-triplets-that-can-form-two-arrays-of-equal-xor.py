@@ -1,16 +1,21 @@
 class Solution:
     def countTriplets(self, arr: List[int]) -> int:
-        n = len(arr)
+        
+        # [2,3,1,6,7,3]
+        # [0,2,1,0,6,1,2]
+        # [0,3,2,4,3,0]
+        # [0,1,7,0,3]
 
-        prefix = [0]
-        for x in arr:
-            prefix.append(prefix[-1] ^ x)
+        output = 0
 
-        ans = 0
+        for i in range(len(arr)):
+            xor = 0
 
-        for i in range(n):
-            for k in range(i + 1, n):
-                if prefix[i] == prefix[k + 1]:
-                    ans += k - i
+            for j in range(i, len(arr)):
+                num = arr[j]
+                xor ^= num
 
-        return ans
+                if xor == 0:
+                    output += j - i 
+
+        return output
