@@ -12,11 +12,9 @@ class Solution:
             prefix.append(prefix[-1] + num)
 
         checks = k
-        i = len(prefix) -1
-        for j in range(checks,-1,-1):
-            window = prefix[i] - prefix[k]
+        for j in range(len(prefix) -1, len(prefix)-checks-2,-1):
+            window = prefix[j] - prefix[k]
             output = max(output, prefix[-1] - window)
             k-=1
-            i-=1
 
         return output
