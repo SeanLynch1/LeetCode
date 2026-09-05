@@ -1,20 +1,18 @@
 class Solution:
     def maxScore(self, cardPoints: List[int], k: int) -> int:
-        
-        # k = 4
-        # [1,12,1 ,1 ,4 ,2 ,5 ,6 ,1]
-        # [0,1 ,13,14,15,19,21,26,32,33]
+        n = len(cardPoints)
 
-        prefix = [0]
-        output = 0
+        if k == n:
+            return sum(cardPoints)
 
-        for num in cardPoints:
-            prefix.append(prefix[-1] + num)
+        window = n - k
+        total = sum(cardPoints)
 
-        checks = k
-        for j in range(len(prefix) -1, len(prefix)-checks-2,-1):
-            window = prefix[j] - prefix[k]
-            output = max(output, prefix[-1] - window)
-            k-=1
+        curr = sum(cardPoints[:window])
+        min_sum = curr
 
-        return output
+        for r in range(window, n):
+            curr += cardPoints[r] - cardPoints[r - window]
+            min_sum = min(min_sum, curr)
+
+        return total - min_sum
