@@ -11,18 +11,12 @@ class Solution:
         for num in cardPoints:
             prefix.append(prefix[-1] + num)
 
-        print(f"prefix = {prefix}")
         checks = k
         i = len(prefix) -1
         for j in range(checks,-1,-1):
-            print(f"k = {k},i = {i}")
             window = prefix[i] - prefix[k]
-            print(f"window = {window}")
-            total = prefix[-1] - window
-            print(f"total = {total}")
-            output = max(output, total)
+            output = max(output, prefix[-1] - window)
             k-=1
             i-=1
-            print("")
 
         return output
