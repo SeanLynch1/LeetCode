@@ -48,16 +48,14 @@ class Solution:
 
             #left
             left = search(x,y-1,curr,visited)
-            total |= left
             #up
             up = search(x-1,y,curr,visited)
-            total |= up
             #down
             down = search(x+1,y,curr,visited)
-            total |= down
             #right
             right = search(x,y+1,curr,visited)
-            total |= right
+            
+            total = left | up | down | right
             if total == 3:
                 return total
 
