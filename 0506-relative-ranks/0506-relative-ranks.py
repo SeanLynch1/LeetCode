@@ -20,5 +20,4 @@ class Solution:
         for i, num in enumerate(score):
             output[i] = mapping[num]
 
-        print(output)
         return output
