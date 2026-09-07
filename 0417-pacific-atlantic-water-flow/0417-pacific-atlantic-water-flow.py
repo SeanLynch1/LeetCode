@@ -49,18 +49,12 @@ class Solution:
             #left
             left = search(x,y-1,curr,visited)
             total |= left
-            if total == 3:
-                return total
             #up
             up = search(x-1,y,curr,visited)
             total |= up
-            if total == 3:
-                return total
             #down
             down = search(x+1,y,curr,visited)
             total |= down
-            if total == 3:
-                return total
             #right
             right = search(x,y+1,curr,visited)
             total |= right
