@@ -19,9 +19,11 @@ class Solution:
         #[4,0]
         #]
 
+        memo = defaultdict(int)
         output = []
 
         def search (x, y, curr, visited) -> int:
+            
             
             # pacific
             if x == -1 or y == -1:
@@ -37,8 +39,8 @@ class Solution:
             if (x,y) in visited:
                 return 0
 
-            visited.add((x,y))
 
+            visited.add((x,y))
             curr = heights[x][y]
 
             #left
@@ -51,6 +53,8 @@ class Solution:
             right = search(x,y+1,curr,visited)
             
             total = left | up | down | right
+            memo[(x,y)] = total
+
             if total == 3:
                 return total
 
