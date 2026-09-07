@@ -21,8 +21,6 @@ class Solution:
 
         output = []
         
-        if 1 < len(heights) and 8 < len(heights[0]):
-            print(heights[1][8])
 
         def total_adder(direction, total) -> list:
             total[0] = max(direction[0], total[0])
