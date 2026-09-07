@@ -20,7 +20,7 @@ class Solution:
         #]
 
         output = []
-        
+        successes = set()
 
         def total_adder(direction, total) -> list:
             total[0] = max(direction[0], total[0])
@@ -29,6 +29,8 @@ class Solution:
 
         def search (x, y, curr, visited) -> list:
             
+            
+
             # pacific
             if x == -1 or y == -1:
                 return [0,1]
@@ -40,6 +42,9 @@ class Solution:
             if heights[x][y] > curr:
                 return [0,0]
 
+            if (x,y) in successes:
+                return [1,1]
+                
             if (x,y) in visited:
                 return [0,0]
             visited.add((x,y))
@@ -75,5 +80,6 @@ class Solution:
                 visited = set()
                 if sum(search(x,y,float('inf'),visited)) == 2:
                     output.append([x,y])
+                    successes.add((x,y))
 
         return output
