@@ -22,53 +22,49 @@ class Solution:
         output = []
         successes = set()
 
-        def total_adder(direction, total) -> list:
-            total[0] = max(direction[0], total[0])
-            total[1] = max(direction[1], total[1])
-            return total
-
-        def search (x, y, curr, visited) -> list:
+        def search (x, y, curr, visited) -> int:
             
             # pacific
             if x == -1 or y == -1:
-                return [0,1]
+                return 1
             
             # atlantic
             if x == len(heights) or y == len(heights[0]):
-                return [1,0]
+                return 2
 
             if heights[x][y] > curr:
-                return [0,0]
+                return 0
 
             if (x,y) in successes:
-                return [1,1]
+                return 3
 
             if (x,y) in visited:
-                return [0,0]
+                return 0
+
             visited.add((x,y))
 
             curr = heights[x][y]
-            total = [0,0]
+            total = 0
 
             #left
             left = search(x,y-1,curr,visited)
-            total = total_adder(left, total)
-            if sum(total) == 2:
+            total |= left
+            if total == 3:
                 return total
             #up
             up = search(x-1,y,curr,visited)
-            total = total_adder(up, total)
-            if sum(total) == 2:
+            total |= up
+            if total == 3:
                 return total
             #down
             down = search(x+1,y,curr,visited)
-            total = total_adder(down, total)
-            if sum(total) == 2:
+            total |= down
+            if total == 3:
                 return total
             #right
             right = search(x,y+1,curr,visited)
-            total = total_adder(right, total)
-            if sum(total) == 2:
+            total |= right
+            if total == 3:
                 return total
 
             return total
@@ -76,7 +72,7 @@ class Solution:
         for x in range(len(heights)):
             for y in range(len(heights[0])):
                 visited = set()
-                if sum(search(x,y,float('inf'),visited)) == 2:
+                if search(x,y,float('inf'),visited) == 3:
                     output.append([x,y])
                     successes.add((x,y))
 
