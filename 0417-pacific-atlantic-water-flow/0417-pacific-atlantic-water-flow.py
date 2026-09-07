@@ -44,7 +44,6 @@ class Solution:
             visited.add((x,y))
 
             curr = heights[x][y]
-            total = 0
 
             #left
             left = search(x,y-1,curr,visited)
