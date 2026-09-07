@@ -29,8 +29,6 @@ class Solution:
 
         def search (x, y, curr, visited) -> list:
             
-            
-
             # pacific
             if x == -1 or y == -1:
                 return [0,1]
@@ -44,7 +42,7 @@ class Solution:
 
             if (x,y) in successes:
                 return [1,1]
-                
+
             if (x,y) in visited:
                 return [0,0]
             visited.add((x,y))
