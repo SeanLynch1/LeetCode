@@ -20,7 +20,6 @@ class Solution:
         #]
 
         output = []
-        successes = set()
 
         def search (x, y, curr, visited) -> int:
             
@@ -34,9 +33,6 @@ class Solution:
 
             if heights[x][y] > curr:
                 return 0
-
-            if (x,y) in successes:
-                return 3
 
             if (x,y) in visited:
                 return 0
@@ -65,6 +61,5 @@ class Solution:
                 visited = set()
                 if search(x,y,float('inf'),visited) == 3:
                     output.append([x,y])
-                    successes.add((x,y))
 
         return output
