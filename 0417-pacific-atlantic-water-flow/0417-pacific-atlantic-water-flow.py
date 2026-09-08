@@ -1,69 +1,74 @@
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         
-        #[
-        #[1,2,2,3,5],
-        #[3,2,3,4,4],
-        #[2,4,5,3,1],
-        #[6,7,1,4,5],
-        #[5,1,1,2,4]]
-        #]
-
-        #[
-        #[0,4],
-        #[1,3],
-        #[1,4],
-        #[2,2],
-        #[3,0],
-        #[3,1],
-        #[4,0]
-        #]
-
-        memo = defaultdict(int)
+        pacific_set = set()
+        atlantic_set = set()
         output = []
 
-        def search (x, y, curr, visited) -> int:
+        def search_pacific(x, y, curr):
             
+            if x < 0 or y < 0 or x == len(heights) or y == len(heights[0]):
+                return
+
+            if heights[x][y] < curr:
+                return
+
+            if (x,y) in pacific_set:
+                return
+
+            pacific_set.add((x,y))
+
+            # left
+            search_pacific(x,y-1,heights[x][y])
+            # down
+            search_pacific(x+1,y,heights[x][y])
+            # right
+            search_pacific(x,y+1,heights[x][y])
+            # up
+            search_pacific(x-1,y,heights[x][y])
+
+            return    
+
+        def search_atlantic(x, y, curr):
             
-            # pacific
-            if x == -1 or y == -1:
-                return 1
-            
-            # atlantic
-            if x == len(heights) or y == len(heights[0]):
-                return 2
+            if x < 0 or y < 0 or x == len(heights) or y == len(heights[0]):
+                return
 
-            if heights[x][y] > curr:
-                return 0
+            if heights[x][y] < curr:
+                return
 
-            if (x,y) in visited:
-                return 0
+            if (x,y) in atlantic_set:
+                return
 
+            atlantic_set.add((x,y))
 
-            visited.add((x,y))
-            curr = heights[x][y]
+            # left
+            search_atlantic(x,y-1,heights[x][y])
+            # down
+            search_atlantic(x+1,y,heights[x][y])
+            # right
+            search_atlantic(x,y+1,heights[x][y])
+            # up
+            search_atlantic(x-1,y,heights[x][y])
 
-            #left
-            left = search(x,y-1,curr,visited)
-            #up
-            up = search(x-1,y,curr,visited)
-            #down
-            down = search(x+1,y,curr,visited)
-            #right
-            right = search(x,y+1,curr,visited)
-            
-            total = left | up | down | right
-            memo[(x,y)] = total
+            return        
 
-            if total == 3:
-                return total
+        for i in range(len(heights[0])):
+            search_pacific(0,i,float('-inf'))
+        for i in range(len(heights)):
+            search_pacific(i,0,float('-inf'))
 
-            return total
+        for i in range(len(heights[0])):
+            search_atlantic(len(heights)-1,i,float('-inf'))
+        for i in range(len(heights)):
+            search_atlantic(i,len(heights[0])-1,float('-inf'))
+
+        print(pacific_set)
+        print(atlantic_set)
         
         for x in range(len(heights)):
             for y in range(len(heights[0])):
-                visited = set()
-                if search(x,y,float('inf'),visited) == 3:
-                    output.append([x,y])
+                if (x,y) in pacific_set and (x,y) in atlantic_set:
+                    output.append((x,y))
 
         return output
