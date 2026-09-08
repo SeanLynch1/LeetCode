@@ -3,7 +3,6 @@ class Solution:
         
         n = len(nums)
         org = nums.copy()
-
         output = 0
 
         # go for evens
@@ -21,15 +20,7 @@ class Solution:
                     diff = (curr - right) + 1
                     nums[i] -= diff
                     output += diff  
-        print(f"evens:")
-        print(f"original: ")
-        print(org)
-        print(f"nums: ")
-        print(nums)
-        print(f"result = {output}")
-        print("")
 
-        new_org = org.copy()
         nums = org
         temp = 0
 
@@ -48,15 +39,5 @@ class Solution:
                     diff = (right - curr) + 1
                     nums[i+1] -= diff
                     temp += diff  
-
-        print(f"odds:")
-        print(f"original: ")
-        print(new_org)
-        print(f"nums: ")
-        print(nums)
-        print(f"result = {temp}")
-        print("")
-
-        
 
         return min(temp,output)
