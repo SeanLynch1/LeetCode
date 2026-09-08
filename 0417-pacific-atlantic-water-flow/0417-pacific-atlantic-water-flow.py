@@ -63,9 +63,6 @@ class Solution:
         for i in range(len(heights)):
             search_atlantic(i,len(heights[0])-1,float('-inf'))
 
-        print(pacific_set)
-        print(atlantic_set)
-        
         for x in range(len(heights)):
             for y in range(len(heights[0])):
                 if (x,y) in pacific_set and (x,y) in atlantic_set:
