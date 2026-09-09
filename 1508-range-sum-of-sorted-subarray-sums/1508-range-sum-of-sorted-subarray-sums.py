@@ -9,11 +9,10 @@ class Solution:
         for i in range(len(nums)):
             start = 0
             for j in range(i, len(nums)):
-                start += (nums[j])
+                start += nums[j]
                 output.append(start)
 
         output.sort()
-        print(output)
 
         res = 0
         for i in range(left-1,right):
