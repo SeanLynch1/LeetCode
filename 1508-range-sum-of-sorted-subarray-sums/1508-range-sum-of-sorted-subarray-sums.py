@@ -16,6 +16,6 @@ class Solution:
 
         res = 0
         for i in range(left-1,right):
-            res += (output[i])
+            res += output[i]
 
         return res % MOD
