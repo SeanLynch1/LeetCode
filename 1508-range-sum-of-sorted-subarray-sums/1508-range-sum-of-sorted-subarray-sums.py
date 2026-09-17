@@ -77,6 +77,6 @@ class Solution:
             total -= (low * diff)
             # 1,2,3,3,4,5,6,7,9,10
             
-            return total        
+            return total
 
         return (find_optimal(right) - find_optimal(left - 1)) % ((10 ** 9) + 7)
